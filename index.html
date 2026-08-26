@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boda de Ramiro & Janneth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <div class="brillo-fondo"></div>
+  <div id="contenedorFlores" class="contenedor-flores"></div>
+
+  <audio id="musicaBoda" loop>
+    <source src="musica-boda.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="boton-musica" type="button" onclick="controlarMusica()">♪</button>
+  
+  <a href="#seccion-rsvp" id="btnNotificacionRSVP" class="flotante-rsvp">
+    🔔 Confirma tu asistencia aquí
+  </a>
+
+  <div id="paginaInvitacion">
+    <header class="caratula">
+      <div class="hero-imagen-wrapper">
+        <img
+          src="./Foto_Presentación.png"
+          alt="Novios mirándose"
+          class="foto-novios-slide"
+        >
+        <div class="velo-color"></div>
+      </div>
+
+      <div class="hero-contenido reveal">
+        <p class="texto-superior">Nuestra boda</p>
+        <h1>Ramiro<br>& Janneth</h1>
+        <p class="mensaje-amor">
+          Hay momentos que se sueñan toda la vida, y este queremos compartirlo contigo.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section id="contenedor-saludo" class="panel reveal oculto">
+        <h2 id="saludo-personalizado" style="margin-bottom: 5px;"></h2>
+        <p id="pases-personalizados" style="font-size: 1.1rem; color: var(--salmon-oscuro); font-weight: bold; margin: 0;"></p>
+      </section>
+
+      <section class="panel reveal">
+        <p class="etiqueta">Con amor</p>
+        <h2>Estás invitado</h2>
+        <p>
+          Queremos celebrar la hermosa vida que ya hemos construido juntos, rodeados de las personas que más queremos. 
+          Hoy damos el paso más importante: confirmar nuestro amor ante Dios y recibir su bendición. 
+          Será una tarde y noche llena de emoción, luces suaves, música y recuerdos para guardar siempre.
+        </p>
+        <p class="aclaracion">Recepción exclusiva para adultos. Agradecemos tu comprensión.</p>
+      </section>
+
+      <section class="panel fecha-panel reveal">
+        <div class="fecha-estilo-img1">
+          <p class="dia-semana">V I E R N E S</p>
+          <p class="dia-numero">18</p>
+          <p class="mes-anio">SEPTIEMBRE 2026</p>
+          <p class="hora-boda">15:45 hrs.</p>
+          <div class="ornamento">❦</div>
+        </div>
+      </section>
+
+      <section class="panel contador-panel reveal">
+        <p class="contador-titulo">FALTAN</p>
+        <div class="contador-inline">
+          <div class="tiempo-bloque">
+            <span id="dias">00</span>
+            <p>DÍAS</p>
+          </div>
+          <div class="tiempo-bloque">
+            <span id="horas">00</span>
+            <p>HRS.</p>
+          </div>
+          <div class="tiempo-bloque">
+            <span id="minutos">00</span>
+            <p>MIN.</p>
+          </div>
+          <div class="tiempo-bloque">
+            <span id="segundos">00</span>
+            <p>SEG.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel reveal">
+        <p class="etiqueta">Familia</p>
+        <h2>Agradecidos a Nuestros Padres</h2>
+        
+        <div class="bloque-familia">
+          <p class="rol-familia">PADRES DE LA NOVIA</p>
+          <p class="nombres-familia">Leonidas Alvarez Obando † <br>Natividad Quiroz Claure</p>
+        </div>
+        <div class="bloque-familia">
+          <p class="rol-familia">PADRES DEL NOVIO</p>
+          <p class="nombres-familia">Teodoro Arcani Aranibar † <br>Dolores Arcani de Arcani</p>
+        </div>
+      </section>
+
+      <section class="panel reveal">
+        <p class="etiqueta">Agenda</p>
+        <h2>Programa</h2>
+        <div class="programa">
+          <div>
+            <strong>15:45</strong>
+            <p>Ceremonia</p>
+          </div>
+          <div>
+            <strong>17:00</strong>
+            <p>Recepción</p>
+          </div>
+          <div>
+            <strong>17:30</strong>
+            <p>Vals y Brindis</p>
+          </div>
+          <div>
+            <strong>18:30</strong>
+            <p>Cena y Baile</p>
+          </div>
+          <div>
+            <strong>00:30</strong>
+            <p>Cierre del Evento</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel reveal sin-borde-fondo">
+        <div class="mapas-grid">
+          <article class="tarjeta-lugar">
+            <div class="icono-lineal">
+              <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="10" y1="90" x2="90" y2="90" />
+                <path d="M20 90V55L50 35L80 55V90H20Z" />
+                <path d="M40 35V15L50 5L60 15V35" />
+                <line x1="50" y1="12" x2="50" y2="2" />
+                <line x1="46" y1="6" x2="54" y2="6" />
+                <path d="M46 25C46 22 54 22 54 25V30H46V25Z" />
+                <path d="M42 90V70C42 65 58 65 58 70V90" />
+                <line x1="50" y1="66" x2="50" y2="90" />
+                <path d="M28 65V78C28 80 34 80 34 78V65C34 63 28 63 28 65Z" />
+                <path d="M66 65V78C66 80 72 80 72 78V65C72 63 66 63 66 65Z" />
+              </svg>
+            </div>
+            <h3 class="titulo-lugar-cursiva">Ceremonia Religiosa</h3>
+            <p class="lugar-subtitulo">IGLESIA SAN ILDEFONSO</p>
+            <p class="lugar-hora">15:45</p>
+            <button class="btn-oscuro" type="button" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2258.0927591552822!2d-66.28012117673957!3d-17.39842976804978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e30b78ff3172c1%3A0x53e4d00675eb37c9!2sParroquia%20San%20Ildefonso%20de%20Quillacollo!5e1!3m2!1ses!2sbo!4v1784857846142!5m2!1ses!2sbo%22%20width=%22600%22%20height=%22450%22%20style=%22border:0;%22%20allowfullscreen=%22%22%20loading=%22lazy%22%20referrerpolicy=%22strict-origin-when-cross-origin')">VER UBICACIÓN</button>
+          </article>
+
+          <article class="tarjeta-lugar">
+            <div class="icono-lineal">
+              <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="42" cy="58" r="23" />
+                <circle cx="42" cy="58" r="19" />
+                <circle cx="62" cy="58" r="23" />
+                <circle cx="62" cy="58" r="19" />
+                <path d="M57 36L62 39L67 36" />
+                <path d="M54 30L62 38L70 30L65 23H59L54 30Z" />
+                <line x1="59" y1="23" x2="62" y2="30" />
+                <line x1="65" y1="23" x2="62" y2="30" />
+                <line x1="54" y1="30" x2="62" y2="30" />
+                <line x1="70" y1="30" x2="62" y2="30" />
+                <line x1="48" y1="21" x2="52" y2="24" />
+                <line x1="62" y1="14" x2="62" y2="19" />
+                <line x1="76" y1="21" x2="72" y2="24" />
+              </svg>
+            </div>
+            <h3 class="titulo-lugar-cursiva">Recepción</h3>
+            <p class="lugar-subtitulo">SALÓN DE EVENTOS LA VIÑA</p>
+            <p class="lugar-hora">17:00</p>
+            <button class="btn-oscuro" type="button" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d576550.8830327634!2d-66.40967744692608!3d-17.67692788957749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e30b79d780632f%3A0x17bed94d35fc6ab1!2sLA%20VI%C3%91A%20(Quillacollo)!5e1!3m2!1ses!2sbo!4v1784246533184!5m2!1ses!2sbo')">VER UBICACIÓN</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel fotos-panel reveal">
+        <p class="etiqueta">Recuerdos</p>
+        <h2>Sube tus fotos</h2>
+        <p>Ayúdanos a capturar cada momento a partir del inicio de nuestra boda. Selecciona una imagen de tu galería o toma una foto desde tu celular.</p>
+
+        <div class="foto-acciones">
+          <label class="archivo-label" onclick="verificarFechaFoto(event)" for="subirFoto">Elegir de galería</label>
+          <label class="archivo-label secundario" onclick="verificarFechaFoto(event)" for="tomarFoto">Tomar foto</label>
+        </div>
+
+        <input type="file" id="subirFoto" accept="image/*">
+        <input type="file" id="tomarFoto" accept="image/*" capture="environment">
+
+        <button type="button" onclick="procesarFoto()">Subir foto al álbum</button>
+
+        <p id="mensajeFoto" class="mensaje-foto"></p>
+        <div id="galeriaFotos" class="galeria-fotos"></div>
+      </section>
+
+      <section id="seccion-rsvp" class="panel reveal">
+        <p class="etiqueta">RSVP</p>
+        <h2>Confirmar asistencia</h2>
+        <p>Por favor confirma tu asistencia para ayudarnos con la organización.</p>
+        
+        <p class="fecha-limite">⚠️ Confirma antes del <strong> 29 de Agosto </strong> (hasta la medianoche).</p>
+
+        <div id="bloqueYaConfirmado" class="oculto" style="padding: 15px; background: rgba(166, 138, 86, 0.15); border-radius: 12px; margin-bottom: 15px;">
+          <p id="textoYaConfirmado" style="font-weight: bold; color: var(--azul-profundo); margin: 0; line-height: 1.5;"></p>
+        </div>
+
+        <form id="formularioAsistencia">
+          
+          <div id="infoPasesRSVP" class="oculto" style="background: var(--champagne-claro); border: 2px dashed var(--champagne-oscuro); padding: 15px; border-radius: 12px; margin-bottom: 20px; font-size: 1.2rem; color: var(--azul-profundo); text-align: center;">
+            Tienen <strong id="numeroPasesForm" style="font-size: 1.8rem; color: var(--salmon-oscuro);"></strong> pases asignados
+          </div>
+
+          <input type="text" id="nombreCompleto" placeholder="Nombre completo" required readonly>
+          
+          <div id="contenedorSelectPases" style="margin-top: 10px; text-align: left;">
+            <label for="selectPases" style="font-size: 0.9rem; font-weight: bold; color: var(--azul-profundo);">¿Cuántos pases utilizarán?</label>
+            <select id="selectPases" style="width: 100%; min-height: 55px; margin: 8px 0; padding: 0 15px; border: 2px solid var(--champagne); border-radius: 16px; font-family: 'Playfair Display', serif; font-size: 1rem; background: white;" required>
+            </select>
+          </div>
+
+          <button id="botonConfirmar" type="submit">
+            Confirmar asistencia
+          </button>
+          <p class="instruccion-rsvp">Presiona el botón para enviar tu respuesta.</p>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <section id="paginaConfirmacion" class="pagina-confirmacion oculto">
+    <div class="confirmacion-hero">
+      <p class="etiqueta">Confirmación recibida</p>
+      <h2>¡Te esperamos!</h2>
+      <p>Gracias por acompañarnos en este día tan especial. Aquí tienes las herramientas para guardar toda la información.</p>
+
+      <div class="acciones-post-confirmacion">
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Ramiro+y+Janneth&dates=20260918T194500Z/20260919T020000Z&details=¡Acompáñanos+en+nuestra+boda!+Recuerda+que+es+el+18+de+septiembre+a+las+15:45.&location=Cochabamba&remind=2880" target="_blank" class="boton-util" onclick="pausarMusicaForzado()">
+          📅 Añadir a Google Calendar
+        </a>
+
+        <div class="contenedor-envio-manual">
+          <input type="tel" id="celularMapa" placeholder="Nro de Celular (Ej. 76543210)" maxlength="8">
+          <button type="button" onclick="enviarMapasCelular()" class="boton-util secundario">
+            📲 Enviar mapas a WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mapas-grid" style="margin-top: 30px;">
+      <article class="tarjeta-lugar">
+        <div class="icono-lineal">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="10" y1="90" x2="90" y2="90" />
+            <path d="M20 90V55L50 35L80 55V90H20Z" />
+            <path d="M40 35V15L50 5L60 15V35" />
+            <line x1="50" y1="12" x2="50" y2="2" />
+            <line x1="46" y1="6" x2="54" y2="6" />
+            <path d="M46 25C46 22 54 22 54 25V30H46V25Z" />
+            <path d="M42 90V70C42 65 58 65 58 70V90" />
+            <line x1="50" y1="66" x2="50" y2="90" />
+            <path d="M28 65V78C28 80 34 80 34 78V65C34 63 28 63 28 65Z" />
+            <path d="M66 65V78C66 80 72 80 72 78V65C72 63 66 63 66 65Z" />
+          </svg>
+        </div>
+        <h3 class="titulo-lugar-cursiva">Iglesia</h3>
+        <button class="btn-oscuro" type="button" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2258.0927591552822!2d-66.28012117673957!3d-17.39842976804978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e30b78ff3172c1%3A0x53e4d00675eb37c9!2sParroquia%20San%20Ildefonso%20de%20Quillacollo!5e1!3m2!1ses!2sbo!4v1784857846142!5m2!1ses!2sbo%22%20width=%22600%22%20height=%22450%22%20style=%22border:0;%22%20allowfullscreen=%22%22%20loading=%22lazy%22%20referrerpolicy=%22strict-origin-when-cross-origin')">VER UBICACIÓN</button>
+      </article>
+
+      <article class="tarjeta-lugar">
+        <div class="icono-lineal">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="42" cy="58" r="23" />
+            <circle cx="42" cy="58" r="19" />
+            <circle cx="62" cy="58" r="23" />
+            <circle cx="62" cy="58" r="19" />
+            <path d="M57 36L62 39L67 36" />
+            <path d="M54 30L62 38L70 30L65 23H59L54 30Z" />
+            <line x1="59" y1="23" x2="62" y2="30" />
+            <line x1="65" y1="23" x2="62" y2="30" />
+            <line x1="54" y1="30" x2="62" y2="30" />
+            <line x1="70" y1="30" x2="62" y2="30" />
+            <line x1="48" y1="21" x2="52" y2="24" />
+            <line x1="62" y1="14" x2="62" y2="19" />
+            <line x1="76" y1="21" x2="72" y2="24" />
+          </svg>
+        </div>
+        <h3 class="titulo-lugar-cursiva">Recepción</h3>
+        <button class="btn-oscuro" type="button" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d576550.8830327634!2d-66.40967744692608!3d-17.67692788957749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e30b79d780632f%3A0x17bed94d35fc6ab1!2sLA%20VI%C3%91A%20(Quillacollo)!5e1!3m2!1ses!2sbo!4v1784246533184!5m2!1ses!2sbo')">VER UBICACIÓN</button>
+      </article>
+    </div>
+
+    <footer>
+      <p>Con amor, Ramiro & Janneth</p>
+      <p class="creditos">Hecho por Arcani Software</p>
+    </footer>
+  </section>
+
+  <div id="modalMapa" class="modal-mapa oculto">
+    <div class="modal-contenido">
+      <button class="cerrar-modal" onclick="cerrarMapa()">×</button>
+      <div class="iframe-container">
+        <iframe id="iframeMapaModal" src="" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
