@@ -6,7 +6,7 @@ var URL_FOTOS = "https://script.google.com/macros/s/AKfycbzqAmczsKY0dzkIlqpIy0Df
 var FECHA_BODA = new Date("2026-09-18T15:45:00-04:00");
 var FECHA_HABILITACION_FOTOS = new Date("2026-09-18T15:45:00-04:00"); 
 // FECHA LÍMITE ACTUALIZADA AL 29 DE AGOSTO PARA TODOS
-var FECHA_LIMITE_RSVP = new Date("2026-08-29T23:59:59-04:00"); 
+var FECHA_LIMITE_RSVP = new Date("2026-09-3T23:59:59-04:00"); 
 
 var fotoSeleccionada = null;
 var invitadoActual = null; 
