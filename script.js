@@ -5,7 +5,6 @@ var URL_FOTOS = "https://script.google.com/macros/s/AKfycbzqAmczsKY0dzkIlqpIy0Df
 // FECHAS
 var FECHA_BODA = new Date("2026-09-18T15:45:00-04:00");
 var FECHA_HABILITACION_FOTOS = new Date("2026-09-18T15:45:00-04:00"); 
-// FECHA LÍMITE ACTUALIZADA AL 29 DE AGOSTO PARA TODOS
 var FECHA_LIMITE_RSVP = new Date("2026-09-13T23:59:59-04:00"); 
 
 var fotoSeleccionada = null;
@@ -113,9 +112,9 @@ function bloquearFormularioConfirmado(pasesUsados) {
       msjBase = "✓ Ya confirmaste tu asistencia para " + pasesUsados + " persona(s). ¡Gracias!";
     }
     
-    // Enlace directo a WhatsApp en caso de error
+    // Enlace directo a WhatsApp en caso de error (con las nuevas variables de color CSS)
     var linkWhatsApp = "https://wa.me/59163889661?text=Hola%2C%20tengo%20una%20duda%20sobre%20mi%20confirmaci%C3%B3n%20de%20asistencia";
-    texto.innerHTML = msjBase + "<br><br><span style='font-size: 0.9em; color: var(--salmon-oscuro);'>Si crees que es un error, comunícate al <a href='" + linkWhatsApp + "' target='_blank' style='color: var(--azul-acento); font-weight: bold; text-decoration: underline;'>+591 63889661</a><br>Arcani Software</span>";
+    texto.innerHTML = msjBase + "<br><br><span style='font-size: 0.9em; color: var(--color-secundario);'>Si crees que es un error, comunícate al <a href='" + linkWhatsApp + "' target='_blank' style='color: var(--color-primario); font-weight: bold; text-decoration: underline;'>+591 63889661</a><br>Arcani Software</span>";
   }
 
   if (formulario) formulario.style.display = "none";
@@ -135,7 +134,6 @@ function manejarFormularioRSVP() {
 function confirmarAsistencia() {
   var ahora = new Date();
   
-  // Comparamos directamente con la fecha límite general
   if (ahora > FECHA_LIMITE_RSVP) {
     alert("Lo sentimos, la fecha límite para confirmar tu asistencia ha expirado. Por favor contáctate directamente con los novios.");
     return;
@@ -239,7 +237,8 @@ function generarFloresCayendo() {
   const contenedor = document.getElementById("contenedorFlores");
   if (!contenedor) return;
   
-  const colores = ['#FAD6D0', '#E88B7B', '#F5F0E1'];
+  // Usaremos los tonos de la nueva paleta para los pétalos
+  const colores = ['#7C1B27', '#4B121A', '#B3977F'];
   const cantidad = 15;
 
   for (let i = 0; i < cantidad; i++) {
@@ -404,7 +403,7 @@ function prepararInputsFoto() {
         var mensaje = document.getElementById("mensajeFoto");
         if (mensaje) {
           mensaje.innerText = "Foto lista: " + fotoSeleccionada.name;
-          mensaje.style.color = "var(--azul-profundo)";
+          mensaje.style.color = "var(--color-primario)"; // Actualizado
         }
       }
     });
@@ -418,7 +417,7 @@ function procesarFoto() {
   if (ahora < FECHA_HABILITACION_FOTOS) {
     if (mensaje) {
       mensaje.innerText = "La subida se habilita el 18 de septiembre a las 15:45 hrs.";
-      mensaje.style.color = "var(--salmon-oscuro)";
+      mensaje.style.color = "var(--color-secundario)"; // Actualizado
     }
     return;
   }
@@ -427,7 +426,7 @@ function procesarFoto() {
   if (!archivo) {
     if (mensaje) {
       mensaje.innerText = "Por favor, selecciona una foto primero.";
-      mensaje.style.color = "var(--salmon-oscuro)";
+      mensaje.style.color = "var(--color-secundario)"; // Actualizado
     }
     return;
   }
@@ -440,7 +439,7 @@ function procesarFoto() {
   var lector = new FileReader();
   if (mensaje) {
     mensaje.innerText = "Subiendo recuerdo...";
-    mensaje.style.color = "var(--azul-acento)";
+    mensaje.style.color = "var(--color-terciario)"; // Actualizado
   }
 
   lector.onload = function (evento) {
