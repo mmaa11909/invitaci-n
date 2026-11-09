@@ -1,352 +1,331 @@
+:root {
+  /* Paleta Elegante Solicitada */
+  --primary: #4B121A;       /* Borgoña Oscuro */
+  --secondary: #7C1B27;     /* Rojo Profundo */
+  --taupe: #8C7A6B;         /* Taupe / Marrón Grisáceo para cajas */
+  --taupe-dark: #5A4C40;    /* Taupe oscuro para botones */
+  --cream: #F8F4EF;         /* Crema/Arena muy claro para fondo */
+  --text-dark: #333333;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-:root {
-  /* Paleta basada en tu última imagen (Borgoña, Rojo, Taupe, Crema) */
-  --color-primario: #4B121A;       /* Borgoña Oscuro (Textos principales) */
-  --color-secundario: #7C1B27;     /* Rojo/Vino Profundo (Acentos) */
-  --color-terciario: #B3977F;      /* Taupe/Marrón Claro (Botones secundarios, bordes) */
-  --color-cuarto: #EBD8C3;         /* Arena/Crema Oscuro (Degradados, fondos secundarios) */
-  --color-fondo: #F8F4EF;          /* Blanco/Marfil (Fondo general) */
-  --color-acento-claro: #F0EAE1;   /* Crema Suave (Detalles) */
-  --color-petalos: #7C1B27;        /* Usamos Vino para los pétalos para generar contraste */
-  
-  --sombra: rgba(75, 18, 26, 0.15); /* Sombra teñida de borgoña */
-  --borde-fino: 1px solid rgba(179, 151, 127, 0.3);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  color: var(--color-primario);
-  font-family: 'Playfair Display', serif; 
+  background-color: #E0E0E0; /* Fondo gris detrás del "celular" en PC */
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-dark);
+}
+
+/* Contenedor principal tipo App/Canva */
+#app-container {
+  max-width: 480px; /* Simula ancho de móvil */
+  margin: 0 auto;
+  background-color: var(--cream);
+  min-height: 100vh;
+  box-shadow: 0 0 30px rgba(0,0,0,0.1);
   overflow-x: hidden;
-  background: 
-    radial-gradient(circle at 10% 0%, var(--color-fondo), transparent 40%),
-    radial-gradient(circle at 90% 20%, var(--color-acento-claro), transparent 35%),
-    linear-gradient(180deg, var(--color-fondo) 0%, #FFFFFF 100%);
-}
-
-.brillo-fondo {
-  position: fixed;
-  inset: 0;
-  z-index: 40;
-  pointer-events: none;
-  box-shadow: inset 0 0 50px rgba(179, 151, 127, 0.1);
-}
-
-.contenedor-flores {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.petalo {
-  position: absolute;
-  top: -10%;
-  width: 15px;
-  height: 25px;
-  background-color: var(--color-petalos);
-  opacity: 0.6;
-  border-radius: 50% 0 50% 0;
-  animation: caer linear infinite;
-  box-shadow: 0 0 8px rgba(124, 27, 39, 0.4);
-}
-
-@keyframes caer {
-  0% { transform: translateY(-10vh) rotate(0deg) scale(0.8); opacity: 0; }
-  10% { opacity: 0.7; }
-  80% { opacity: 0.7; }
-  100% { transform: translateY(110vh) rotate(360deg) scale(1.2); opacity: 0; }
-}
-
-.boton-musica {
-  position: fixed;
-  top: 14px;
-  right: 14px;
-  z-index: 80;
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--color-terciario);
-  border-radius: 50%;
-  color: white;
-  background: rgba(75, 18, 26, 0.85); /* Fondo oscuro borgoña */
-  box-shadow: 0 8px 20px var(--sombra);
-  font-size: 24px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.boton-musica.activa {
-  color: var(--color-primario);
-  background: var(--color-cuarto);
-}
-
-.caratula {
   position: relative;
-  min-height: 100svh;
+}
+
+/* Tipografías Globales */
+.frase-cursiva, .nombres-hero, .cursiva-dorada, .titulo-caja-cursiva {
+  font-family: 'Dancing Script', cursive;
+}
+.italic { font-style: italic; }
+.font-bold { font-weight: 700; }
+.text-white { color: #ffffff; }
+.text-dark { color: var(--text-dark); }
+.center-text { text-align: center; }
+.texto-normal { font-size: 0.9rem; line-height: 1.5; color: #555; }
+.text-sm { font-size: 0.85rem; }
+.text-xs { font-size: 0.75rem; }
+.mt-10 { margin-top: 10px; } .mt-20 { margin-top: 20px; } .mt-40 { margin-top: 40px; }
+.mb-10 { margin-bottom: 10px; } .mb-20 { margin-bottom: 20px; }
+.w-100 { width: 100%; }
+.pb-0 { padding-bottom: 0 !important; }
+
+/* 1. HERO Y REPRODUCTOR */
+.hero-section {
+  position: relative;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  overflow: hidden;
+  justify-content: space-between;
 }
-
-.hero-imagen-wrapper {
+.hero-bg {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.foto-novios-slide {
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0; width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center bottom;
-  transform: translateY(100%);
-  animation: slideUpGlow 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  z-index: 1;
 }
-
-@keyframes slideUpGlow {
-  0% { transform: translateY(30%) scale(0.95); opacity: 0; filter: brightness(0.5); }
-  100% { 
-    transform: translateY(0) scale(1); 
-    opacity: 1; 
-    filter: brightness(0.8);
-  }
-}
-
-.velo-color {
-  position: absolute;
-  inset: 0;
-  /* Degradado elegante desde el borgoña */
-  background: linear-gradient(0deg, var(--color-primario) 0%, transparent 60%);
-  opacity: 0.8;
-}
-
-.hero-contenido {
+.hero-overlay {
   position: relative;
-  z-index: 10;
+  z-index: 2;
   text-align: center;
+  padding-top: 15vh;
   color: white;
-  padding: 0 20px 12vh;
-  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
-
-.texto-superior, .etiqueta {
-  margin: 0 0 14px;
-  color: var(--color-cuarto);
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.8rem;
-  font-weight: 600;
-}
-
-.etiqueta {
-  font-size: 1.5rem;
-  color: var(--color-secundario);
-  letter-spacing: normal;
-  text-transform: none;
-}
-
-h1 {
-  margin: 0;
-  color: #ffffff;
-  font-family: 'Dancing Script', cursive;
-  font-size: clamp(3.5rem, 15vw, 7.5rem);
+.nombres-hero {
+  font-size: 4rem;
   line-height: 0.9;
   font-weight: 700;
 }
-
-h2 {
-  margin: 0 0 14px;
-  color: var(--color-primario);
-  font-size: clamp(1.8rem, 8vw, 2.2rem);
-  line-height: 1.1;
-  font-style: italic;
+.ampersand { font-size: 2.5rem; font-family: 'Playfair Display', serif; }
+.fecha-hero {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+.music-player {
+  position: relative;
+  z-index: 2;
+  background: rgba(248, 244, 239, 0.9); /* Crema translúcido */
+  padding: 20px;
+  text-align: center;
+}
+.music-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+.play-btn {
+  font-size: 2rem;
+  cursor: pointer;
+}
+.progress-bar {
+  width: 80%;
+  height: 4px;
+  background: #ddd;
+  margin: 15px auto;
+  border-radius: 2px;
+}
+.progress-fill {
+  width: 30%; /* Estático por diseño */
+  height: 100%;
+  background: var(--primary);
+  border-radius: 2px;
+}
+.music-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.2rem;
+  color: #333;
 }
 
-.mensaje-amor {
-  max-width: 580px;
-  margin: 20px auto 0;
-  font-size: 1.1rem;
+/* 2. SECCIÓN GENERAL */
+.section-padding { padding: 60px 20px; }
+.frase-cursiva {
+  font-size: 2.5rem;
+  color: var(--taupe);
+  margin: 15px 0;
+}
+.textura-fondo {
+  background-image: url('data:image/svg+xml,...'); /* Puedes poner un patron de papel sutil aquí */
+  background-color: var(--cream);
+}
+
+/* CONTADOR Y FOTO */
+.imagen-contador-wrapper {
+  position: relative;
+  margin-top: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.img-anillo {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+.overlay-text-top {
+  position: absolute;
+  top: 20px; left: 0; width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+.cursiva-dorada {
+  font-size: 2.5rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.contador-overlay {
+  position: absolute;
+  bottom: 0; left: 0; width: 100%;
+  background: rgba(140, 122, 107, 0.7); /* Taupe translúcido */
+  padding: 15px 0;
+  color: white;
+  text-align: center;
+  backdrop-filter: blur(3px);
+}
+.contador-numeros {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.contador-labels {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+/* PADRES */
+.monograma {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: var(--taupe);
+  margin-bottom: 10px;
+}
+.bloque-padres { margin-top: 30px; }
+.titulo-padres {
+  font-size: 0.8rem;
+  color: var(--primary);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.caja-nombres {
+  background: white;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  font-family: 'Playfair Display', serif;
+  color: var(--text-dark);
+  font-size: 0.95rem;
   line-height: 1.6;
 }
 
-main, .pagina-confirmacion {
-  width: min(100% - 32px, 800px);
-  margin: 0 auto;
-}
-
-.panel, .confirmacion-hero, .mapa-card {
+/* EVENTOS SUPERPUESTOS (El diseño clave de Canva) */
+.eventos-section { padding: 40px 0; }
+.overlap-container {
   position: relative;
-  margin: 20px auto; 
-  padding: 24px 16px; 
-  border: 1px solid rgba(179, 151, 127, 0.2);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 15px 35px var(--sombra);
-  text-align: center;
-  backdrop-filter: blur(10px);
+  width: 100%;
+  min-height: 350px;
 }
-
-.sin-borde-fondo { background: transparent; border: none; box-shadow: none; padding: 0; }
-
-.fecha-panel {
-  background: linear-gradient(135deg, rgba(255,255,255,0.9), var(--color-fondo));
-  border: 1px solid var(--color-cuarto);
+.overlap-box {
+  background-color: var(--taupe);
+  color: white;
+  padding: 40px 20px;
+  width: 75%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
 }
+.right-box { right: 0; text-align: right; padding-left: 20%; }
+.left-box { left: 0; text-align: left; padding-right: 20%; }
 
-.fecha-estilo-img1 { color: var(--color-primario); }
-.dia-semana { letter-spacing: clamp(4px, 2vw, 8px); font-size: 1rem; margin: 0; text-transform: uppercase; }
-.dia-numero { font-size: clamp(4rem, 15vw, 5.5rem); font-weight: 400; line-height: 1; margin: 5px 0; font-style: italic; color: var(--color-primario); }
-.mes-anio { font-size: clamp(1rem, 4vw, 1.2rem); letter-spacing: 4px; margin: 0 0 5px; text-transform: uppercase; }
-.hora-boda { font-size: 1.2rem; font-style: italic; color: var(--color-secundario); margin: 0; }
-.ornamento { font-size: 2.5rem; color: var(--color-terciario); margin-top: 5px; line-height: 1; }
-
-.contador-panel { background: rgba(255, 255, 255, 0.6); border: 1px solid var(--color-cuarto); }
-.contador-titulo { font-size: 1.1rem; letter-spacing: 5px; margin-top: 0; margin-bottom: 15px; color: var(--color-primario); text-transform: uppercase; }
-.contador-inline { display: flex; justify-content: center; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.tiempo-bloque { display: flex; flex-direction: column; align-items: center; min-width: 50px; }
-.tiempo-bloque span { font-size: clamp(1.8rem, 8vw, 2.5rem); font-style: italic; color: var(--color-primario); line-height: 1; }
-.tiempo-bloque p { font-size: 0.7rem; letter-spacing: 2px; margin: 5px 0 0; color: var(--color-terciario); }
-
-.mapas-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-.tarjeta-lugar {
-  background: white; border: var(--borde-fino); border-radius: 20px; padding: 30px 20px;
-  display: flex; flex-direction: column; align-items: center; text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: transform 0.3s;
+.overlap-img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45%;
+  height: 280px;
+  object-fit: cover;
+  z-index: 2;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
-.tarjeta-lugar:active { transform: scale(0.98); }
-.icono-lineal { width: 45px; height: 45px; margin-bottom: 15px; color: var(--color-primario); opacity: 0.8; }
-.titulo-lugar-cursiva { font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin: 0 0 5px; color: var(--color-primario); }
-.lugar-subtitulo { font-family: sans-serif; font-size: 0.8rem; letter-spacing: 2px; color: var(--color-secundario); margin: 0 0 15px; }
-.lugar-hora { font-size: 1.5rem; font-style: italic; font-weight: 600; margin: 0 0 20px; color: var(--color-primario); }
+.left-img { left: 5%; }
+.right-img { right: 5%; }
 
+.titulo-caja-cursiva { font-size: 2.5rem; margin-bottom: 15px; }
+.lugar-titulo { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 1px; }
+.lugar-direccion { font-size: 0.8rem; margin: 5px 0; font-style: italic; }
+.lugar-hora { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; margin: 10px 0; }
+.puntualidad { font-size: 0.75rem; margin-bottom: 20px; }
+
+/* BOTONES */
+.btn-blanco {
+  background: white;
+  color: var(--taupe);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
 .btn-oscuro {
-  background: var(--color-primario); color: white; border: none; padding: 14px 24px;
-  border-radius: 8px; font-family: sans-serif; font-size: 0.9rem; letter-spacing: 1px;
-  font-weight: 600; cursor: pointer; width: 80%; transition: opacity 0.2s;
+  background: var(--taupe-dark);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 100%;
 }
-.btn-oscuro:active { opacity: 0.8; }
+.btn-blanco:active, .btn-oscuro:active { transform: scale(0.95); }
 
-.bloque-familia { margin-top: 25px; }
-.rol-familia { font-family: sans-serif; font-size: 0.85rem; letter-spacing: 3px; color: var(--color-secundario); margin-bottom: 5px; }
-.nombres-familia { font-size: 1.3rem; font-style: italic; line-height: 1.4; color: var(--color-primario); margin: 0; }
+/* DRESS CODE */
+.icono-dresscode { font-size: 3rem; margin-bottom: 10px; }
+.dress-title { color: var(--taupe-dark); letter-spacing: 2px; margin-bottom: 15px; }
+.dress-desc { font-family: 'Playfair Display', serif; font-size: 1.1rem; line-height: 1.8; color: var(--primary); }
+.dress-nota { font-size: 0.8rem; font-style: italic; margin-top: 15px; color: #666; }
 
-.mensajes { background: linear-gradient(135deg, var(--color-fondo), rgba(255,255,255,0.8)); border: 1px solid var(--color-cuarto); }
-.frase-destacada { font-family: 'Dancing Script', cursive; font-size: clamp(1.5rem, 6vw, 2rem); line-height: 1.4; margin: 0; color: var(--color-primario); }
-.aclaracion { display: inline-block; margin-top: 15px; padding: 10px 18px; border-radius: 12px; color: var(--color-primario); background: var(--color-fondo); font-size: 0.9rem; font-weight: 600; border: 1px solid var(--color-cuarto); }
-
-.boton-link, button, .archivo-label, .boton-util {
-  display: inline-flex; justify-content: center; align-items: center; width: 100%; min-height: 52px;
-  margin-top: 15px; padding: 0 20px; border: none; border-radius: 999px; color: white;
-  /* Degradado elegante Borgoña a Rojo profundo para botones principales */
-  background: linear-gradient(135deg, var(--color-secundario), var(--color-primario));
-  box-shadow: 0 10px 20px var(--sombra); font-size: 1.05rem; font-weight: 600;
-  font-family: 'Playfair Display', serif; text-decoration: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-align: center;
+/* MESA DE REGALOS */
+.seccion-regalos {
+  background-color: var(--taupe);
+  padding: 60px 30px;
+  text-align: center;
 }
-.boton-link:active, button:active, .archivo-label:active { transform: scale(0.98); }
-.archivo-label.secundario, .boton-util.secundario { 
-  /* Botones secundarios en tonos Arena/Taupe */
-  background: linear-gradient(135deg, var(--color-terciario), #9a7d65); 
+.texto-blanco { color: white; line-height: 1.5; }
+.logo-multicenter { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.8rem; color: white; margin: 30px 0 10px; }
+.botones-regalo { margin-top: 30px; }
+
+/* RSVP */
+.rsvp-section { min-height: 480px; } /* Más alto para acomodar el formulario */
+.caja-numero-pases {
+  background: white;
+  color: var(--primary);
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  width: 80px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  margin: 0; /* Align left */
 }
-button:disabled { opacity: 0.6; cursor: not-allowed; }
-
-.contenedor-envio-manual { display: flex; flex-direction: column; gap: 8px; margin-top: 15px; width: 100%; }
-input[type="text"], input[type="tel"] {
-  width: 100%; min-height: 55px; margin: 8px 0; padding: 0 20px; border: 2px solid var(--color-cuarto);
-  border-radius: 16px; color: var(--color-primario); background: white; font-family: 'Playfair Display', serif; font-size: 1rem; transition: border-color 0.3s;
+.input-form {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
 }
-input[type="text"]:focus, input[type="tel"]:focus { outline: none; border-color: var(--color-secundario); }
-input[type="file"] { display: none; }
+#selectPases { background: white; color: var(--text-dark); }
 
-.programa { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 25px; }
-.programa div { padding: 18px; border-radius: 16px; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.03); border-left: 5px solid var(--color-terciario); }
-.programa strong { color: var(--color-primario); font-size: 1.4rem; font-style: italic; }
-.programa p { margin: 5px 0 0; color: var(--color-secundario); }
+/* CIERRE */
+.img-cierre { width: 100%; border-radius: 10px; }
+.img-cierre-final { width: 100%; margin-bottom: -5px; } /* Pega al borde inferior */
+.titulo-historia { font-size: 1.2rem; color: var(--taupe-dark); letter-spacing: 2px; margin-top: 10px; }
+.fecha-final { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--taupe); margin-top: 10px; }
 
-.foto-acciones { display: grid; grid-template-columns: 1fr; gap: 10px; }
-.acciones-post-confirmacion { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
-.galeria-fotos { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 20px; }
-.galeria-fotos img { width: 100%; height: 250px; border-radius: 16px; object-fit: cover; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-
-.fecha-limite { color: var(--color-secundario); font-size: 0.95rem; margin-bottom: 15px; }
-.instruccion-rsvp { font-size: 0.8rem; font-family: sans-serif; color: var(--color-secundario); margin-top: 15px; opacity: 0.8; }
-
+/* UTILIDADES */
 .oculto { display: none !important; }
-.pagina-confirmacion { min-height: 100svh; padding-top: 40px; animation: aparecerConfirmacion 800ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
-
-.modal-mapa {
-  position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
-  display: flex; justify-content: center; align-items: center; padding: 20px;
-}
-.modal-contenido {
-  position: relative; width: 100%; max-width: 600px; background: white; border-radius: 20px;
-  overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); animation: zoomModal 0.3s ease-out forwards;
-}
-.cerrar-modal {
-  position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; background: white; border: none;
-  border-radius: 50%; font-size: 24px; color: var(--color-primario); box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center; padding: 0; margin: 0;
-}
-.iframe-container { width: 100%; height: 60vh; max-height: 500px; background: #e0e0e0; }
-
-@keyframes zoomModal { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-footer { padding: 40px 20px 80px; color: var(--color-secundario); text-align: center; font-size: 1.5rem; font-style: italic; }
-footer .creditos { font-family: sans-serif; font-size: 0.85rem; color: var(--color-secundario); opacity: 0.8; margin-top: 12px; letter-spacing: 1px; font-style: normal; }
-
-.reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); }
+.reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-@keyframes aparecerConfirmacion { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-
-@media (min-width: 768px) {
-  .panel, .confirmacion-hero, .mapa-card { margin: 32px auto; padding: 36px 24px; }
-  .contador-inline { gap: 20px; }
-  .mapas-grid { grid-template-columns: repeat(2, 1fr); }
-  .programa { grid-template-columns: repeat(4, 1fr); }
-  .foto-acciones, .galeria-fotos, .acciones-post-confirmacion { grid-template-columns: repeat(2, 1fr); }
-  .contenedor-envio-manual { flex-direction: row; align-items: center; }
-  .contenedor-envio-manual input[type="tel"] { margin: 0; width: 45%; }
-  .contenedor-envio-manual button { margin: 0; width: 55%; }
-}
-
-/* --- BOTÓN FLOTANTE RSVP --- */
-.flotante-rsvp {
-  position: fixed;
-  top: 14px;
-  left: 14px;
-  background: rgba(75, 18, 26, 0.95); /* Borgoña con opacidad */
-  color: white;
-  padding: 10px 16px;
-  border-radius: 24px;
-  font-family: 'Playfair Display', serif;
-  font-weight: 600;
-  font-size: 0.85rem;
-  text-decoration: none;
-  box-shadow: 0 4px 10px var(--sombra);
-  z-index: 100;
-  border: 1px solid var(--color-cuarto);
-  animation: pulsoSuave 2.5s infinite;
-  transition: opacity 0.3s ease;
-  backdrop-filter: blur(4px);
-}
-
-@keyframes pulsoSuave {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
+/* MODAL MAPA */
+.modal-mapa { position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; padding: 20px; }
+.modal-contenido { width: 100%; max-width: 400px; height: 60vh; background: white; position: relative; border-radius: 15px; overflow: hidden; }
+.cerrar-modal { position: absolute; top: 10px; right: 10px; width: 35px; height: 35px; border-radius: 50%; border: none; background: var(--taupe); color: white; font-size: 20px; z-index: 10; }
