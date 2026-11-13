@@ -21,13 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
   manejarFormularioRSVP();
 });
 
-// --- 1. ABRIR SOBRE Y VOLAR AVIÓN ---
+// --- 1. ABRIR SOBRE DIRECTO Y RÁPIDO (Sin avión) ---
 function abrirInvitacion(irARsvp) {
   var envelope = document.getElementById("envelope-screen");
-  var planeIntro = document.getElementById("plane-intro");
   var appContainer = document.getElementById("app-container");
 
-  // Iniciar música al abrir el sobre
+  // Iniciar música inmediatamente
   if (audio && !isPlaying) {
     audio.play().then(function () {
       if (playBtn) playBtn.innerText = "⏸";
@@ -35,28 +34,21 @@ function abrirInvitacion(irARsvp) {
     }).catch(function () {});
   }
 
+  // Mostrar el contenedor detrás mientras el sobre se desvanece en 0.45s
+  appContainer.classList.remove("oculto");
   envelope.style.opacity = "0";
-  envelope.style.transform = "scale(1.05)";
+  envelope.style.transform = "scale(1.04)";
 
   setTimeout(function () {
     envelope.classList.add("oculto");
-    planeIntro.classList.remove("oculto");
+    prepararAnimaciones();
 
-    setTimeout(function () {
-      planeIntro.style.opacity = "0";
-      appContainer.classList.remove("oculto");
-      prepararAnimaciones();
-
-      setTimeout(function () {
-        planeIntro.classList.add("oculto");
-        if (irARsvp) {
-          mostrarFormulario();
-          var rsvpSec = document.getElementById("seccion-rsvp");
-          if (rsvpSec) rsvpSec.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 800);
-    }, 3400);
-  }, 600);
+    if (irARsvp) {
+      mostrarFormulario();
+      var rsvpSec = document.getElementById("seccion-rsvp");
+      if (rsvpSec) rsvpSec.scrollIntoView({ behavior: "smooth" });
+    }
+  }, 450);
 }
 
 // --- 2. REPRODUCTOR DE MÚSICA ---
