@@ -6,7 +6,7 @@
   <title>Boda de Nayra & Armando</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,68 +16,62 @@
     <source src="musica-boda.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- 1. PANTALLA DE INICIO: SOBRE CON SELLO (Referencia Imagen 4) -->
+  <!-- 1. PANTALLA DE INICIO: SOBRE CON BORDES Y PLIEGUES MARCADOS -->
   <div id="envelope-screen" class="envelope-screen">
-    <div class="envelope-flap"></div>
-    <div class="envelope-pocket"></div>
+    <div class="envelope-card">
+      
+      <!-- Pliegues laterales e inferior del sobre -->
+      <div class="flap-left"></div>
+      <div class="flap-right"></div>
+      <div class="flap-bottom"></div>
+      
+      <!-- Solapa superior con borde iluminado y sombra profunda -->
+      <div class="flap-top"></div>
 
-    <!-- Sello de lacre bronce/dorado -->
-    <div class="wax-seal" onclick="abrirInvitacion(false)">
-      <div class="wax-seal-inner">
-        <svg viewBox="0 0 100 100" class="seal-leaf">
-          <path d="M50,88 C50,65 53,40 62,15 M53,70 C40,63 32,52 36,42 C44,49 50,58 53,70 Z M55,55 C68,48 76,37 72,27 C64,34 58,43 55,55 Z M57,40 C44,33 38,22 42,14 C48,21 54,30 57,40 Z M59,28 C68,23 73,15 70,9 C64,14 61,21 59,28 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      <!-- Sello de lacre centrado en la unión de los bordes -->
+      <div class="wax-seal" onclick="abrirInvitacion(false)">
+        <div class="wax-seal-inner">
+          <svg viewBox="0 0 100 100" class="seal-leaf">
+            <path d="M50,88 C50,65 53,40 62,15 M53,70 C40,63 32,52 36,42 C44,49 50,58 53,70 Z M55,55 C68,48 76,37 72,27 C64,34 58,43 55,55 Z M57,40 C44,33 38,22 42,14 C48,21 54,30 57,40 Z M59,28 C68,23 73,15 70,9 C64,14 61,21 59,28 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
       </div>
-    </div>
 
-    <!-- Información del invitado sobre el sobre -->
-    <div class="envelope-info">
-      <p class="res-label">Invitación reservada</p>
-      <h2 id="sobre-nombre" class="guest-name">Familia & Amigos</h2>
-      <p id="sobre-pases" class="guest-passes">2 Adultos</p>
+      <!-- Datos del invitado en la parte inferior del sobre -->
+      <div class="envelope-info">
+        <p class="res-label">Invitación reservada</p>
+        <h2 id="sobre-nombre" class="guest-name">Familia & Amigos</h2>
+        <p id="sobre-pases" class="guest-passes">2 Adultos</p>
 
-      <div class="envelope-buttons">
-        <button type="button" class="btn-envelope" onclick="abrirInvitacion(true)">Confirmar asistencia</button>
-        <button type="button" class="btn-envelope btn-envelope-primary" onclick="abrirInvitacion(false)">Abrir invitación</button>
+        <div class="envelope-buttons">
+          <button type="button" class="btn-envelope" onclick="abrirInvitacion(true)">Confirmar asistencia</button>
+          <button type="button" class="btn-envelope btn-envelope-primary" onclick="abrirInvitacion(false)">Abrir invitación</button>
+        </div>
       </div>
+
     </div>
   </div>
 
-  <!-- 2. ANIMACIÓN DEL AVIÓN GIGANTE -->
-  <div id="plane-intro" class="plane-intro oculto">
-    <div id="airplane-wrapper">
-      <svg viewBox="-500 0 1600 300" xmlns="http://www.w3.org/2000/svg">
-        <g fill="currentColor">
-          <path d="M968.6,188.4 c17.5,3.5,32.3,12.2,34.8,20.4 c2.8,9-14.7,14.5-35.1,16.5 H693.5 c-3.5,13.5-12.8,22.2-28.5,22.2 c-16.7,0-27.2-10.2-29.4-22.2 H323.7 c-21.7-2.3-43.2-6.5-62.7-10.3 l-55.6,7.5 l-19.6-1.5 l30.5-14.8 l-35.4-3.3 l-18.4-18.1 l54.8,1.3 L169.2,63 h32.2 l76.7,112.5 h85.3 l12.2-22.2 h8.5 l-6.1,22.2 h101.4 l5.3-7.4 h5.3 l-2.6,7.4 h84.2 l5.3-7.4 h5.3 l-2.6,7.4 H883 c14.2,0,25.3-5.2,34.2-8.5 C935.5,182.2,951.1,184.9,968.6,188.4 z"/>
-          <path d="M 120 200 Q -10 180 -100 180" fill="none" stroke="currentColor" stroke-width="4"/>
-          <path d="M 120 200 Q -10 230 -100 230" fill="none" stroke="currentColor" stroke-width="4"/>
-          <path d="M -100 170 L -480 170 L -440 205 L -480 240 L -100 240 Z" />
-          <text x="-285" y="218" text-anchor="middle" fill="#4B121A" font-size="38" font-family="Montserrat, sans-serif" font-weight="bold">NAYRA & ARMANDO</text>
-          <path d="M 180,110 A 15,15 0 0,0 150,110 A 15,15 0 0,0 120,110 Q 120,140 150,170 Q 180,140 180,110" />
-          <path d="M 80,70 A 12,12 0 0,0 56,70 A 12,12 0 0,0 32,70 Q 32,94 56,118 Q 80,94 80,70" />
-        </g>
-      </svg>
-    </div>
-  </div>
-
-  <!-- 3. CONTENEDOR PRINCIPAL ESTILO CANVA (Estructura anterior intacta) -->
+  <!-- 2. CONTENEDOR PRINCIPAL DE LA INVITACIÓN (Alineado y sin desfases) -->
   <div id="app-container" class="oculto">
 
     <!-- PORTADA HERO + REPRODUCTOR -->
     <header class="hero-section">
-      <img src="./Foto_Presentación.png" alt="Nayra y Armando" class="hero-bg" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80'">
-      <div class="hero-overlay">
-        <p class="welcome-aboard">Bienvenidos a Bordo · Nos Casamos</p>
-        <h1 class="nombres-hero">Nayra<br><span class="ampersand">&</span><br>Armando</h1>
-        <p class="fecha-hero">26/12/2026</p>
+      <div class="hero-image-box">
+        <img src="./Foto_Presentación.png" alt="Nayra y Armando" class="hero-bg" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80'">
+        <div class="hero-overlay">
+          <p class="welcome-aboard">Bienvenidos a Bordo · Nos Casamos</p>
+          <h1 class="nombres-hero">Nayra<br><span class="ampersand">&</span><br>Armando</h1>
+          <p class="fecha-hero">26/12/2026</p>
+        </div>
       </div>
       
-      <!-- Reproductor de música personalizado -->
+      <!-- Reproductor de música estilo Canva -->
       <div class="music-player">
         <div class="music-controls">
           <span>♡</span>
           <span>⏮</span>
-          <span id="play-btn" class="play-btn" onclick="controlarMusica()">▶</span>
+          <button type="button" id="play-btn" class="play-btn" onclick="controlarMusica()">▶</button>
           <span>⏭</span>
           <span>🔁</span>
         </div>
@@ -86,7 +80,7 @@
       </div>
     </header>
 
-    <!-- SECCIÓN FRASES IMPORTANTES & CONTADOR -->
+    <!-- SECCIÓN SÍ PARA SIEMPRE & CONTADOR -->
     <section class="section-padding center-text reveal">
       <p class="texto-normal">
         De la mano de Dios y unidos por el amor,<br>
@@ -97,23 +91,26 @@
         Con mucha ilusión queremos invitarte a ser parte<br>
         del comienzo de nuestro viaje más importante....
       </p>
-      <p class="frase-destacada-boda mt-10">
+      <p class="frase-destacada-boda">
         "Porque la realidad es por fin mejor que tus sueños"
       </p>
       
       <div class="imagen-contador-wrapper">
         <img src="./Foto_Anillo.png" alt="Nos casamos" class="img-anillo" onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80'">
-        <h3 class="overlay-text-top">ACOMPÁÑANOS EN NUESTRA<br><span class="cursiva-dorada">nueva aventura!</span></h3>
+        <div class="overlay-text-top">
+          <span>ACOMPÁÑANOS A CELEBRAR</span>
+          <span class="cursiva-dorada">nuestra boda!</span>
+        </div>
         
         <div class="contador-overlay">
           <div class="contador-numeros">
-            <span id="dias">00</span> : 
-            <span id="horas">00</span> : 
-            <span id="minutos">00</span> : 
-            <span id="segundos">00</span>
-          </div>
-          <div class="contador-labels">
-            <span>DÍAS</span><span>HORAS</span><span>MINUTOS</span><span>SEGUNDOS</span>
+            <div class="cd-item"><span id="dias">00</span><small>DÍAS</small></div>
+            <span class="cd-sep">:</span>
+            <div class="cd-item"><span id="horas">00</span><small>HORAS</small></div>
+            <span class="cd-sep">:</span>
+            <div class="cd-item"><span id="minutos">00</span><small>MINUTOS</small></div>
+            <span class="cd-sep">:</span>
+            <div class="cd-item"><span id="segundos">00</span><small>SEGUNDOS</small></div>
           </div>
         </div>
       </div>
@@ -138,34 +135,33 @@
         </div>
       </div>
 
-      <p class="aclaracion-adultos mt-20">
+      <p class="aclaracion-adultos">
         Queremos que disfrutes con nosotros al máximo, por ello la recepción está planificada para adultos.
       </p>
     </section>
 
-    <!-- SECCIÓN CEREMONIA Y RECEPCIÓN (Cajas superpuestas de Canva) -->
-    <section class="eventos-section reveal">
+    <!-- SECCIÓN CEREMONIA Y RECEPCIÓN (Superposición estable sin desfases) -->
+    <section class="eventos-section textura-fondo reveal">
       
       <!-- Ceremonia -->
-      <div class="overlap-container">
-        <img src="./Foto_Ceremonia.png" alt="Ceremonia" class="overlap-img left-img" onerror="this.src='https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80'">
-        <div class="overlap-box right-box">
+      <div class="editorial-block">
+        <div class="editorial-card card-right">
           <h2 class="titulo-caja-cursiva">Ceremonia</h2>
           <p class="lugar-titulo">IGLESIA "NUESTRA SEÑORA DEL CARMEN"</p>
-          <p class="lugar-direccion">📍 Vuelo: 26-12-2026</p>
+          <p class="lugar-direccion">📍 Vuelo: 26 de Diciembre, 2026</p>
           <p class="lugar-hora">18:00</p>
           <p class="puntualidad">(Se agradece puntualidad)</p>
           <button type="button" class="btn-blanco" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2258.0927591552822!2d-66.28012117673957!3d-17.39842976804978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e30b78ff3172c1%3A0x53e4d00675eb37c9!2sParroquia%20San%20Ildefonso%20de%20Quillacollo!5e1!3m2!1ses!2sbo!4v1784857846142!5m2!1ses!2sbo')">Ubicación</button>
         </div>
+        <img src="./Foto_Ceremonia.png" alt="Ceremonia" class="editorial-photo photo-bottom-left" onerror="this.src='https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80'">
       </div>
 
       <!-- Recepción -->
-      <div class="overlap-container mt-40">
-        <img src="./Foto_Recepcion.png" alt="Recepción" class="overlap-img left-img" onerror="this.src='https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80'">
-        <div class="overlap-box right-box">
+      <div class="editorial-block mt-30">
+        <div class="editorial-card card-right">
           <h2 class="titulo-caja-cursiva">Recepción</h2>
           <p class="lugar-titulo">SALÓN DE EVENTOS "DOLFIN"</p>
-          <p class="lugar-direccion">📍 A continuación</p>
+          <p class="lugar-direccion">📍 Recepción social a continuación</p>
           <p class="lugar-hora">19:30</p>
           <button type="button" class="btn-blanco" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d576550.8830327634!2d-66.40967744692608!3d-17.67692788957749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e30b79d780632f%3A0x17bed94d35fc6ab1!2sLA%20VI%C3%91A%20(Quillacollo)!5e1!3m2!1ses!2sbo!4v1784246533184!5m2!1ses!2sbo')">Ubicación</button>
         </div>
@@ -174,46 +170,78 @@
     </section>
 
     <!-- DRESS CODE -->
-    <section class="section-padding center-text textura-fondo reveal">
+    <section class="section-padding center-text reveal">
       <h2 class="frase-cursiva text-dark">Dress Code</h2>
-      <div class="icono-dresscode">👔👗</div>
+      <div class="icono-dresscode">
+        <svg viewBox="0 0 120 100" width="90" height="75" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Traje Novio -->
+          <path d="M20,25 L35,20 L50,25 L50,80 L20,80 Z"/>
+          <path d="M35,20 L35,55"/>
+          <path d="M28,22 L35,38 L42,22"/>
+          <!-- Vestido Novia -->
+          <path d="M75,25 C75,35 85,35 85,25 L80,45 L62,80 L102,80 L84,45 Z"/>
+        </svg>
+      </div>
       <h3 class="dress-title">FORMAL ELEGANTE</h3>
-      <p class="dress-desc"><strong>ELLAS:</strong> Vestido de cóctel o largo<br><strong>ELLOS:</strong> Traje formal</p>
+      <p class="dress-desc">
+        <strong>ELLAS:</strong> <em>Vestido de cóctel o largo</em><br>
+        <strong>ELLOS:</strong> <em>Traje formal</em>
+      </p>
       <p class="dress-nota">Nota: El blanco queda reservado para la novia. 💍</p>
     </section>
 
     <!-- MESA DE REGALOS -->
     <section class="seccion-regalos reveal">
-      <h2 class="frase-cursiva text-white">Mesa de regalos</h2>
-      <p class="texto-blanco">Tu presencia es nuestro mejor regalo, pero si deseas hacernos un detalle será recibido con mucho cariño.</p>
-      
-      <h3 class="logo-multicenter">M<br>multicenter</h3>
-      <p class="texto-blanco text-sm">📍 Av. Uyuni #1171 casi puente Muyurina.</p>
-      
-      <div class="botones-regalo">
-        <button type="button" class="btn-blanco w-100 mb-10" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.653451!2d-66.151!3d-17.376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDIyJzMzLjYiUyA2NsKwMDknMDMuNiJX!5e0!3m2!1ses!2sbo!4v1600000000000')">Ubicación</button>
-        <a href="https://wa.me/59163889661" target="_blank" class="btn-blanco w-100" style="display:inline-block; text-decoration:none;">Contacto</a>
+      <div class="regalos-card">
+        <h2 class="titulo-caja-cursiva">Mesa de regalos</h2>
+        <p class="texto-blanco">
+          Tu presencia es nuestro mejor regalo, pero si deseas hacernos un detalle será recibido con mucho cariño.
+        </p>
+        
+        <div class="logo-multicenter">
+          <span class="m-icon">M</span>
+          <span>multicenter</span>
+        </div>
+        <p class="texto-blanco text-sm">📍 Av. Uyuni #1171 casi puente Muyurina.</p>
+        
+        <div class="botones-regalo">
+          <button type="button" class="btn-blanco w-100" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.653451!2d-66.151!3d-17.376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDIyJzMzLjYiUyA2NsKwMDknMDMuNiJX!5e0!3m2!1ses!2sbo!4v1600000000000')">Ubicación</button>
+          <a href="https://wa.me/59163889661" target="_blank" class="btn-blanco w-100 link-btn">Contacto</a>
+        </div>
       </div>
     </section>
 
-    <!-- RSVP (Confirmación de asistencia superpuesta estilo Canva) -->
-    <section id="seccion-rsvp" class="overlap-container rsvp-section reveal">
-      <div class="overlap-box left-box">
-        <h2 class="frase-cursiva text-white mb-20" style="font-size: 2.2rem;">Confirmación de asistencia</h2>
-        <p class="texto-blanco text-sm mb-20">Hemos elegido celebrar este día rodeados de las personas más especiales para nosotros. Agradecemos acompañarnos respetando el número de invitados indicado.</p>
+    <!-- RSVP (Confirmación de asistencia alineada con foto lateral sin recortarse) -->
+    <section id="seccion-rsvp" class="rsvp-wrapper reveal">
+      <div class="rsvp-card-left">
+        <h2 class="titulo-caja-cursiva" style="text-align:center;">Confirmación de asistencia</h2>
         
-        <p class="texto-blanco mb-10">Lugares reservados para ti:</p>
-        <div class="caja-numero-pases" id="numeroPasesForm">2</div>
-        
-        <button type="button" class="btn-oscuro mt-20" id="btn-revelar-form" onclick="mostrarFormulario()">Confirma aquí</button>
+        <div class="rsvp-split">
+          <div class="rsvp-text-col">
+            <p class="texto-blanco text-xs">
+              Hemos elegido celebrar este día rodeados de las personas más especiales para nosotros. Agradecemos acompañarnos respetando el número de invitados indicado.
+            </p>
+            
+            <p class="lugares-label">Lugares reservados para ti:</p>
+            <div class="caja-numero-pases" id="numeroPasesForm">2</div>
+            
+            <button type="button" class="btn-oscuro" id="btn-revelar-form" onclick="mostrarFormulario()">Confirma aquí</button>
 
-        <p class="texto-blanco text-xs mt-20">Agradecemos confirmar su asistencia hasta el <strong>15/12</strong>. Su confirmación nos ayudará a preparar cada detalle de esta celebración. ♡</p>
-        
-        <!-- Formulario desplegable -->
-        <form id="formularioAsistencia" class="oculto mt-20">
-          <input type="text" id="nombreCompleto" placeholder="Nombre completo" required readonly class="input-form mb-10">
-          <label for="selectPases" class="texto-blanco text-xs" style="display:block; text-align:left; margin-bottom:5px;">¿Cuántos asistirán?</label>
-          <select id="selectPases" required class="input-form mb-10">
+            <p class="texto-blanco text-xs mt-15">
+              Agradecemos confirmar su asistencia hasta el <strong>15/12</strong>. Su confirmación nos ayudará a preparar cada detalle de esta celebración. ♡
+            </p>
+          </div>
+
+          <div class="rsvp-img-col">
+            <img src="./Foto_Novios_2.png" alt="Novios" onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80'">
+          </div>
+        </div>
+
+        <!-- Formulario desplegable limpio abajo -->
+        <form id="formularioAsistencia" class="rsvp-form-desplegable oculto">
+          <input type="text" id="nombreCompleto" placeholder="Nombre completo" required readonly class="input-form">
+          <label for="selectPases" class="texto-blanco text-xs">¿Cuántos pases utilizarán?</label>
+          <select id="selectPases" required class="input-form">
             <option value="2">Asistirán 2 personas</option>
             <option value="1">Asistirá 1 persona</option>
             <option value="0">No podremos asistir</option>
@@ -221,47 +249,49 @@
           <button id="botonConfirmar" type="submit" class="btn-blanco w-100">Enviar Confirmación</button>
         </form>
 
-        <div id="bloqueYaConfirmado" class="oculto mt-20">
+        <div id="bloqueYaConfirmado" class="oculto mt-15">
           <p id="textoYaConfirmado" class="texto-blanco text-sm font-bold"></p>
         </div>
       </div>
-      <img src="./Foto_Novios_2.png" alt="Novios" class="overlap-img right-img" onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80'">
     </section>
 
-    <!-- SECCIÓN FOTOS RECUERDOS (Mantenida del original) -->
-    <section class="section-padding center-text textura-fondo reveal">
+    <!-- ÁLBUM DE RECUERDOS -->
+    <section class="section-padding center-text reveal">
       <h2 class="frase-cursiva">Recuerdos del Viaje</h2>
-      <p class="texto-normal mb-20">Sube tus fotos el día de nuestra boda y comparte cada momento.</p>
-      <div style="display:flex; gap:10px; justify-content:center; margin-bottom: 12px;">
-        <label class="btn-oscuro" style="width:auto; font-size:1.1rem; padding:10px 20px;" onclick="verificarFechaFoto(event)" for="subirFoto">Elegir foto</label>
-        <label class="btn-oscuro" style="width:auto; font-size:1.1rem; padding:10px 20px;" onclick="verificarFechaFoto(event)" for="tomarFoto">Tomar foto</label>
+      <p class="texto-normal">Sube tus fotos el día de nuestra boda y comparte cada momento.</p>
+      <div class="foto-btns-row">
+        <label class="btn-oscuro" onclick="verificarFechaFoto(event)" for="subirFoto">Elegir foto</label>
+        <label class="btn-oscuro" onclick="verificarFechaFoto(event)" for="tomarFoto">Tomar foto</label>
       </div>
       <input type="file" id="subirFoto" accept="image/*" class="oculto">
       <input type="file" id="tomarFoto" accept="image/*" capture="environment" class="oculto">
-      <button type="button" class="btn-blanco" style="border: 1px solid var(--taupe);" onclick="procesarFoto()">Subir al álbum</button>
-      <p id="mensajeFoto" class="texto-normal mt-10"></p>
-      <div id="galeriaFotos" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:15px;"></div>
+      <button type="button" class="btn-blanco border-btn" onclick="procesarFoto()">Subir al álbum</button>
+      <p id="mensajeFoto" class="texto-normal mt-15"></p>
+      <div id="galeriaFotos" class="galeria-grid"></div>
     </section>
 
     <!-- CIERRE -->
     <section class="section-padding center-text textura-fondo reveal pb-0">
       <div class="monograma">N & A</div>
-      <img src="./Foto_Sentados.png" alt="Juntos" class="img-cierre mt-20" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80'">
-      <p class="texto-normal italic mt-20">
+      <img src="./Foto_Sentados.png" alt="Juntos" class="img-cierre" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80'">
+      
+      <p class="frase-enamorado">
         "Sabes que estás enamorado cuando no quieres acostarte porque la realidad es por fin mejor que tus sueños."
       </p>
-      <p class="texto-normal mt-20">Los esperamos para celebrar el comienzo de..</p>
+
+      <p class="texto-normal">Los esperamos para celebrar el comienzo de..</p>
       <h3 class="titulo-historia">NUESTRA HISTORIA JUNTOS</h3>
-      <p class="texto-normal mt-20">Con cariño:</p>
-      <h2 class="frase-cursiva" style="color: var(--primary); font-size: 2.8rem;">Nayra & Armando</h2>
+      <p class="texto-normal mt-15">Con cariño:</p>
+      <h2 class="frase-cursiva" style="color: var(--primary); font-size: 2.8rem; margin: 8px 0;">Nayra & Armando</h2>
       <p class="fecha-final">26/12/2026</p>
-      <p class="text-xs mt-10" style="color:#777; padding-bottom:15px;">Hecho por Arcani Software</p>
-      <img src="./Foto_Beso_Mano.png" alt="Beso" class="img-cierre-final mt-10" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80'">
+      <p class="creditos-footer">Hecho por Arcani Software</p>
+      
+      <img src="./Foto_Beso_Mano.png" alt="Beso" class="img-cierre-final" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80'">
     </section>
 
   </div>
 
-  <!-- Modal Mapa -->
+  <!-- MODAL MAPA -->
   <div id="modalMapa" class="modal-mapa oculto">
     <div class="modal-contenido">
       <button class="cerrar-modal" onclick="cerrarMapa()">×</button>
