@@ -21,12 +21,11 @@ document.addEventListener("DOMContentLoaded", function () {
   manejarFormularioRSVP();
 });
 
-// --- 1. ABRIR SOBRE DIRECTO Y RÁPIDO (Sin avión) ---
+// --- 1. ABRIR SOBRE DIRECTO Y RÁPIDO ---
 function abrirInvitacion(irARsvp) {
   var envelope = document.getElementById("envelope-screen");
   var appContainer = document.getElementById("app-container");
 
-  // Iniciar música inmediatamente
   if (audio && !isPlaying) {
     audio.play().then(function () {
       if (playBtn) playBtn.innerText = "⏸";
@@ -34,7 +33,6 @@ function abrirInvitacion(irARsvp) {
     }).catch(function () {});
   }
 
-  // Mostrar el contenedor detrás mientras el sobre se desvanece en 0.45s
   appContainer.classList.remove("oculto");
   envelope.style.opacity = "0";
   envelope.style.transform = "scale(1.04)";
