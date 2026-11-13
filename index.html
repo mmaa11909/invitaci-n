@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boda de Nayra & Armando - Tarjeta de Embarque</title>
+  <title>Boda de Nayra & Armando</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,8 +15,6 @@
   <audio id="musicaBoda" loop>
     <source src="musica-boda.mp3" type="audio/mpeg">
   </audio>
-
-  <button id="btnMusica" class="boton-musica oculto" type="button" onclick="controlarMusica()">♪</button>
 
   <!-- 1. PANTALLA DE INICIO: SOBRE CON SELLO (Referencia Imagen 4) -->
   <div id="envelope-screen" class="envelope-screen">
@@ -54,7 +52,7 @@
           <path d="M 120 200 Q -10 180 -100 180" fill="none" stroke="currentColor" stroke-width="4"/>
           <path d="M 120 200 Q -10 230 -100 230" fill="none" stroke="currentColor" stroke-width="4"/>
           <path d="M -100 170 L -480 170 L -440 205 L -480 240 L -100 240 Z" />
-          <text x="-285" y="218" text-anchor="middle" fill="#4A121A" font-size="38" font-family="Montserrat, sans-serif" font-weight="bold">NAYRA & ARMANDO</text>
+          <text x="-285" y="218" text-anchor="middle" fill="#4B121A" font-size="38" font-family="Montserrat, sans-serif" font-weight="bold">NAYRA & ARMANDO</text>
           <path d="M 180,110 A 15,15 0 0,0 150,110 A 15,15 0 0,0 120,110 Q 120,140 150,170 Q 180,140 180,110" />
           <path d="M 80,70 A 12,12 0 0,0 56,70 A 12,12 0 0,0 32,70 Q 32,94 56,118 Q 80,94 80,70" />
         </g>
@@ -62,272 +60,208 @@
     </div>
   </div>
 
-  <!-- 3. CONTENIDO PRINCIPAL DE LA INVITACIÓN (Estilo Pasaporte y Boarding Pass) -->
-  <div id="main-invitation" class="main-invitation oculto">
-    <div class="invitation-container">
+  <!-- 3. CONTENEDOR PRINCIPAL ESTILO CANVA (Estructura anterior intacta) -->
+  <div id="app-container" class="oculto">
 
-      <!-- SECCIÓN A: PORTADA PASAPORTE (Referencia Imagen 3) -->
-      <section class="card-passport reveal">
-        <div class="world-map-bg"></div>
+    <!-- PORTADA HERO + REPRODUCTOR -->
+    <header class="hero-section">
+      <img src="./Foto_Presentación.png" alt="Nayra y Armando" class="hero-bg" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80'">
+      <div class="hero-overlay">
+        <p class="welcome-aboard">Bienvenidos a Bordo · Nos Casamos</p>
+        <h1 class="nombres-hero">Nayra<br><span class="ampersand">&</span><br>Armando</h1>
+        <p class="fecha-hero">26/12/2026</p>
+      </div>
+      
+      <!-- Reproductor de música personalizado -->
+      <div class="music-player">
+        <div class="music-controls">
+          <span>♡</span>
+          <span>⏮</span>
+          <span id="play-btn" class="play-btn" onclick="controlarMusica()">▶</span>
+          <span>⏭</span>
+          <span>🔁</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <p class="music-text">doble click para reproducir nuestra canción</p>
+      </div>
+    </header>
+
+    <!-- SECCIÓN FRASES IMPORTANTES & CONTADOR -->
+    <section class="section-padding center-text reveal">
+      <p class="texto-normal">
+        De la mano de Dios y unidos por el amor,<br>
+        damos un nuevo paso en nuestra historia.
+      </p>
+      <h2 class="frase-cursiva">"¡Sí, para siempre!"</h2>
+      <p class="texto-normal">
+        Con mucha ilusión queremos invitarte a ser parte<br>
+        del comienzo de nuestro viaje más importante....
+      </p>
+      <p class="frase-destacada-boda mt-10">
+        "Porque la realidad es por fin mejor que tus sueños"
+      </p>
+      
+      <div class="imagen-contador-wrapper">
+        <img src="./Foto_Anillo.png" alt="Nos casamos" class="img-anillo" onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80'">
+        <h3 class="overlay-text-top">ACOMPÁÑANOS EN NUESTRA<br><span class="cursiva-dorada">nueva aventura!</span></h3>
         
-        <!-- Sello postal decorativo -->
-        <div class="stamp-decor top-left-stamp">
-          <div class="stamp-inner">
-            <span>★ NAYRA & ARMANDO ★</span>
-            <strong>26·12·2026</strong>
-            <span>VUELO NUPCIAL</span>
+        <div class="contador-overlay">
+          <div class="contador-numeros">
+            <span id="dias">00</span> : 
+            <span id="horas">00</span> : 
+            <span id="minutos">00</span> : 
+            <span id="segundos">00</span>
+          </div>
+          <div class="contador-labels">
+            <span>DÍAS</span><span>HORAS</span><span>MINUTOS</span><span>SEGUNDOS</span>
           </div>
         </div>
+      </div>
+    </section>
 
-        <p class="intro-quote">
-          De la mano de Dios y unidos por el amor,<br>
-          damos un nuevo paso en nuestra historia.
-        </p>
-
-        <h1 class="couple-names">
-          Nayra
-          <span class="amp">&</span>
-          Armando
-        </h1>
-
-        <!-- Avión con línea punteada formando corazón -->
-        <div class="flight-heart-trail">
-          <svg viewBox="0 0 300 70" class="svg-trail">
-            <path d="M10,55 Q90,65 130,35 C150,15 120,5 110,25 C100,45 140,55 170,40 Q220,15 275,20" fill="none" stroke="var(--taupe-dark)" stroke-width="1.8" stroke-dasharray="5,5"/>
-            <path d="M290,20 L270,12 L274,20 L270,28 Z" fill="var(--burgundy)"/>
-          </svg>
+    <!-- SECCIÓN PADRES -->
+    <section class="section-padding center-text textura-fondo reveal">
+      <div class="monograma">N & A</div>
+      <p class="texto-normal italic">Con la bendición de Dios y de nuestros padres:</p>
+      
+      <div class="bloque-padres">
+        <h4 class="titulo-padres">PADRES DEL NOVIO</h4>
+        <div class="caja-nombres">
+          Alfredo & Carmen
         </div>
-
-        <p class="sub-quote">
-          Con mucha ilusión queremos invitarte a ser parte<br>
-          del comienzo de nuestro viaje más importante....
-        </p>
-      </section>
-
-      <!-- SECCIÓN B: TARJETA DE EMBARQUE (Referencia Imagen 1) -->
-      <section class="boarding-pass reveal">
-        <div class="bp-header">
-          <span>TARJETA DE EMBARQUE</span>
-          <span class="bp-class">PRIMERA CLASE</span>
-        </div>
-
-        <div class="bp-body">
-          <!-- Lado izquierdo del boleto -->
-          <div class="bp-main">
-            <div class="bp-top-row">
-              <div>
-                <p class="bp-welcome">Bienvenidos a Bordo</p>
-                <h2 class="bp-Title">Nayra & Armando</h2>
-                <p class="bp-subtitle">NOS CASAMOS</p>
-              </div>
-              <div class="monogram-seal">
-                <span>✈</span>
-                <strong>N&A</strong>
-              </div>
-            </div>
-
-            <div class="bp-details-grid">
-              <div>
-                <span class="bp-label">Vuelo:</span>
-                <strong class="bp-val">26-12-2026</strong>
-              </div>
-              <div>
-                <span class="bp-label">Hora:</span>
-                <strong class="bp-val">18:00 hrs</strong>
-              </div>
-              <div>
-                <span class="bp-label">Destino:</span>
-                <strong class="bp-val">Salón de Eventos Dolfin</strong>
-              </div>
-              <div>
-                <span class="bp-label">Pasajero:</span>
-                <strong id="boleto-pasajero" class="bp-val">Invitado Especial</strong>
-              </div>
-            </div>
-
-            <div class="bp-messages">
-              <p class="adults-only">
-                QUEREMOS QUE DISFRUTES CON NOSOTROS AL MÁXIMO, POR ELLO LA RECEPCIÓN ESTÁ PLANIFICADA PARA ADULTOS.
-              </p>
-              <p class="dream-phrase">
-                "PORQUE LA REALIDAD ES POR FIN MEJOR QUE TUS SUEÑOS"
-              </p>
-              <div class="dress-code-line">
-                <span>CÓDIGO DE VESTIMENTA: <strong>FORMAL ELEGANTE</strong></span>
-                <span class="dc-icons">👔 👗</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Código de barras divisor -->
-          <div class="bp-barcode-divider">
-            <div class="barcode-graphic"></div>
-          </div>
-
-          <!-- Talón derecho del boleto (Stub) -->
-          <div class="bp-stub">
-            <p class="stub-title">ACOMPÁÑANOS<br><small>EN NUESTRA NUEVA AVENTURA</small></p>
-            <div class="stub-plane-dots">✈ • • • • ♥</div>
-            
-            <div class="couple-photo-frame">
-              <img src="./Foto_Presentación.png" alt="Nayra y Armando" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80'">
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECCIÓN C: TRÍPTICO DE INFORMACIÓN (Padres, El Gran Día, Contador) -->
-      <div class="triptych-grid">
-        
-        <!-- Tarjeta 1: Padres y Frase Romántica -->
-        <section class="info-card reveal">
-          <p class="card-tag">CON LA BENDICIÓN DE DIOS Y DE NUESTROS PADRES</p>
-          
-          <div class="parents-block">
-            <h3 class="script-heading">Padres de la Novia</h3>
-            <p class="parent-names">Carlos & Sofía</p>
-          </div>
-
-          <div class="compass-divider">
-            <svg viewBox="0 0 100 100" class="compass-svg">
-              <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="1.5"/>
-              <polygon points="50,8 56,44 92,50 56,56 50,92 44,56 8,50 44,44" fill="currentColor"/>
-              <text x="47" y="7" font-size="8" fill="currentColor">N</text>
-              <text x="47" y="99" font-size="8" fill="currentColor">S</text>
-              <text x="94" y="53" font-size="8" fill="currentColor">E</text>
-              <text x="1" y="53" font-size="8" fill="currentColor">W</text>
-            </svg>
-          </div>
-
-          <div class="parents-block">
-            <h3 class="script-heading">Padres del Novio</h3>
-            <p class="parent-names">Alfredo & Carmen</p>
-          </div>
-
-          <p class="romantic-footnote">
-            ♡ "Sabes que estás enamorado cuando no quieres acostarte porque la realidad es por fin mejor que tus sueños."
-          </p>
-        </section>
-
-        <!-- Tarjeta 2: El Gran Día (Calendario e Itinerario) -->
-        <section class="info-card reveal">
-          <h2 class="section-serif-title">EL GRAN DÍA</h2>
-
-          <!-- Calendario colgante como en la imagen 1 -->
-          <div class="hanging-calendar">
-            <div class="cal-hooks"><span></span><span></span></div>
-            <div class="cal-month">DICIEMBRE</div>
-            <div class="cal-day">26</div>
-            <div class="cal-year">2026</div>
-          </div>
-
-          <!-- Contador regresivo integrado -->
-          <div class="countdown-box">
-            <p class="cd-title">TIEMPO PARA EL DESPEGUE</p>
-            <div class="cd-numbers">
-              <div><span id="dias">00</span><small>DÍAS</small></div>
-              <div><span id="horas">00</span><small>HRS</small></div>
-              <div><span id="minutos">00</span><small>MIN</small></div>
-              <div><span id="segundos">00</span><small>SEG</small></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Tarjeta 3: Coordenadas (Iglesia y Recepción) -->
-        <section class="info-card reveal">
-          <h2 class="section-serif-title">DESTINOS</h2>
-
-          <div class="event-stop">
-            <div class="stop-icon">⛪</div>
-            <h4>CEREMONIA RELIGIOSA</h4>
-            <p class="place-name">IGLESIA "NUESTRA SEÑORA DEL CARMEN"</p>
-            <p class="place-time">26/12/2026 — 18:00 hrs</p>
-            <button type="button" class="btn- burgundy-btn" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2258.0927591552822!2d-66.28012117673957!3d-17.39842976804978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e30b78ff3172c1%3A0x53e4d00675eb37c9!2sParroquia%20San%20Ildefonso%20de%20Quillacollo!5e1!3m2!1ses!2sbo!4v1784857846142!5m2!1ses!2sbo')">
-              📍 Ver Mapa de Iglesia
-            </button>
-          </div>
-
-          <hr class="dashed-hr">
-
-          <div class="event-stop">
-            <div class="stop-icon">🥂</div>
-            <h4>RECEPCIÓN SOCIAL</h4>
-            <p class="place-name">"SALÓN DE EVENTOS DOLFIN"</p>
-            <p class="place-time">A continuación</p>
-            <button type="button" class="btn- burgundy-btn" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d576550.8830327634!2d-66.40967744692608!3d-17.67692788957749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e30b79d780632f%3A0x17bed94d35fc6ab1!2sLA%20VI%C3%91A%20(Quillacollo)!5e1!3m2!1ses!2sbo!4v1784246533184!5m2!1ses!2sbo')">
-              📍 Ver Mapa del Salón
-            </button>
-          </div>
-        </section>
-
       </div>
 
-      <!-- SECCIÓN D: ÁLBUM DE RECUERDOS -->
-      <section class="info-card full-width-card reveal">
-        <p class="card-tag">BITÁCORA DE VIAJE</p>
-        <h2 class="section-serif-title">Sube tus Fotos</h2>
-        <p class="normal-text">Ayúdanos a capturar cada recuerdo a partir del día de nuestra boda.</p>
-
-        <div class="photo-buttons">
-          <label class="btn-outline" onclick="verificarFechaFoto(event)" for="subirFoto">📁 Elegir de galería</label>
-          <label class="btn-outline" onclick="verificarFechaFoto(event)" for="tomarFoto">📸 Tomar foto</label>
+      <div class="bloque-padres">
+        <h4 class="titulo-padres">PADRES DE LA NOVIA</h4>
+        <div class="caja-nombres">
+          Carlos & Sofía
         </div>
+      </div>
 
-        <input type="file" id="subirFoto" accept="image/*" class="oculto">
-        <input type="file" id="tomarFoto" accept="image/*" capture="environment" class="oculto">
+      <p class="aclaracion-adultos mt-20">
+        Queremos que disfrutes con nosotros al máximo, por ello la recepción está planificada para adultos.
+      </p>
+    </section>
 
-        <button type="button" class="burgundy-btn mt-15" onclick="procesarFoto()">Subir foto al álbum</button>
-        <p id="mensajeFoto" class="status-msg"></p>
-        <div id="galeriaFotos" class="galeria-grid"></div>
-      </section>
-
-      <!-- SECCIÓN E: CHECK-IN / CONFIRMAR ASISTENCIA (RSVP) -->
-      <section id="seccion-rsvp" class="info-card full-width-card rsvp-card reveal">
-        <div class="rsvp-header-badge">CHECK-IN DE PASAJEROS</div>
-        <h2 class="script-heading big-script">Confirmación de Asistencia</h2>
-        <p class="normal-text">
-          Hemos elegido celebrar este día rodeados de las personas más especiales para nosotros. Por favor confirma tu asistencia.
-        </p>
-
-        <div class="reserved-seats-box">
-          <span>Pases reservados para ti:</span>
-          <strong id="numeroPasesForm">2</strong>
+    <!-- SECCIÓN CEREMONIA Y RECEPCIÓN (Cajas superpuestas de Canva) -->
+    <section class="eventos-section reveal">
+      
+      <!-- Ceremonia -->
+      <div class="overlap-container">
+        <img src="./Foto_Ceremonia.png" alt="Ceremonia" class="overlap-img left-img" onerror="this.src='https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80'">
+        <div class="overlap-box right-box">
+          <h2 class="titulo-caja-cursiva">Ceremonia</h2>
+          <p class="lugar-titulo">IGLESIA "NUESTRA SEÑORA DEL CARMEN"</p>
+          <p class="lugar-direccion">📍 Vuelo: 26-12-2026</p>
+          <p class="lugar-hora">18:00</p>
+          <p class="puntualidad">(Se agradece puntualidad)</p>
+          <button type="button" class="btn-blanco" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2258.0927591552822!2d-66.28012117673957!3d-17.39842976804978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e30b78ff3172c1%3A0x53e4d00675eb37c9!2sParroquia%20San%20Ildefonso%20de%20Quillacollo!5e1!3m2!1ses!2sbo!4v1784857846142!5m2!1ses!2sbo')">Ubicación</button>
         </div>
+      </div>
 
-        <div id="bloqueYaConfirmado" class="confirmed-alert oculto">
-          <p id="textoYaConfirmado"></p>
+      <!-- Recepción -->
+      <div class="overlap-container mt-40">
+        <img src="./Foto_Recepcion.png" alt="Recepción" class="overlap-img left-img" onerror="this.src='https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80'">
+        <div class="overlap-box right-box">
+          <h2 class="titulo-caja-cursiva">Recepción</h2>
+          <p class="lugar-titulo">SALÓN DE EVENTOS "DOLFIN"</p>
+          <p class="lugar-direccion">📍 A continuación</p>
+          <p class="lugar-hora">19:30</p>
+          <button type="button" class="btn-blanco" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d576550.8830327634!2d-66.40967744692608!3d-17.67692788957749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e30b79d780632f%3A0x17bed94d35fc6ab1!2sLA%20VI%C3%91A%20(Quillacollo)!5e1!3m2!1ses!2sbo!4v1784246533184!5m2!1ses!2sbo')">Ubicación</button>
         </div>
+      </div>
 
-        <form id="formularioAsistencia" class="rsvp-form">
-          <div class="form-group">
-            <label for="nombreCompleto">Nombre del Pasajero / Familia:</label>
-            <input type="text" id="nombreCompleto" placeholder="Escribe tu nombre completo" required readonly>
-          </div>
+    </section>
 
-          <div class="form-group">
-            <label for="selectPases">¿Cuántos asientos utilizarán?</label>
-            <select id="selectPases" required>
-              <option value="1">Asistirá 1 persona</option>
-              <option value="2" selected>Asistirán 2 personas</option>
-              <option value="0">Lamentablemente no podremos asistir</option>
-            </select>
-          </div>
+    <!-- DRESS CODE -->
+    <section class="section-padding center-text textura-fondo reveal">
+      <h2 class="frase-cursiva text-dark">Dress Code</h2>
+      <div class="icono-dresscode">👔👗</div>
+      <h3 class="dress-title">FORMAL ELEGANTE</h3>
+      <p class="dress-desc"><strong>ELLAS:</strong> Vestido de cóctel o largo<br><strong>ELLOS:</strong> Traje formal</p>
+      <p class="dress-nota">Nota: El blanco queda reservado para la novia. 💍</p>
+    </section>
 
-          <button id="botonConfirmar" type="submit" class="burgundy-btn btn-large">
-            ✈ Confirmar Check-In
-          </button>
+    <!-- MESA DE REGALOS -->
+    <section class="seccion-regalos reveal">
+      <h2 class="frase-cursiva text-white">Mesa de regalos</h2>
+      <p class="texto-blanco">Tu presencia es nuestro mejor regalo, pero si deseas hacernos un detalle será recibido con mucho cariño.</p>
+      
+      <h3 class="logo-multicenter">M<br>multicenter</h3>
+      <p class="texto-blanco text-sm">📍 Av. Uyuni #1171 casi puente Muyurina.</p>
+      
+      <div class="botones-regalo">
+        <button type="button" class="btn-blanco w-100 mb-10" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.653451!2d-66.151!3d-17.376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDIyJzMzLjYiUyA2NsKwMDknMDMuNiJX!5e0!3m2!1ses!2sbo!4v1600000000000')">Ubicación</button>
+        <a href="https://wa.me/59163889661" target="_blank" class="btn-blanco w-100" style="display:inline-block; text-decoration:none;">Contacto</a>
+      </div>
+    </section>
+
+    <!-- RSVP (Confirmación de asistencia superpuesta estilo Canva) -->
+    <section id="seccion-rsvp" class="overlap-container rsvp-section reveal">
+      <div class="overlap-box left-box">
+        <h2 class="frase-cursiva text-white mb-20" style="font-size: 2.2rem;">Confirmación de asistencia</h2>
+        <p class="texto-blanco text-sm mb-20">Hemos elegido celebrar este día rodeados de las personas más especiales para nosotros. Agradecemos acompañarnos respetando el número de invitados indicado.</p>
+        
+        <p class="texto-blanco mb-10">Lugares reservados para ti:</p>
+        <div class="caja-numero-pases" id="numeroPasesForm">2</div>
+        
+        <button type="button" class="btn-oscuro mt-20" id="btn-revelar-form" onclick="mostrarFormulario()">Confirma aquí</button>
+
+        <p class="texto-blanco text-xs mt-20">Agradecemos confirmar su asistencia hasta el <strong>15/12</strong>. Su confirmación nos ayudará a preparar cada detalle de esta celebración. ♡</p>
+        
+        <!-- Formulario desplegable -->
+        <form id="formularioAsistencia" class="oculto mt-20">
+          <input type="text" id="nombreCompleto" placeholder="Nombre completo" required readonly class="input-form mb-10">
+          <label for="selectPases" class="texto-blanco text-xs" style="display:block; text-align:left; margin-bottom:5px;">¿Cuántos asistirán?</label>
+          <select id="selectPases" required class="input-form mb-10">
+            <option value="2">Asistirán 2 personas</option>
+            <option value="1">Asistirá 1 persona</option>
+            <option value="0">No podremos asistir</option>
+          </select>
+          <button id="botonConfirmar" type="submit" class="btn-blanco w-100">Enviar Confirmación</button>
         </form>
-      </section>
 
-      <footer>
-        <p class="footer-names">Con amor, Nayra & Armando</p>
-        <p class="footer-credits">Hecho por Arcani Software</p>
-      </footer>
+        <div id="bloqueYaConfirmado" class="oculto mt-20">
+          <p id="textoYaConfirmado" class="texto-blanco text-sm font-bold"></p>
+        </div>
+      </div>
+      <img src="./Foto_Novios_2.png" alt="Novios" class="overlap-img right-img" onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80'">
+    </section>
 
-    </div>
+    <!-- SECCIÓN FOTOS RECUERDOS (Mantenida del original) -->
+    <section class="section-padding center-text textura-fondo reveal">
+      <h2 class="frase-cursiva">Recuerdos del Viaje</h2>
+      <p class="texto-normal mb-20">Sube tus fotos el día de nuestra boda y comparte cada momento.</p>
+      <div style="display:flex; gap:10px; justify-content:center; margin-bottom: 12px;">
+        <label class="btn-oscuro" style="width:auto; font-size:1.1rem; padding:10px 20px;" onclick="verificarFechaFoto(event)" for="subirFoto">Elegir foto</label>
+        <label class="btn-oscuro" style="width:auto; font-size:1.1rem; padding:10px 20px;" onclick="verificarFechaFoto(event)" for="tomarFoto">Tomar foto</label>
+      </div>
+      <input type="file" id="subirFoto" accept="image/*" class="oculto">
+      <input type="file" id="tomarFoto" accept="image/*" capture="environment" class="oculto">
+      <button type="button" class="btn-blanco" style="border: 1px solid var(--taupe);" onclick="procesarFoto()">Subir al álbum</button>
+      <p id="mensajeFoto" class="texto-normal mt-10"></p>
+      <div id="galeriaFotos" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:15px;"></div>
+    </section>
+
+    <!-- CIERRE -->
+    <section class="section-padding center-text textura-fondo reveal pb-0">
+      <div class="monograma">N & A</div>
+      <img src="./Foto_Sentados.png" alt="Juntos" class="img-cierre mt-20" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80'">
+      <p class="texto-normal italic mt-20">
+        "Sabes que estás enamorado cuando no quieres acostarte porque la realidad es por fin mejor que tus sueños."
+      </p>
+      <p class="texto-normal mt-20">Los esperamos para celebrar el comienzo de..</p>
+      <h3 class="titulo-historia">NUESTRA HISTORIA JUNTOS</h3>
+      <p class="texto-normal mt-20">Con cariño:</p>
+      <h2 class="frase-cursiva" style="color: var(--primary); font-size: 2.8rem;">Nayra & Armando</h2>
+      <p class="fecha-final">26/12/2026</p>
+      <p class="text-xs mt-10" style="color:#777; padding-bottom:15px;">Hecho por Arcani Software</p>
+      <img src="./Foto_Beso_Mano.png" alt="Beso" class="img-cierre-final mt-10" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80'">
+    </section>
+
   </div>
 
-  <!-- MODAL DE MAPA -->
+  <!-- Modal Mapa -->
   <div id="modalMapa" class="modal-mapa oculto">
     <div class="modal-contenido">
       <button class="cerrar-modal" onclick="cerrarMapa()">×</button>
