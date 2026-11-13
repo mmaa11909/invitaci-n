@@ -1,16 +1,13 @@
-/* =========================================================
-   PALETA DE COLORES (Basada exactamente en tu 2da imagen)
-   ========================================================= */
 :root {
-  --burgundy-dark: #4A121A;   /* Círculo 1: Borgoña muy oscuro */
-  --burgundy: #781E26;        /* Círculo 2: Vino profundo */
-  --taupe: #C2AA8D;           /* Círculo 3: Arena / Taupe dorado */
-  --taupe-dark: #8C7355;      /* Tono más oscuro de Taupe para textos/bordes */
-  --cream: #EFE2D1;           /* Círculo 4: Crema cálido */
-  --ivory: #F9F7F4;           /* Círculo 5: Blanco marfil */
-  --envelope-bg: #1E1B1A;     /* Gris carbón oscuro para el sobre inicial */
-  --seal-gold: #A87943;       /* Bronce/Dorado para el sello de lacre */
-  --shadow: 0 12px 32px rgba(74, 18, 26, 0.15);
+  /* Paleta de Colores (2da imagen: Borgoña, Vino, Taupe, Arena y Crema) */
+  --primary: #4B121A;       /* Borgoña Oscuro */
+  --secondary: #7C1B27;     /* Vino Profundo */
+  --taupe: #8C7562;         /* Taupe / Marrón cálido para las cajas superpuestas */
+  --taupe-light: #C2AA8D;   /* Arena / Dorado suave */
+  --taupe-dark: #4B121A;    /* Botones oscuros en Borgoña */
+  --cream: #F8F4EF;         /* Crema claro de fondo */
+  --sand: #EFE2D1;          /* Crema medio */
+  --text-dark: #332426;
 }
 
 * {
@@ -19,16 +16,11 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
+  background-color: #2b1d1e;
   font-family: 'Montserrat', sans-serif;
-  background-color: var(--cream);
-  color: var(--burgundy-dark);
+  color: var(--text-dark);
   overflow-x: hidden;
-  min-height: 100vh;
 }
 
 .oculto {
@@ -36,7 +28,7 @@ body {
 }
 
 /* =========================================================
-   1. PANTALLA DEL SOBRE CON SELLO DE LACRE (Imagen 4)
+   1. PANTALLA DE INICIO: SOBRE CON SELLO DE LACRE (Imagen 4)
    ========================================================= */
 .envelope-screen {
   position: fixed;
@@ -48,23 +40,21 @@ body {
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
-  transition: opacity 0.9s ease, transform 0.9s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* Solapa superior del sobre en V */
 .envelope-flap {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 56vh;
-  background: linear-gradient(180deg, #35302e 0%, #24201f 100%);
+  height: 55vh;
+  background: linear-gradient(180deg, #35302e 0%, #221e1d 100%);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
-  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.75));
   z-index: 2;
 }
 
-/* Bolsillo inferior del sobre */
 .envelope-pocket {
   position: absolute;
   inset: 0;
@@ -74,14 +64,13 @@ body {
   z-index: 1;
 }
 
-/* Sello de Lacre en el centro */
 .wax-seal {
   position: absolute;
   top: 52vh;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 135px;
-  height: 135px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #d4a36a, #8f602b 65%, #5c3b16 100%);
   box-shadow: 
@@ -101,8 +90,8 @@ body {
 }
 
 .wax-seal-inner {
-  width: 102px;
-  height: 102px;
+  width: 98px;
+  height: 98px;
   border-radius: 50%;
   border: 2px solid rgba(92, 59, 22, 0.6);
   background: radial-gradient(circle at 40% 40%, #b8874e, #784d1d 85%);
@@ -113,33 +102,32 @@ body {
 }
 
 .seal-leaf {
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   color: #e5be8a;
   filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.6));
 }
 
-/* Textos y botones inferiores del sobre */
 .envelope-info {
   position: absolute;
-  bottom: 6vh;
+  bottom: 5vh;
   width: 90%;
-  max-width: 360px;
+  max-width: 350px;
   text-align: center;
-  color: var(--ivory);
+  color: var(--cream);
   z-index: 4;
 }
 
 .res-label {
   font-size: 0.8rem;
-  letter-spacing: 2px;
-  color: var(--taupe);
+  letter-spacing: 1.5px;
+  color: var(--taupe-light);
   margin-bottom: 4px;
 }
 
 .guest-name {
   font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   font-weight: 600;
   color: #ffffff;
   margin-bottom: 4px;
@@ -147,8 +135,8 @@ body {
 
 .guest-passes {
   font-size: 0.9rem;
-  color: var(--cream);
-  margin-bottom: 22px;
+  color: var(--sand);
+  margin-bottom: 20px;
 }
 
 .envelope-buttons {
@@ -159,37 +147,31 @@ body {
 
 .btn-envelope {
   width: 100%;
-  padding: 13px 20px;
+  padding: 12px 20px;
   border-radius: 999px;
   border: 1px solid rgba(194, 170, 141, 0.45);
   background: rgba(255, 255, 255, 0.06);
-  color: var(--ivory);
+  color: var(--cream);
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
-  letter-spacing: 0.5px;
   cursor: pointer;
   backdrop-filter: blur(5px);
   transition: all 0.25s ease;
 }
 
 .btn-envelope-primary {
-  background: linear-gradient(135deg, var(--burgundy), var(--burgundy-dark));
-  border-color: var(--taupe);
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  border-color: var(--taupe-light);
   font-weight: 600;
 }
 
-.btn-envelope:hover {
-  background: var(--taupe);
-  color: var(--burgundy-dark);
-}
-
 /* =========================================================
-   2. PANTALLA DE VUELO DEL AVIÓN
+   2. ANIMACIÓN DEL AVIÓN
    ========================================================= */
 .plane-intro {
   position: fixed;
   inset: 0;
-  background-color: var(--burgundy-dark);
+  background-color: var(--primary);
   z-index: 9500;
   overflow: hidden;
   transition: opacity 0.8s ease;
@@ -201,8 +183,8 @@ body {
   min-width: 1100px;
   bottom: -55vh;
   left: -95vw;
-  color: var(--cream);
-  animation: flyDiagonal 4.2s cubic-bezier(0.25, 0.8, 0.4, 1) forwards;
+  color: var(--sand);
+  animation: flyDiagonal 3.8s cubic-bezier(0.25, 0.8, 0.4, 1) forwards;
 }
 
 @keyframes flyDiagonal {
@@ -211,665 +193,352 @@ body {
 }
 
 /* =========================================================
-   3. CONTENIDO PRINCIPAL (Pasaporte y Tarjeta de Embarque)
+   3. ESTRUCTURA PRINCIPAL ESTILO CANVA (Restaurada)
    ========================================================= */
-.main-invitation {
-  padding: 25px 15px 60px;
-  background: 
-    radial-gradient(circle at 10% 10%, var(--ivory), transparent 50%),
-    linear-gradient(180deg, var(--cream) 0%, #e4d2bc 100%);
-}
-
-.invitation-container {
-  max-width: 900px;
+#app-container {
+  max-width: 480px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-/* Botón flotante de música */
-.boton-musica {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 900;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 2px solid var(--taupe);
-  background: var(--burgundy-dark);
-  color: var(--ivory);
-  font-size: 20px;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-}
-
-/* --- SECCIÓN A: PORTADA PASAPORTE (Imagen 3) --- */
-.card-passport {
+  background-color: var(--cream);
+  min-height: 100vh;
+  box-shadow: 0 0 35px rgba(0,0,0,0.35);
+  overflow-x: hidden;
   position: relative;
-  background-color: var(--ivory);
-  border: 2px solid var(--taupe);
-  border-radius: 18px;
-  padding: 55px 25px 45px;
-  text-align: center;
-  box-shadow: var(--shadow);
-  overflow: hidden;
 }
 
-.world-map-bg {
-  position: absolute;
-  inset: 0;
-  opacity: 0.08;
-  background-image: radial-gradient(var(--taupe-dark) 1.5px, transparent 1.5px);
-  background-size: 18px 18px;
-  pointer-events: none;
+/* Tipografías y Utilidades */
+.frase-cursiva, .nombres-hero, .cursiva-dorada, .titulo-caja-cursiva {
+  font-family: 'Dancing Script', cursive;
 }
+.italic { font-style: italic; }
+.font-bold { font-weight: 700; }
+.text-white { color: #ffffff; }
+.text-dark { color: var(--primary); }
+.center-text { text-align: center; }
+.texto-normal { font-size: 0.92rem; line-height: 1.6; color: #4a3a3c; }
+.text-sm { font-size: 0.85rem; }
+.text-xs { font-size: 0.75rem; }
+.mt-10 { margin-top: 10px; } .mt-20 { margin-top: 20px; } .mt-40 { margin-top: 40px; }
+.mb-10 { margin-bottom: 10px; } .mb-20 { margin-bottom: 20px; }
+.w-100 { width: 100%; }
+.pb-0 { padding-bottom: 0 !important; }
 
-.stamp-decor {
-  display: inline-block;
-  border: 2px dashed var(--burgundy);
-  border-radius: 50%;
-  padding: 6px;
-  color: var(--burgundy);
-  transform: rotate(-10deg);
-  margin-bottom: 20px;
-}
-
-.stamp-inner {
-  border: 1px solid var(--burgundy);
-  border-radius: 50%;
-  width: 95px;
-  height: 95px;
+/* 1. HERO Y REPRODUCTOR */
+.hero-section {
+  position: relative;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%) contrast(1.05);
+  z-index: 1;
+}
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-top: 12vh;
+  color: white;
+  text-shadow: 0 3px 14px rgba(0,0,0,0.55);
+}
+.welcome-aboard {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: var(--sand);
+}
+.nombres-hero {
+  font-size: 4.2rem;
+  line-height: 0.92;
+  font-weight: 700;
+}
+.ampersand { font-size: 2.5rem; font-family: 'Playfair Display', serif; }
+.fecha-hero {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  letter-spacing: 3px;
+  margin-top: 12px;
+}
+.music-player {
+  position: relative;
+  z-index: 2;
+  background: rgba(248, 244, 239, 0.92);
+  padding: 20px;
+  text-align: center;
+  border-top: 2px solid var(--taupe-light);
+}
+.music-controls {
+  display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.55rem;
-  letter-spacing: 1px;
+  gap: 25px;
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+.play-btn {
+  font-size: 2rem;
+  cursor: pointer;
+}
+.progress-bar {
+  width: 80%;
+  height: 5px;
+  background: #d8c8b8;
+  margin: 15px auto;
+  border-radius: 3px;
+}
+.progress-fill {
+  width: 35%;
+  height: 100%;
+  background: var(--primary);
+  border-radius: 3px;
+}
+.music-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.25rem;
+  color: var(--primary);
 }
 
-.stamp-inner strong {
-  font-size: 0.75rem;
-  margin: 3px 0;
+/* 2. SECCIONES Y CONTADOR */
+.section-padding { padding: 55px 20px; }
+.frase-cursiva {
+  font-size: 2.6rem;
+  color: var(--secondary);
+  margin: 15px 0;
+}
+.frase-destacada-boda {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+}
+.textura-fondo {
+  background-color: var(--sand);
+  background-image: radial-gradient(rgba(75, 18, 26, 0.04) 1px, transparent 0);
+  background-size: 16px 16px;
 }
 
-.intro-quote {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #4a3e3d;
-  max-width: 520px;
-  margin: 0 auto 20px;
-}
-
-.couple-names {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(3.8rem, 13vw, 6.2rem);
-  font-weight: 400;
-  color: var(--burgundy);
-  line-height: 1.05;
-  margin: 10px 0;
-}
-
-.couple-names .amp {
-  display: block;
-  font-size: clamp(2.5rem, 8vw, 3.8rem);
-  color: var(--taupe-dark);
-}
-
-.flight-heart-trail {
-  max-width: 320px;
-  margin: 10px auto;
-}
-
-.svg-trail {
-  width: 100%;
-  height: auto;
-}
-
-.sub-quote {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(1.6rem, 5vw, 2.2rem);
-  color: #3b3230;
-  line-height: 1.3;
-  margin-top: 10px;
-}
-
-/* --- SECCIÓN B: TARJETA DE EMBARQUE (Imagen 1) --- */
-.boarding-pass {
-  background: var(--ivory);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
+.imagen-contador-wrapper {
+  position: relative;
+  margin-top: 28px;
+  border-radius: 12px;
   overflow: hidden;
-  border: 1px solid var(--taupe);
+  box-shadow: 0 10px 25px rgba(75, 18, 26, 0.2);
 }
-
-.bp-header {
-  background: linear-gradient(90deg, var(--burgundy-dark), var(--burgundy));
-  color: var(--ivory);
-  padding: 12px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.img-anillo {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+.overlay-text-top {
+  position: absolute;
+  top: 22px; left: 0; width: 100%;
+  text-align: center;
+  color: white;
   font-size: 0.85rem;
   letter-spacing: 2px;
-  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.65);
 }
-
-.bp-body {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
-.bp-main {
-  padding: 24px;
-}
-
-.bp-top-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px dashed var(--taupe);
-  padding-bottom: 15px;
-  margin-bottom: 18px;
-}
-
-.bp-welcome {
-  font-size: 0.85rem;
-  color: var(--taupe-dark);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.bp-Title {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(2.4rem, 8vw, 3.5rem);
-  color: var(--burgundy-dark);
-  font-weight: 400;
-  line-height: 1.1;
-}
-
-.bp-subtitle {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.9rem;
-  letter-spacing: 3px;
-  color: var(--burgundy);
-}
-
-.monogram-seal {
-  width: 68px;
-  height: 68px;
-  border-radius: 50%;
-  border: 2px solid var(--taupe-dark);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: var(--burgundy-dark);
-  font-family: 'Playfair Display', serif;
-  flex-shrink: 0;
-}
-
-.bp-details-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  margin-bottom: 20px;
-}
-
-.bp-label {
+.cursiva-dorada {
+  font-size: 2.5rem;
+  text-transform: none;
+  letter-spacing: 0;
   display: block;
-  font-size: 0.75rem;
-  color: var(--taupe-dark);
-  text-transform: uppercase;
 }
-
-.bp-val {
+.contador-overlay {
+  position: absolute;
+  bottom: 0; left: 0; width: 100%;
+  background: rgba(75, 18, 26, 0.78); /* Borgoña translúcido */
+  padding: 16px 0;
+  color: white;
+  text-align: center;
+  backdrop-filter: blur(4px);
+  border-top: 1px solid var(--taupe-light);
+}
+.contador-numeros {
   font-family: 'Playfair Display', serif;
-  font-size: 1.05rem;
-  color: var(--burgundy-dark);
-}
-
-.bp-messages {
-  background: var(--cream);
-  padding: 15px;
-  border-radius: 10px;
-  border-left: 4px solid var(--burgundy);
-}
-
-.adults-only {
-  font-size: 0.72rem;
-  line-height: 1.4;
-  margin-bottom: 8px;
-  color: var(--burgundy-dark);
-}
-
-.dream-phrase {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.9rem;
+  font-size: 2.4rem;
   font-weight: 700;
-  color: var(--burgundy);
+  letter-spacing: 2px;
+}
+.contador-labels {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  margin-top: 5px;
+  color: var(--sand);
+}
+
+/* 3. PADRES */
+.monograma {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+  border: 2px solid var(--taupe);
+  width: 90px;
+  height: 90px;
+  line-height: 86px;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  background: var(--cream);
+}
+.bloque-padres { margin-top: 25px; }
+.titulo-padres {
+  font-size: 0.8rem;
+  color: var(--secondary);
+  letter-spacing: 2px;
   margin-bottom: 10px;
 }
-
-.dress-code-line {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
-  border-top: 1px solid rgba(140, 115, 85, 0.3);
-  padding-top: 8px;
-}
-
-/* Código de barras simulado con CSS */
-.bp-barcode-divider {
-  padding: 12px 24px;
-  background: var(--ivory);
-  border-top: 2px dashed var(--taupe);
-  border-bottom: 2px dashed var(--taupe);
-}
-
-.barcode-graphic {
-  height: 36px;
-  width: 100%;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--burgundy-dark) 0px,
-    var(--burgundy-dark) 3px,
-    transparent 3px,
-    transparent 6px,
-    var(--burgundy-dark) 6px,
-    var(--burgundy-dark) 7px,
-    transparent 7px,
-    transparent 11px
-  );
-}
-
-.bp-stub {
-  padding: 24px;
-  text-align: center;
-  background: linear-gradient(180deg, var(--ivory), var(--cream));
-}
-
-.stub-title {
+.caja-nombres {
+  background: var(--cream);
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid var(--taupe-light);
+  box-shadow: 0 5px 15px rgba(75, 18, 26, 0.06);
   font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--burgundy-dark);
-}
-
-.stub-plane-dots {
-  color: var(--burgundy);
-  margin: 8px 0 14px;
-  letter-spacing: 3px;
-}
-
-.couple-photo-frame img {
-  width: 100%;
-  max-width: 240px;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 3px solid white;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-}
-
-/* --- SECCIÓN C: TRÍPTICO --- */
-.triptych-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-.info-card {
-  background: var(--ivory);
-  border: 1px solid var(--taupe);
-  border-radius: 16px;
-  padding: 28px 20px;
-  text-align: center;
-  box-shadow: var(--shadow);
-}
-
-.card-tag {
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  color: var(--taupe-dark);
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
-.script-heading {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2.2rem;
-  color: var(--burgundy);
-  font-weight: 400;
-}
-
-.parent-names {
-  font-family: 'Playfair Display', serif;
+  color: var(--primary);
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--burgundy-dark);
-  margin-top: 4px;
 }
-
-.compass-divider {
-  margin: 18px auto;
-  width: 65px;
-  height: 65px;
-  color: var(--burgundy);
-}
-
-.romantic-footnote {
-  margin-top: 20px;
+.aclaracion-adultos {
   font-size: 0.8rem;
-  font-style: italic;
-  color: #555;
-  line-height: 1.5;
-  background: var(--cream);
-  padding: 12px;
-  border-radius: 10px;
-}
-
-.section-serif-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  color: var(--burgundy-dark);
-  letter-spacing: 2px;
-  margin-bottom: 18px;
-}
-
-/* Calendario de Diciembre 26 */
-.hanging-calendar {
-  width: 170px;
-  margin: 0 auto 24px;
-  background: white;
-  border-radius: 14px;
-  border: 2px solid var(--taupe);
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  position: relative;
-}
-
-.cal-month {
-  background: var(--burgundy);
-  color: white;
-  padding: 10px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.cal-day {
-  font-family: 'Playfair Display', serif;
-  font-size: 4rem;
-  font-weight: 700;
-  color: var(--burgundy-dark);
-  line-height: 1.1;
-  padding: 10px 0 4px;
-}
-
-.cal-year {
-  font-size: 1rem;
-  color: var(--taupe-dark);
-  padding-bottom: 12px;
-  font-weight: 600;
-}
-
-/* Contador */
-.countdown-box {
-  background: var(--cream);
-  padding: 16px 10px;
+  background: var(--primary);
+  color: var(--cream);
+  padding: 12px 16px;
   border-radius: 12px;
-  border: 1px solid var(--taupe);
+  line-height: 1.4;
 }
 
-.cd-title {
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-  font-weight: 700;
-}
-
-.cd-numbers {
-  display: flex;
-  justify-content: space-around;
-}
-
-.cd-numbers span {
-  display: block;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--burgundy);
-}
-
-.cd-numbers small {
-  font-size: 0.65rem;
-  color: var(--taupe-dark);
-}
-
-/* Destinos */
-.event-stop {
-  margin: 15px 0;
-}
-
-.stop-icon {
-  font-size: 2rem;
-  margin-bottom: 6px;
-}
-
-.place-name {
-  font-weight: 700;
-  color: var(--burgundy);
-  margin: 6px 0;
-  font-size: 0.95rem;
-}
-
-.place-time {
-  font-size: 0.85rem;
-  color: #555;
-  margin-bottom: 12px;
-}
-
-.dashed-hr {
-  border: none;
-  border-top: 1px dashed var(--taupe);
-  margin: 20px 0;
-}
-
-/* Botones Generales */
-.burgundy-btn {
-  background: linear-gradient(135deg, var(--burgundy), var(--burgundy-dark));
-  color: var(--ivory);
-  border: none;
-  padding: 12px 22px;
-  border-radius: 999px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 6px 15px rgba(74, 18, 26, 0.25);
-  transition: transform 0.2s ease;
-}
-
-.burgundy-btn:active {
-  transform: scale(0.97);
-}
-
-.btn-outline {
-  display: inline-block;
-  padding: 12px 20px;
-  border: 2px solid var(--burgundy);
-  border-radius: 999px;
-  color: var(--burgundy);
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-  margin: 6px;
-}
-
-/* --- SECCIÓN E: RSVP --- */
-.rsvp-card {
-  background: linear-gradient(180deg, var(--ivory) 0%, var(--cream) 100%);
-  border: 2px solid var(--burgundy);
-}
-
-.rsvp-header-badge {
-  display: inline-block;
-  background: var(--burgundy-dark);
-  color: var(--ivory);
-  padding: 6px 16px;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-}
-
-.big-script {
-  font-size: 2.8rem;
-}
-
-.reserved-seats-box {
-  margin: 20px auto;
-  background: white;
-  border: 2px dashed var(--taupe-dark);
-  border-radius: 12px;
-  padding: 14px;
-  max-width: 280px;
-}
-
-.reserved-seats-box strong {
-  display: block;
-  font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
-  color: var(--burgundy);
-}
-
-.rsvp-form {
-  max-width: 460px;
-  margin: 0 auto;
-  text-align: left;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.form-group input,
-.form-group select {
-  width: 100%;
-  padding: 13px 15px;
-  border-radius: 10px;
-  border: 1px solid var(--taupe-dark);
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.95rem;
-  background: white;
-}
-
-.btn-large {
-  width: 100%;
-  padding: 15px;
-  font-size: 1rem;
-  margin-top: 10px;
-}
-
-.confirmed-alert {
-  background: rgba(120, 30, 38, 0.1);
-  border: 1px solid var(--burgundy);
-  padding: 15px;
-  border-radius: 10px;
-  margin: 15px 0;
-  font-weight: 600;
-}
-
-footer {
-  text-align: center;
-  padding: 25px 10px;
-}
-
-.footer-names {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2.2rem;
-  color: var(--burgundy);
-}
-
-.footer-credits {
-  font-size: 0.75rem;
-  color: var(--taupe-dark);
-  margin-top: 5px;
-}
-
-/* Modal Mapa */
-.modal-mapa {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(0,0,0,0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.modal-contenido {
+/* 4. EVENTOS SUPERPUESTOS (Estructura Canva) */
+.eventos-section { padding: 40px 0; background-color: var(--cream); }
+.overlap-container {
   position: relative;
   width: 100%;
-  max-width: 550px;
-  height: 65vh;
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
+  min-height: 360px;
 }
-
-.cerrar-modal {
+.overlap-box {
+  background-color: var(--primary); /* Caja en color Borgoña elegante */
+  color: var(--cream);
+  padding: 36px 20px;
+  width: 76%;
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  border: 1px solid var(--taupe-light);
+}
+.right-box { right: 0; text-align: right; padding-left: 22%; }
+.left-box { left: 0; text-align: left; padding-right: 22%; }
+
+.overlap-img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44%;
+  height: 270px;
+  object-fit: cover;
+  z-index: 2;
+  border: 3px solid var(--cream);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.left-img { left: 4%; }
+.right-img { right: 4%; }
+
+.titulo-caja-cursiva { font-size: 2.5rem; margin-bottom: 12px; color: var(--sand); }
+.lugar-titulo { font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; }
+.lugar-direccion { font-size: 0.8rem; margin: 6px 0; color: var(--taupe-light); }
+.lugar-hora { font-family: 'Playfair Display', serif; font-size: 2.1rem; font-weight: 700; margin: 8px 0; color: #fff; }
+.puntualidad { font-size: 0.75rem; margin-bottom: 16px; opacity: 0.9; }
+
+/* BOTONES */
+.btn-blanco {
+  background: var(--cream);
+  color: var(--primary);
   border: none;
-  background: var(--burgundy-dark);
-  color: white;
-  font-size: 22px;
+  padding: 10px 28px;
+  border-radius: 25px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.45rem;
+  font-weight: 700;
   cursor: pointer;
-  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.2s;
+}
+.btn-oscuro {
+  background: var(--secondary);
+  color: white;
+  border: 1px solid var(--taupe-light);
+  padding: 12px 28px;
+  border-radius: 25px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 100%;
+}
+.btn-blanco:active, .btn-oscuro:active { transform: scale(0.96); }
+
+/* 5. DRESS CODE */
+.icono-dresscode { font-size: 3rem; margin-bottom: 10px; }
+.dress-title { color: var(--primary); letter-spacing: 2px; margin-bottom: 15px; }
+.dress-desc { font-family: 'Playfair Display', serif; font-size: 1.1rem; line-height: 1.8; color: var(--secondary); }
+.dress-nota { font-size: 0.8rem; font-style: italic; margin-top: 15px; color: #555; }
+
+/* 6. MESA DE REGALOS */
+.seccion-regalos {
+  background-color: var(--secondary);
+  padding: 55px 30px;
+  text-align: center;
+  border-top: 2px solid var(--taupe-light);
+  border-bottom: 2px solid var(--taupe-light);
+}
+.texto-blanco { color: var(--cream); line-height: 1.5; }
+.logo-multicenter { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.8rem; color: white; margin: 25px 0 10px; }
+.botones-regalo { margin-top: 25px; }
+
+/* 7. RSVP */
+.rsvp-section { min-height: 520px; background-color: var(--cream); }
+.caja-numero-pases {
+  background: var(--cream);
+  color: var(--primary);
+  font-family: 'Playfair Display', serif;
+  font-size: 2.3rem;
+  font-weight: 700;
+  width: 80px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+}
+.input-form {
+  width: 100%;
+  padding: 11px;
+  border-radius: 8px;
+  border: 1px solid var(--taupe-light);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
 }
 
-/* Responsivo para Pantallas Grandes (PC / Tablets) */
-@media (min-width: 768px) {
-  .bp-body {
-    grid-template-columns: 1fr auto 260px;
-  }
-  .bp-barcode-divider {
-    border-top: none;
-    border-bottom: none;
-    border-left: 2px dashed var(--taupe);
-    border-right: 2px dashed var(--taupe);
-    padding: 24px 10px;
-    display: flex;
-    align-items: center;
-  }
-  .barcode-graphic {
-    width: 32px;
-    height: 100%;
-    background: repeating-linear-gradient(
-      180deg,
-      var(--burgundy-dark) 0px,
-      var(--burgundy-dark) 3px,
-      transparent 3px,
-      transparent 6px
-    );
-  }
-  .triptych-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
+/* 8. CIERRE */
+.img-cierre { width: 100%; border-radius: 10px; border: 2px solid var(--taupe-light); }
+.img-cierre-final { width: 100%; display: block; }
+.titulo-historia { font-size: 1.15rem; color: var(--primary); letter-spacing: 2px; margin-top: 10px; }
+.fecha-final { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.2rem; color: var(--secondary); margin-top: 8px; }
+
+/* ANIMACIÓN SCROLL */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.9s ease-out; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* MODAL MAPA */
+.modal-mapa { position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; padding: 20px; }
+.modal-contenido { width: 100%; max-width: 420px; height: 60vh; background: white; position: relative; border-radius: 15px; overflow: hidden; }
+.cerrar-modal { position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; border-radius: 50%; border: none; background: var(--primary); color: white; font-size: 20px; cursor: pointer; z-index: 10; }
