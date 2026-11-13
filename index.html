@@ -20,15 +20,12 @@
   <div id="envelope-screen" class="envelope-screen">
     <div class="envelope-card">
       
-      <!-- Pliegues laterales e inferior del sobre -->
       <div class="flap-left"></div>
       <div class="flap-right"></div>
       <div class="flap-bottom"></div>
-      
-      <!-- Solapa superior con borde iluminado y sombra profunda -->
       <div class="flap-top"></div>
 
-      <!-- Sello de lacre centrado en la unión de los bordes -->
+      <!-- Sello de lacre centrado -->
       <div class="wax-seal" onclick="abrirInvitacion(false)">
         <div class="wax-seal-inner">
           <svg viewBox="0 0 100 100" class="seal-leaf">
@@ -52,10 +49,10 @@
     </div>
   </div>
 
-  <!-- 2. CONTENEDOR PRINCIPAL DE LA INVITACIÓN (Alineado y sin desfases) -->
+  <!-- 2. CONTENEDOR PRINCIPAL DE LA INVITACIÓN -->
   <div id="app-container" class="oculto">
 
-    <!-- PORTADA HERO + REPRODUCTOR -->
+    <!-- PORTADA HERO + REPRODUCTOR (Texto abajo para no tapar los rostros) -->
     <header class="hero-section">
       <div class="hero-image-box">
         <img src="./Foto_Presentación.png" alt="Nayra y Armando" class="hero-bg" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80'">
@@ -116,9 +113,9 @@
       </div>
     </section>
 
-    <!-- SECCIÓN PADRES -->
+    <!-- SECCIÓN PADRES (Monograma N&A corregido) -->
     <section class="section-padding center-text textura-fondo reveal">
-      <div class="monograma">N & A</div>
+      <div class="monograma">N<span>&</span>A</div>
       <p class="texto-normal italic">Con la bendición de Dios y de nuestros padres:</p>
       
       <div class="bloque-padres">
@@ -140,12 +137,12 @@
       </p>
     </section>
 
-    <!-- SECCIÓN CEREMONIA Y RECEPCIÓN (Superposición estable sin desfases) -->
+    <!-- SECCIÓN CEREMONIA Y RECEPCIÓN (Sin que la foto tape el texto) -->
     <section class="eventos-section textura-fondo reveal">
       
-      <!-- Ceremonia -->
+      <!-- Tarjeta Ceremonia -->
       <div class="editorial-block">
-        <div class="editorial-card card-right">
+        <div class="editorial-card">
           <h2 class="titulo-caja-cursiva">Ceremonia</h2>
           <p class="lugar-titulo">IGLESIA "NUESTRA SEÑORA DEL CARMEN"</p>
           <p class="lugar-direccion">📍 Vuelo: 26 de Diciembre, 2026</p>
@@ -153,12 +150,16 @@
           <p class="puntualidad">(Se agradece puntualidad)</p>
           <button type="button" class="btn-blanco" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2258.0927591552822!2d-66.28012117673957!3d-17.39842976804978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e30b78ff3172c1%3A0x53e4d00675eb37c9!2sParroquia%20San%20Ildefonso%20de%20Quillacollo!5e1!3m2!1ses!2sbo!4v1784857846142!5m2!1ses!2sbo')">Ubicación</button>
         </div>
-        <img src="./Foto_Ceremonia.png" alt="Ceremonia" class="editorial-photo photo-bottom-left" onerror="this.src='https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80'">
       </div>
 
-      <!-- Recepción -->
-      <div class="editorial-block mt-30">
-        <div class="editorial-card card-right">
+      <!-- Foto puente a la izquierda entre Ceremonia y Recepción (como en Canva) -->
+      <div class="bridge-photo-wrapper">
+        <img src="./Foto_Ceremonia.png" alt="Ceremonia" class="editorial-photo" onerror="this.src='https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80'">
+      </div>
+
+      <!-- Tarjeta Recepción -->
+      <div class="editorial-block">
+        <div class="editorial-card">
           <h2 class="titulo-caja-cursiva">Recepción</h2>
           <p class="lugar-titulo">SALÓN DE EVENTOS "DOLFIN"</p>
           <p class="lugar-direccion">📍 Recepción social a continuación</p>
@@ -174,11 +175,9 @@
       <h2 class="frase-cursiva text-dark">Dress Code</h2>
       <div class="icono-dresscode">
         <svg viewBox="0 0 120 100" width="90" height="75" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <!-- Traje Novio -->
           <path d="M20,25 L35,20 L50,25 L50,80 L20,80 Z"/>
           <path d="M35,20 L35,55"/>
           <path d="M28,22 L35,38 L42,22"/>
-          <!-- Vestido Novia -->
           <path d="M75,25 C75,35 85,35 85,25 L80,45 L62,80 L102,80 L84,45 Z"/>
         </svg>
       </div>
@@ -211,7 +210,7 @@
       </div>
     </section>
 
-    <!-- RSVP (Confirmación de asistencia alineada con foto lateral sin recortarse) -->
+    <!-- RSVP -->
     <section id="seccion-rsvp" class="rsvp-wrapper reveal">
       <div class="rsvp-card-left">
         <h2 class="titulo-caja-cursiva" style="text-align:center;">Confirmación de asistencia</h2>
@@ -237,7 +236,6 @@
           </div>
         </div>
 
-        <!-- Formulario desplegable limpio abajo -->
         <form id="formularioAsistencia" class="rsvp-form-desplegable oculto">
           <input type="text" id="nombreCompleto" placeholder="Nombre completo" required readonly class="input-form">
           <label for="selectPases" class="texto-blanco text-xs">¿Cuántos pases utilizarán?</label>
@@ -270,9 +268,9 @@
       <div id="galeriaFotos" class="galeria-grid"></div>
     </section>
 
-    <!-- CIERRE -->
+    <!-- CIERRE (Monograma N&A corregido) -->
     <section class="section-padding center-text textura-fondo reveal pb-0">
-      <div class="monograma">N & A</div>
+      <div class="monograma">N<span>&</span>A</div>
       <img src="./Foto_Sentados.png" alt="Juntos" class="img-cierre" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80'">
       
       <p class="frase-enamorado">
