@@ -21,11 +21,13 @@ document.addEventListener("DOMContentLoaded", function () {
   manejarFormularioRSVP();
 });
 
-// --- 1. ABRIR SOBRE DIRECTO Y RÁPIDO ---
-function abrirInvitacion(irARsvp) {
-  var envelope = document.getElementById("envelope-screen");
+// --- 1. ANIMACIÓN DE ABRIR LA SOLAPA DEL SOBRE Y ENTRAR A LA INVITACIÓN ---
+function abrirInvitacion() {
+  var envelopeScreen = document.getElementById("envelope-screen");
+  var envelopeCard = document.getElementById("envelope-card");
   var appContainer = document.getElementById("app-container");
 
+  // Reproducir música al pulsar Abrir invitación
   if (audio && !isPlaying) {
     audio.play().then(function () {
       if (playBtn) playBtn.innerText = "⏸";
@@ -33,20 +35,24 @@ function abrirInvitacion(irARsvp) {
     }).catch(function () {});
   }
 
+  // 1. Inicia la animación 3D de abrir la solapa superior del sobre
+  if (envelopeCard) {
+    envelopeCard.classList.add("open");
+  }
+
+  // Preparar la invitación por detrás
   appContainer.classList.remove("oculto");
-  envelope.style.opacity = "0";
-  envelope.style.transform = "scale(1.04)";
 
+  // 2. En cuanto la solapa se abre (550ms), desvanece el sobre hacia la invitación
   setTimeout(function () {
-    envelope.classList.add("oculto");
-    prepararAnimaciones();
+    envelopeScreen.style.opacity = "0";
+    envelopeScreen.style.transform = "scale(1.04)";
 
-    if (irARsvp) {
-      mostrarFormulario();
-      var rsvpSec = document.getElementById("seccion-rsvp");
-      if (rsvpSec) rsvpSec.scrollIntoView({ behavior: "smooth" });
-    }
-  }, 450);
+    setTimeout(function () {
+      envelopeScreen.classList.add("oculto");
+      prepararAnimaciones();
+    }, 550);
+  }, 550);
 }
 
 // --- 2. REPRODUCTOR DE MÚSICA ---
