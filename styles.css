@@ -1,11 +1,11 @@
 :root {
-  --primary: #4A121A;       /* Borgoña muy oscuro */
-  --secondary: #7A1C24;     /* Vino profundo */
-  --taupe: #BFA588;         /* Taupe / Arena dorada */
-  --sand: #EBDDCC;          /* Crema cálido */
-  --cream: #F9F6F2;         /* Blanco marfil */
+  --primary: #4A121A;       /* Círculo 1: Borgoña muy oscuro */
+  --secondary: #7A1C24;     /* Círculo 2: Vino profundo */
+  --taupe: #BFA588;         /* Círculo 3: Taupe / Arena dorada */
+  --sand: #EBDDCC;          /* Círculo 4: Crema cálido */
+  --cream: #F9F6F2;         /* Círculo 5: Blanco marfil */
   --text-dark: #2C1A1D;
-  --radius-suave: 26px;     /* Redondeado orgánico para tarjetas y fotos */
+  --radius-suave: 26px;
   --radius-medio: 18px;
 }
 
@@ -16,7 +16,7 @@
 }
 
 body {
-  background-color: #181313;
+  background-color: var(--primary);
   font-family: 'Montserrat', sans-serif;
   color: var(--text-dark);
   overflow-x: hidden;
@@ -27,17 +27,17 @@ body {
 }
 
 /* =========================================================
-   1. SOBRE INICIAL CON BORDES Y PLIEGUES MARCADOS
+   1. SOBRE CON PALETA BORGOÑA/VINO Y ANIMACIÓN DE APERTURA
    ========================================================= */
 .envelope-screen {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background-color: #0e0c0c;
+  background-color: #2b090e;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.45s ease, transform 0.45s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .envelope-card {
@@ -45,71 +45,98 @@ body {
   width: 100%;
   max-width: 450px;
   height: 100vh;
-  max-height: 860px;
-  background-color: #211d1c;
+  max-height: 900px;
+  background-color: var(--primary);
   overflow: hidden;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 55px rgba(0, 0, 0, 0.85);
+  perspective: 1200px; /* Permite que la solapa gire en 3D al abrirse */
 }
 
+/* Solapa izquierda en tono Vino/Borgoña */
 .flap-left {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, #272221 0%, #1d1918 100%);
+  background: linear-gradient(90deg, #5c1620 0%, var(--primary) 100%);
   clip-path: polygon(0 0, 52% 52%, 0 100%);
-  filter: drop-shadow(4px 0 8px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(4px 0 10px rgba(0, 0, 0, 0.6));
   z-index: 1;
 }
 
+/* Solapa derecha en tono Vino/Borgoña */
 .flap-right {
   position: absolute;
   inset: 0;
-  background: linear-gradient(-90deg, #272221 0%, #1d1918 100%);
+  background: linear-gradient(-90deg, #5c1620 0%, var(--primary) 100%);
   clip-path: polygon(100% 0, 48% 52%, 100% 100%);
-  filter: drop-shadow(-4px 0 8px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(-4px 0 10px rgba(0, 0, 0, 0.6));
   z-index: 1;
 }
 
+/* Bolsillo inferior del sobre */
 .flap-bottom {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, #181514 0%, #262120 100%);
+  background: linear-gradient(0deg, #380c12 0%, var(--primary) 100%);
   clip-path: polygon(0 100%, 50% 49%, 100% 100%);
-  filter: drop-shadow(0 -6px 12px rgba(0, 0, 0, 0.85));
+  filter: drop-shadow(0 -8px 14px rgba(0, 0, 0, 0.75));
   z-index: 2;
 }
 
+/* Costuras doradas/taupe en el bolsillo inferior */
 .flap-bottom::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, transparent 49.6%, rgba(255,255,255,0.12) 50%, transparent 50.4%),
-              linear-gradient(225deg, transparent 49.6%, rgba(255,255,255,0.12) 50%, transparent 50.4%);
+  background: 
+    linear-gradient(135deg, transparent 49.5%, rgba(191, 165, 136, 0.35) 50%, transparent 50.5%),
+    linear-gradient(225deg, transparent 49.5%, rgba(191, 165, 136, 0.35) 50%, transparent 50.5%);
   pointer-events: none;
 }
 
+/* Solapa superior móvil (Con animación de abrir sobre) */
 .flap-top {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 55%;
-  background: linear-gradient(180deg, #332d2b 0%, #24201f 100%);
+  background: linear-gradient(180deg, var(--secondary) 0%, var(--primary) 100%);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
-  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.9));
+  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.8));
   z-index: 3;
+  transform-origin: top center;
+  transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1), filter 0.85s ease;
 }
 
+/* Borde dorado/taupe en la V de la solapa superior */
 .flap-top::after {
   content: "";
   position: absolute;
   inset: 0;
   background: 
-    linear-gradient(to bottom right, transparent 49.3%, rgba(212, 186, 133, 0.35) 49.8%, transparent 50.3%),
-    linear-gradient(to bottom left, transparent 49.3%, rgba(212, 186, 133, 0.35) 49.8%, transparent 50.3%);
+    linear-gradient(to bottom right, transparent 49.2%, rgba(235, 221, 204, 0.5) 49.8%, transparent 50.4%),
+    linear-gradient(to bottom left, transparent 49.2%, rgba(235, 221, 204, 0.5) 49.8%, transparent 50.4%);
   pointer-events: none;
 }
 
+/* Estado cuando se abre el sobre */
+.envelope-card.open .flap-top {
+  transform: rotateX(180deg);
+  filter: drop-shadow(0 -5px 10px rgba(0, 0, 0, 0.3));
+}
+
+.envelope-card.open .wax-seal {
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.envelope-card.open .envelope-info {
+  opacity: 0;
+  transform: translate(-50%, 15px);
+}
+
+/* Sello de Lacre Dorado/Taupe */
 .wax-seal {
   position: absolute;
   top: 52%;
@@ -118,9 +145,9 @@ body {
   width: 132px;
   height: 132px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #d8a76e, #8f602b 65%, #523310 100%);
+  background: radial-gradient(circle at 30% 30%, #e0b47c, #9b6830 65%, #573612 100%);
   box-shadow: 
-    0 12px 28px rgba(0, 0, 0, 0.9),
+    0 12px 28px rgba(0, 0, 0, 0.85),
     inset 0 3px 6px rgba(255, 255, 255, 0.45),
     inset 0 -5px 10px rgba(0, 0, 0, 0.65);
   display: flex;
@@ -128,7 +155,7 @@ body {
   align-items: center;
   z-index: 4;
   cursor: pointer;
-  transition: transform 0.25s ease;
+  transition: transform 0.45s ease, opacity 0.45s ease;
 }
 
 .wax-seal:hover {
@@ -140,7 +167,7 @@ body {
   height: 98px;
   border-radius: 50%;
   border: 2px solid rgba(82, 51, 16, 0.65);
-  background: radial-gradient(circle at 40% 40%, #b8874e, #734819 85%);
+  background: radial-gradient(circle at 40% 40%, #c49256, #7a4d1b 85%);
   box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.65);
   display: flex;
   justify-content: center;
@@ -150,74 +177,74 @@ body {
 .seal-leaf {
   width: 60px;
   height: 60px;
-  color: #ebd0a9;
+  color: var(--sand);
   filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.65));
 }
 
 .envelope-info {
   position: absolute;
-  bottom: 5%;
+  bottom: 7%;
   left: 50%;
   transform: translateX(-50%);
-  width: 86%;
+  width: 84%;
   text-align: center;
   color: var(--cream);
   z-index: 5;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .res-label {
   font-size: 0.8rem;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   color: var(--taupe);
   margin-bottom: 4px;
+  text-transform: uppercase;
 }
 
 .guest-name {
   font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--cream);
   margin-bottom: 4px;
 }
 
 .guest-passes {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: var(--sand);
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 .envelope-buttons {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  justify-content: center;
 }
 
 .btn-envelope {
   width: 100%;
-  padding: 12px 20px;
+  max-width: 280px;
+  padding: 14px 24px;
   border-radius: 999px;
-  border: 1px solid rgba(191, 165, 136, 0.45);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--cream);
+  border: 1.5px solid var(--taupe);
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .btn-envelope-primary {
-  background: linear-gradient(135deg, var(--secondary), var(--primary));
-  border-color: var(--taupe);
-  font-weight: 600;
+  background: linear-gradient(135deg, var(--taupe), var(--sand));
+  color: var(--primary);
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
-.btn-envelope:hover {
-  background: var(--taupe);
-  color: var(--primary);
+.btn-envelope-primary:active {
+  transform: scale(0.96);
 }
 
 /* =========================================================
-   2. CONTENEDOR PRINCIPAL DE LA INVITACIÓN (Bordes Suavizados)
+   2. CONTENEDOR PRINCIPAL DE LA INVITACIÓN
    ========================================================= */
 #app-container {
   max-width: 450px;
@@ -245,49 +272,51 @@ body {
 .w-100 { width: 100%; }
 .pb-0 { padding-bottom: 0 !important; }
 
-/* 1. PORTADA HERO CON BORDES SUAVES */
+/* 1. PORTADA HERO FULL-BLEED (Sin bordes blancos arriba ni a los lados) */
 .hero-section {
   display: flex;
   flex-direction: column;
-  padding-top: 16px;
+  padding-top: 0;
   background-color: var(--cream);
 }
 
 .hero-image-box {
   position: relative;
-  width: 90%;
-  height: 72vh;
-  max-height: 550px;
-  margin: 0 auto;
-  border-radius: var(--radius-suave);
+  width: 100%;
+  height: 78vh;
+  max-height: 640px;
+  margin: 0;
+  /* Esquinas superiores al ras de la pantalla y esquinas inferiores suavizadas */
+  border-radius: 0 0 32px 32px;
   overflow: hidden;
-  box-shadow: 0 14px 32px rgba(74, 18, 26, 0.18);
+  box-shadow: 0 12px 28px rgba(74, 18, 26, 0.18);
 }
 
 .hero-bg {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center 25%;
   filter: grayscale(100%) contrast(1.06);
+  display: block;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20, 10, 12, 0.35) 0%, transparent 30%, transparent 55%, rgba(20, 10, 12, 0.82) 100%);
+  background: linear-gradient(180deg, rgba(20, 10, 12, 0.25) 0%, transparent 35%, transparent 52%, rgba(20, 10, 12, 0.84) 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 20px 15px 30px;
+  padding: 20px 15px 34px;
   color: white;
   text-align: center;
   text-shadow: 0 3px 12px rgba(0,0,0,0.85);
 }
 
 .welcome-aboard {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   margin-bottom: 6px;
@@ -295,26 +324,26 @@ body {
 }
 
 .nombres-hero {
-  font-size: 3.6rem;
+  font-size: 3.8rem;
   line-height: 0.92;
   font-weight: 700;
 }
 
 .ampersand {
-  font-size: 2rem;
+  font-size: 2.1rem;
   font-family: 'Playfair Display', serif;
   color: var(--taupe);
 }
 
 .fecha-hero {
   font-family: 'Playfair Display', serif;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   letter-spacing: 2.5px;
   margin-top: 8px;
 }
 
 .music-player {
-  padding: 22px 25px 28px;
+  padding: 20px 25px 26px;
   text-align: center;
   background-color: var(--cream);
 }
@@ -323,14 +352,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 28px;
-  font-size: 1.35rem;
+  gap: 26px;
   color: var(--primary);
 }
 
+.player-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--primary);
+  opacity: 0.85;
+}
+
 .play-btn {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: none;
   background-color: var(--sand);
@@ -340,7 +375,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 10px rgba(74, 18, 26, 0.12);
+  box-shadow: 0 4px 12px rgba(74, 18, 26, 0.14);
 }
 
 .progress-bar {
@@ -373,13 +408,13 @@ body {
 
 .music-text {
   font-family: 'Dancing Script', cursive;
-  font-size: 1.2rem;
+  font-size: 1.22rem;
   color: var(--primary);
 }
 
-/* 2. SECCIÓN SÍ PARA SIEMPRE & CONTADOR (beso.jpeg suavizado) */
+/* 2. SECCIÓN SÍ PARA SIEMPRE & CONTADOR */
 .section-padding {
-  padding: 45px 24px;
+  padding: 45px 22px;
 }
 
 .frase-cursiva {
@@ -398,7 +433,7 @@ body {
 
 .imagen-contador-wrapper {
   position: relative;
-  width: 94%;
+  width: 96%;
   margin: 28px auto 0;
   border-radius: var(--radius-suave);
   overflow: hidden;
@@ -444,7 +479,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  background: rgba(74, 18, 26, 0.72);
+  background: rgba(74, 18, 26, 0.74);
   border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: var(--radius-medio);
   padding: 14px 10px;
@@ -551,7 +586,7 @@ body {
   box-shadow: 0 6px 16px rgba(74, 18, 26, 0.15);
 }
 
-/* 4. CEREMONIA Y RECEPCIÓN CON TARJETAS Y FOTO SUAVIZADAS */
+/* 4. CEREMONIA Y RECEPCIÓN */
 .eventos-section {
   padding: 15px 18px 45px;
 }
@@ -692,14 +727,14 @@ body {
   color: #555;
 }
 
-/* 6. MESA DE REGALOS SUAVIZADA */
+/* 6. MESA DE REGALOS (Con Logo y QR de Multicenter) */
 .seccion-regalos {
   padding: 10px 20px 35px;
 }
 
 .regalos-card {
   background-color: var(--primary);
-  padding: 40px 24px;
+  padding: 38px 22px;
   text-align: center;
   border: 1px solid var(--taupe);
   border-radius: var(--radius-suave);
@@ -712,28 +747,53 @@ body {
   font-size: 0.88rem;
 }
 
-.logo-multicenter {
-  margin: 22px 0 10px;
-  color: white;
-  font-weight: 700;
-  font-size: 1.5rem;
+.multicenter-logo-box {
+  background: white;
+  max-width: 230px;
+  margin: 20px auto 14px;
+  padding: 10px 16px;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
 }
 
-.m-icon {
+.img-logo-multicenter {
+  width: 100%;
+  height: auto;
   display: block;
-  font-size: 2.4rem;
-  line-height: 1;
+}
+
+.qr-box {
+  background: white;
+  max-width: 185px;
+  margin: 0 auto;
+  padding: 12px;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+.img-qr-multicenter {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+.qr-caption {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 6px;
 }
 
 .botones-regalo {
   max-width: 220px;
-  margin: 22px auto 0;
+  margin: 20px auto 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* 7. RSVP SUAVIZADO (Con pasto.jpeg redondeado) */
+/* 7. RSVP */
 .rsvp-wrapper {
   padding: 15px 18px 35px;
 }
@@ -807,7 +867,7 @@ body {
   font-size: 0.88rem;
 }
 
-/* 8. FOTOS Y CIERRE SUAVIZADOS (sentados_sofa.jpeg y mirandose.jpeg) */
+/* 8. FOTOS Y CIERRE */
 .foto-btns-row {
   display: flex;
   gap: 10px;
@@ -873,8 +933,8 @@ body {
 }
 
 .img-cierre-final-wrapper {
-  width: calc(100% + 48px);
-  margin-left: -24px;
+  width: calc(100% + 44px);
+  margin-left: -22px;
   padding: 0 14px 16px;
 }
 
