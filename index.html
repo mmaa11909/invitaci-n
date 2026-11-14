@@ -16,17 +16,18 @@
     <source src="musica-boda.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- 1. PANTALLA DE INICIO: SOBRE CON BORDES Y PLIEGUES MARCADOS -->
+  <!-- 1. PANTALLA DE INICIO: SOBRE EN COLORES BORGOÑA/VINO CON ANIMACIÓN DE APERTURA -->
   <div id="envelope-screen" class="envelope-screen">
-    <div class="envelope-card">
+    <div id="envelope-card" class="envelope-card">
       
       <div class="flap-left"></div>
       <div class="flap-right"></div>
       <div class="flap-bottom"></div>
+      <!-- Solapa superior que se abre en 3D -->
       <div class="flap-top"></div>
 
       <!-- Sello de lacre centrado -->
-      <div class="wax-seal" onclick="abrirInvitacion(false)">
+      <div class="wax-seal" onclick="abrirInvitacion()">
         <div class="wax-seal-inner">
           <svg viewBox="0 0 100 100" class="seal-leaf">
             <path d="M50,88 C50,65 53,40 62,15 M53,70 C40,63 32,52 36,42 C44,49 50,58 53,70 Z M55,55 C68,48 76,37 72,27 C64,34 58,43 55,55 Z M57,40 C44,33 38,22 42,14 C48,21 54,30 57,40 Z M59,28 C68,23 73,15 70,9 C64,14 61,21 59,28 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -34,15 +35,14 @@
         </div>
       </div>
 
-      <!-- Datos del invitado en la parte inferior del sobre -->
+      <!-- Datos del invitado y único botón de Abrir Invitación -->
       <div class="envelope-info">
         <p class="res-label">Invitación reservada</p>
         <h2 id="sobre-nombre" class="guest-name">Familia & Amigos</h2>
         <p id="sobre-pases" class="guest-passes">2 Adultos</p>
 
         <div class="envelope-buttons">
-          <button type="button" class="btn-envelope" onclick="abrirInvitacion(true)">Confirmar asistencia</button>
-          <button type="button" class="btn-envelope btn-envelope-primary" onclick="abrirInvitacion(false)">Abrir invitación</button>
+          <button type="button" class="btn-envelope btn-envelope-primary" onclick="abrirInvitacion()">Abrir invitación</button>
         </div>
       </div>
 
@@ -52,7 +52,7 @@
   <!-- 2. CONTENEDOR PRINCIPAL DE LA INVITACIÓN -->
   <div id="app-container" class="oculto">
 
-    <!-- PORTADA HERO + REPRODUCTOR (Usa mirandosecromatico.jpeg) -->
+    <!-- PORTADA HERO OCUPANDO TODO EL ESPACIO SUPERIOR + REPRODUCTOR -->
     <header class="hero-section">
       <div class="hero-image-box">
         <img src="mirandosecromatico.jpeg" alt="Nayra y Armando" class="hero-bg">
@@ -63,14 +63,30 @@
         </div>
       </div>
       
-      <!-- Reproductor de música estilo Canva -->
+      <!-- Reproductor de música con iconos SVG del color de la paleta -->
       <div class="music-player">
         <div class="music-controls">
-          <span>♡</span>
-          <span>⏮</span>
+          <!-- Corazón -->
+          <svg class="player-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <!-- Anterior -->
+          <svg class="player-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"></path>
+          </svg>
+          <!-- Botón Play/Pause -->
           <button type="button" id="play-btn" class="play-btn" onclick="controlarMusica()">▶</button>
-          <span>⏭</span>
-          <span>🔁</span>
+          <!-- Siguiente -->
+          <svg class="player-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
+          </svg>
+          <!-- Repetir -->
+          <svg class="player-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="17 1 21 5 17 9"></polyline>
+            <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+            <polyline points="7 23 3 19 7 15"></polyline>
+            <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+          </svg>
         </div>
         <div class="progress-bar"><div class="progress-fill"></div></div>
         <p class="music-text">doble click para reproducir nuestra canción</p>
@@ -189,7 +205,7 @@
       <p class="dress-nota">Nota: El blanco queda reservado para la novia. 💍</p>
     </section>
 
-    <!-- MESA DE REGALOS -->
+    <!-- MESA DE REGALOS (Con logomulticenter.jpeg y qrmulticenter.jpeg) -->
     <section class="seccion-regalos reveal">
       <div class="regalos-card">
         <h2 class="titulo-caja-cursiva">Mesa de regalos</h2>
@@ -197,11 +213,18 @@
           Tu presencia es nuestro mejor regalo, pero si deseas hacernos un detalle será recibido con mucho cariño.
         </p>
         
-        <div class="logo-multicenter">
-          <span class="m-icon">M</span>
-          <span>multicenter</span>
+        <!-- Logo Oficial de Novios Multicenter -->
+        <div class="multicenter-logo-box">
+          <img src="logomulticenter.jpeg" alt="Novios Multicenter" class="img-logo-multicenter">
         </div>
-        <p class="texto-blanco text-sm">📍 Av. Uyuni #1171 casi puente Muyurina.</p>
+
+        <!-- Código QR de la Lista de Regalos -->
+        <div class="qr-box">
+          <img src="qrmulticenter.jpeg" alt="QR Mesa de Regalos Multicenter" class="img-qr-multicenter">
+          <p class="qr-caption">Escanea el QR para ver nuestra lista</p>
+        </div>
+
+        <p class="texto-blanco text-sm mt-15">📍 Av. Uyuni #1171 casi puente Muyurina.</p>
         
         <div class="botones-regalo">
           <button type="button" class="btn-blanco w-100" onclick="abrirMapa('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.653451!2d-66.151!3d-17.376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDIyJzMzLjYiUyA2NsKwMDknMDMuNiJX!5e0!3m2!1ses!2sbo!4v1600000000000')">Ubicación</button>
