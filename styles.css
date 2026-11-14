@@ -5,6 +5,8 @@
   --sand: #EBDDCC;          /* Crema cálido */
   --cream: #F9F6F2;         /* Blanco marfil */
   --text-dark: #2C1A1D;
+  --radius-suave: 26px;     /* Redondeado orgánico para tarjetas y fotos */
+  --radius-medio: 18px;
 }
 
 * {
@@ -215,7 +217,7 @@ body {
 }
 
 /* =========================================================
-   2. CONTENEDOR PRINCIPAL DE LA INVITACIÓN
+   2. CONTENEDOR PRINCIPAL DE LA INVITACIÓN (Bordes Suavizados)
    ========================================================= */
 #app-container {
   max-width: 450px;
@@ -243,40 +245,42 @@ body {
 .w-100 { width: 100%; }
 .pb-0 { padding-bottom: 0 !important; }
 
-/* 1. PORTADA HERO CORREGIDA: Texto abajo para dejar libres las caras */
+/* 1. PORTADA HERO CON BORDES SUAVES */
 .hero-section {
   display: flex;
   flex-direction: column;
+  padding-top: 16px;
   background-color: var(--cream);
 }
 
 .hero-image-box {
   position: relative;
   width: 90%;
-  height: 74vh;
-  max-height: 560px;
+  height: 72vh;
+  max-height: 550px;
   margin: 0 auto;
+  border-radius: var(--radius-suave);
   overflow: hidden;
+  box-shadow: 0 14px 32px rgba(74, 18, 26, 0.18);
 }
 
 .hero-bg {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 30%;
   filter: grayscale(100%) contrast(1.06);
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  /* Degradado suave abajo para que las letras blancas resalten sobre el traje/vestido sin tapar las caras */
-  background: linear-gradient(180deg, transparent 0%, transparent 48%, rgba(20, 10, 12, 0.78) 100%);
+  background: linear-gradient(180deg, rgba(20, 10, 12, 0.35) 0%, transparent 30%, transparent 55%, rgba(20, 10, 12, 0.82) 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 20px 15px 32px;
+  padding: 20px 15px 30px;
   color: white;
   text-align: center;
   text-shadow: 0 3px 12px rgba(0,0,0,0.85);
@@ -373,7 +377,7 @@ body {
   color: var(--primary);
 }
 
-/* 2. SECCIÓN GENERAL & CONTADOR */
+/* 2. SECCIÓN SÍ PARA SIEMPRE & CONTADOR (beso.jpeg suavizado) */
 .section-padding {
   padding: 45px 24px;
 }
@@ -394,34 +398,36 @@ body {
 
 .imagen-contador-wrapper {
   position: relative;
-  width: 92%;
+  width: 94%;
   margin: 28px auto 0;
-  border-radius: 8px;
+  border-radius: var(--radius-suave);
   overflow: hidden;
-  box-shadow: 0 12px 28px rgba(74, 18, 26, 0.2);
+  box-shadow: 0 14px 32px rgba(74, 18, 26, 0.22);
 }
 
 .img-anillo {
   width: 100%;
-  height: 430px;
+  height: 460px;
   object-fit: cover;
+  object-position: center center;
   display: block;
 }
 
 .overlay-text-top {
   position: absolute;
-  top: 25px;
+  top: 0;
   left: 0;
   width: 100%;
-  padding: 0 18px;
+  padding: 22px 18px 35px;
+  background: linear-gradient(180deg, rgba(20, 10, 12, 0.65) 0%, transparent 100%);
   color: white;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
   text-align: left;
 }
 
 .overlay-text-top span:first-child {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   letter-spacing: 1.5px;
 }
 
@@ -434,15 +440,16 @@ body {
 
 .contador-overlay {
   position: absolute;
-  bottom: 18px;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  background: rgba(74, 18, 26, 0.65);
+  background: rgba(74, 18, 26, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: var(--radius-medio);
   padding: 14px 10px;
   color: white;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
 }
 
 .contador-numeros {
@@ -479,7 +486,7 @@ body {
   line-height: 1;
 }
 
-/* 3. PADRES Y MONOGRAMA CORREGIDO (Nunca más se cae la A) */
+/* 3. PADRES Y MONOGRAMA */
 .textura-fondo {
   background-color: var(--sand);
   background-image: radial-gradient(rgba(74, 18, 26, 0.05) 1px, transparent 0);
@@ -524,9 +531,9 @@ body {
 
 .caja-nombres {
   background: white;
-  padding: 14px 18px;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(74, 18, 26, 0.06);
+  padding: 15px 18px;
+  border-radius: 20px;
+  box-shadow: 0 6px 16px rgba(74, 18, 26, 0.06);
   font-family: 'Montserrat', sans-serif;
   color: var(--text-dark);
   font-size: 0.95rem;
@@ -538,12 +545,13 @@ body {
   font-size: 0.78rem;
   background: var(--primary);
   color: var(--cream);
-  padding: 12px 15px;
-  border-radius: 10px;
+  padding: 14px 18px;
+  border-radius: var(--radius-medio);
   line-height: 1.45;
+  box-shadow: 0 6px 16px rgba(74, 18, 26, 0.15);
 }
 
-/* 4. CEREMONIA Y RECEPCIÓN CORREGIDOS (La foto hace de puente sin tapar texto) */
+/* 4. CEREMONIA Y RECEPCIÓN CON TARJETAS Y FOTO SUAVIZADAS */
 .eventos-section {
   padding: 15px 18px 45px;
 }
@@ -557,20 +565,20 @@ body {
   width: 82%;
   background-color: var(--primary);
   color: var(--cream);
-  padding: 32px 18px 34px;
+  padding: 34px 20px 36px;
   text-align: center;
   border: 1px solid var(--taupe);
-  box-shadow: 0 10px 25px rgba(74, 18, 26, 0.2);
+  border-radius: var(--radius-suave);
+  box-shadow: 0 12px 28px rgba(74, 18, 26, 0.22);
   position: relative;
   z-index: 1;
 }
 
-/* Contenedor de la foto lateral que conecta Ceremonia y Recepción sin pisar el texto */
 .bridge-photo-wrapper {
   display: flex;
   justify-content: flex-start;
-  margin-top: -55px;
-  margin-bottom: -55px;
+  margin-top: -45px;
+  margin-bottom: -45px;
   padding-left: 2%;
   position: relative;
   z-index: 2;
@@ -578,11 +586,13 @@ body {
 }
 
 .editorial-photo {
-  width: 42%;
-  height: 185px;
+  width: 48%;
+  height: 225px;
   object-fit: cover;
-  border: 3px solid var(--cream);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  object-position: center top;
+  border-radius: 22px;
+  border: 4px solid var(--cream);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.32);
 }
 
 .titulo-caja-cursiva {
@@ -682,9 +692,9 @@ body {
   color: #555;
 }
 
-/* 6. MESA DE REGALOS */
+/* 6. MESA DE REGALOS SUAVIZADA */
 .seccion-regalos {
-  padding: 10px 22px 35px;
+  padding: 10px 20px 35px;
 }
 
 .regalos-card {
@@ -692,7 +702,8 @@ body {
   padding: 40px 24px;
   text-align: center;
   border: 1px solid var(--taupe);
-  box-shadow: 0 10px 25px rgba(74, 18, 26, 0.18);
+  border-radius: var(--radius-suave);
+  box-shadow: 0 12px 28px rgba(74, 18, 26, 0.2);
 }
 
 .texto-blanco {
@@ -722,7 +733,7 @@ body {
   gap: 12px;
 }
 
-/* 7. RSVP */
+/* 7. RSVP SUAVIZADO (Con pasto.jpeg redondeado) */
 .rsvp-wrapper {
   padding: 15px 18px 35px;
 }
@@ -731,12 +742,13 @@ body {
   background-color: var(--primary);
   padding: 32px 18px;
   border: 1px solid var(--taupe);
-  box-shadow: 0 10px 25px rgba(74, 18, 26, 0.2);
+  border-radius: var(--radius-suave);
+  box-shadow: 0 12px 28px rgba(74, 18, 26, 0.22);
 }
 
 .rsvp-split {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1.12fr 0.88fr;
   gap: 14px;
   align-items: center;
   margin-top: 15px;
@@ -764,15 +776,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 14px;
 }
 
 .rsvp-img-col img {
   width: 100%;
-  height: 290px;
+  height: 280px;
   object-fit: cover;
-  border: 2px solid var(--cream);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+  object-position: center center;
+  border-radius: 20px;
+  border: 3px solid var(--cream);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 
 .rsvp-form-desplegable {
@@ -786,14 +800,14 @@ body {
 
 .input-form {
   width: 100%;
-  padding: 11px 12px;
-  border-radius: 8px;
+  padding: 11px 14px;
+  border-radius: 12px;
   border: 1px solid var(--taupe);
   font-family: 'Montserrat', sans-serif;
   font-size: 0.88rem;
 }
 
-/* 8. FOTOS Y CIERRE */
+/* 8. FOTOS Y CIERRE SUAVIZADOS (sentados_sofa.jpeg y mirandose.jpeg) */
 .foto-btns-row {
   display: flex;
   gap: 10px;
@@ -809,7 +823,7 @@ body {
 .galeria-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 12px;
   margin-top: 15px;
 }
 
@@ -817,15 +831,18 @@ body {
   width: 100%;
   height: 140px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 16px;
 }
 
 .img-cierre {
   width: 100%;
-  height: 240px;
+  height: 250px;
   object-fit: cover;
-  border-radius: 6px;
-  margin: 10px 0 18px;
+  object-position: center 25%;
+  border-radius: var(--radius-suave);
+  border: 3px solid var(--cream);
+  box-shadow: 0 10px 24px rgba(74, 18, 26, 0.16);
+  margin: 10px 0 20px;
 }
 
 .frase-enamorado {
@@ -852,15 +869,22 @@ body {
 .creditos-footer {
   font-size: 0.72rem;
   color: #666;
-  margin: 8px 0 18px;
+  margin: 8px 0 20px;
+}
+
+.img-cierre-final-wrapper {
+  width: calc(100% + 48px);
+  margin-left: -24px;
+  padding: 0 14px 16px;
 }
 
 .img-cierre-final {
-  width: calc(100% + 48px);
-  margin-left: -24px;
-  height: 240px;
+  width: 100%;
+  height: 250px;
   object-fit: cover;
-  filter: grayscale(100%);
+  object-position: center 30%;
+  border-radius: var(--radius-suave);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
   display: block;
 }
 
@@ -892,7 +916,7 @@ body {
   height: 60vh;
   background: white;
   position: relative;
-  border-radius: 15px;
+  border-radius: 22px;
   overflow: hidden;
 }
 .cerrar-modal {
