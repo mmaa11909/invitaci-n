@@ -27,13 +27,13 @@ body {
 }
 
 /* =========================================================
-   1. SOBRE CON PALETA BORGOÑA/VINO Y ANIMACIÓN DE APERTURA
+   1. SOBRE CON CONTRASTE DE PALETA Y SELLO DE CORAZÓN
    ========================================================= */
 .envelope-screen {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background-color: #2b090e;
+  background-color: #26070B;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,83 +46,72 @@ body {
   max-width: 450px;
   height: 100vh;
   max-height: 900px;
-  background-color: var(--primary);
+  background-color: var(--sand);
   overflow: hidden;
-  box-shadow: 0 0 55px rgba(0, 0, 0, 0.85);
-  perspective: 1200px; /* Permite que la solapa gire en 3D al abrirse */
+  box-shadow: 0 0 55px rgba(0, 0, 0, 0.9);
+  perspective: 1200px;
 }
 
-/* Solapa izquierda en tono Vino/Borgoña */
+/* Interior claro del sobre que se ve al abrir la solapa */
+.envelope-inside {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 25%, var(--cream) 0%, var(--sand) 100%);
+  z-index: 0;
+}
+
+/* Solapas laterales en color Taupe/Arena Oscura para contrastar con el Vino y Borgoña */
 .flap-left {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, #5c1620 0%, var(--primary) 100%);
+  background: linear-gradient(90deg, #9E8266 0%, var(--taupe) 100%);
   clip-path: polygon(0 0, 52% 52%, 0 100%);
-  filter: drop-shadow(4px 0 10px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(5px 0 12px rgba(0, 0, 0, 0.55));
   z-index: 1;
 }
 
-/* Solapa derecha en tono Vino/Borgoña */
 .flap-right {
   position: absolute;
   inset: 0;
-  background: linear-gradient(-90deg, #5c1620 0%, var(--primary) 100%);
+  background: linear-gradient(-90deg, #9E8266 0%, var(--taupe) 100%);
   clip-path: polygon(100% 0, 48% 52%, 100% 100%);
-  filter: drop-shadow(-4px 0 10px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(-5px 0 12px rgba(0, 0, 0, 0.55));
   z-index: 1;
 }
 
-/* Bolsillo inferior del sobre */
+/* Bolsillo inferior en Borgoña Profundo */
 .flap-bottom {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, #380c12 0%, var(--primary) 100%);
-  clip-path: polygon(0 100%, 50% 49%, 100% 100%);
-  filter: drop-shadow(0 -8px 14px rgba(0, 0, 0, 0.75));
+  background: linear-gradient(0deg, #320A0F 0%, var(--primary) 100%);
+  clip-path: polygon(0 100%, 50% 48%, 100% 100%);
+  filter: drop-shadow(0 -8px 16px rgba(0, 0, 0, 0.75));
   z-index: 2;
 }
 
-/* Costuras doradas/taupe en el bolsillo inferior */
-.flap-bottom::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(135deg, transparent 49.5%, rgba(191, 165, 136, 0.35) 50%, transparent 50.5%),
-    linear-gradient(225deg, transparent 49.5%, rgba(191, 165, 136, 0.35) 50%, transparent 50.5%);
-  pointer-events: none;
-}
-
-/* Solapa superior móvil (Con animación de abrir sobre) */
+/* Solapa superior en Vino Profundo con borde limpio en SVG (sin rayas cruzadas) */
 .flap-top {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 55%;
-  background: linear-gradient(180deg, var(--secondary) 0%, var(--primary) 100%);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.8));
+  height: 54%;
+  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.75));
   z-index: 3;
   transform-origin: top center;
   transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1), filter 0.85s ease;
 }
 
-/* Borde dorado/taupe en la V de la solapa superior */
-.flap-top::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(to bottom right, transparent 49.2%, rgba(235, 221, 204, 0.5) 49.8%, transparent 50.4%),
-    linear-gradient(to bottom left, transparent 49.2%, rgba(235, 221, 204, 0.5) 49.8%, transparent 50.4%);
-  pointer-events: none;
+.flap-top-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 /* Estado cuando se abre el sobre */
 .envelope-card.open .flap-top {
   transform: rotateX(180deg);
-  filter: drop-shadow(0 -5px 10px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 -5px 10px rgba(0, 0, 0, 0.25));
 }
 
 .envelope-card.open .wax-seal {
@@ -136,16 +125,16 @@ body {
   transform: translate(-50%, 15px);
 }
 
-/* Sello de Lacre Dorado/Taupe */
+/* Sello de Lacre con Corazón */
 .wax-seal {
   position: absolute;
   top: 52%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 132px;
-  height: 132px;
+  width: 128px;
+  height: 128px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #e0b47c, #9b6830 65%, #573612 100%);
+  background: radial-gradient(circle at 30% 30%, #e5bc86, #9b6830 65%, #573612 100%);
   box-shadow: 
     0 12px 28px rgba(0, 0, 0, 0.85),
     inset 0 3px 6px rgba(255, 255, 255, 0.45),
@@ -163,8 +152,8 @@ body {
 }
 
 .wax-seal-inner {
-  width: 98px;
-  height: 98px;
+  width: 94px;
+  height: 94px;
   border-radius: 50%;
   border: 2px solid rgba(82, 51, 16, 0.65);
   background: radial-gradient(circle at 40% 40%, #c49256, #7a4d1b 85%);
@@ -174,11 +163,11 @@ body {
   align-items: center;
 }
 
-.seal-leaf {
-  width: 60px;
-  height: 60px;
+.seal-heart {
+  width: 52px;
+  height: 52px;
   color: var(--sand);
-  filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.65));
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.65));
 }
 
 .envelope-info {
@@ -194,7 +183,7 @@ body {
 }
 
 .res-label {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   letter-spacing: 2px;
   color: var(--taupe);
   margin-bottom: 4px;
@@ -222,7 +211,7 @@ body {
 
 .btn-envelope {
   width: 100%;
-  max-width: 280px;
+  max-width: 270px;
   padding: 14px 24px;
   border-radius: 999px;
   border: 1.5px solid var(--taupe);
@@ -236,15 +225,11 @@ body {
   background: linear-gradient(135deg, var(--taupe), var(--sand));
   color: var(--primary);
   font-weight: 700;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-}
-
-.btn-envelope-primary:active {
-  transform: scale(0.96);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
 }
 
 /* =========================================================
-   2. CONTENEDOR PRINCIPAL DE LA INVITACIÓN
+   2. CONTENEDOR PRINCIPAL Y FONDO DE AVIONCITOS / BRÚJULAS
    ========================================================= */
 #app-container {
   max-width: 450px;
@@ -254,6 +239,12 @@ body {
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
   overflow: hidden;
   position: relative;
+}
+
+/* Patrón de fondo con avioncitos, rutas punteadas y brújulas (Rosa de los vientos) */
+.bg-viaje {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%237A1C24' stroke-opacity='0.08' stroke-width='1.2'%3E%3C!-- Brújula --%3E%3Ccircle cx='45' cy='45' r='22'/%3E%3Ccircle cx='45' cy='45' r='17' stroke-dasharray='2,2'/%3E%3Cpolygon points='45,18 49,41 72,45 49,49 45,72 41,49 18,45 41,41' fill='%237A1C24' fill-opacity='0.06'/%3E%3C!-- Ruta punteada --%3E%3Cpath d='M75,55 Q125,85 160,45' stroke-dasharray='4,4'/%3E%3C!-- Avioncito 1 --%3E%3Cpath d='M172,38 L155,41 L161,45 L152,53 L155,55 L165,48 L169,55 L172,38 Z' fill='%234A121A' fill-opacity='0.08'/%3E%3C!-- Avioncito 2 y ruta inferior --%3E%3Cpath d='M25,165 Q85,135 135,175' stroke-dasharray='4,4'/%3E%3Cpath d='M148,180 L132,171 L135,177 L124,181 L126,184 L137,181 L138,189 L148,180 Z' fill='%234A121A' fill-opacity='0.08'/%3E%3C!-- Brújula pequeña --%3E%3Ccircle cx='180' cy='145' r='14'/%3E%3Cpath d='M180,127 L183,142 L198,145 L183,148 L180,163 L177,148 L162,145 L177,142 Z' fill='%237A1C24' fill-opacity='0.05'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
 }
 
 .frase-cursiva, .nombres-hero, .cursiva-dorada, .titulo-caja-cursiva {
@@ -272,7 +263,7 @@ body {
 .w-100 { width: 100%; }
 .pb-0 { padding-bottom: 0 !important; }
 
-/* 1. PORTADA HERO FULL-BLEED (Sin bordes blancos arriba ni a los lados) */
+/* 1. PORTADA HERO CON CONTRASTE FUERTE EN LAS LETRAS */
 .hero-section {
   display: flex;
   flex-direction: column;
@@ -286,7 +277,6 @@ body {
   height: 78vh;
   max-height: 640px;
   margin: 0;
-  /* Esquinas superiores al ras de la pantalla y esquinas inferiores suavizadas */
   border-radius: 0 0 32px 32px;
   overflow: hidden;
   box-shadow: 0 12px 28px rgba(74, 18, 26, 0.18);
@@ -296,50 +286,74 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 25%;
-  filter: grayscale(100%) contrast(1.06);
+  object-position: center 22%;
+  filter: grayscale(100%) contrast(1.08);
   display: block;
 }
 
+/* Velo oscuro reforzado en la mitad inferior para que el texto blanco destaque sobre la camisa blanca */
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20, 10, 12, 0.25) 0%, transparent 35%, transparent 52%, rgba(20, 10, 12, 0.84) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 6, 8, 0.15) 0%,
+    rgba(15, 6, 8, 0.1) 35%,
+    rgba(35, 8, 12, 0.72) 58%,
+    rgba(25, 5, 8, 0.92) 100%
+  );
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 20px 15px 34px;
-  color: white;
+  padding: 20px 15px 30px;
+  color: #ffffff;
   text-align: center;
-  text-shadow: 0 3px 12px rgba(0,0,0,0.85);
 }
 
 .welcome-aboard {
   font-size: 0.72rem;
-  letter-spacing: 2.5px;
+  font-weight: 600;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   color: var(--sand);
+  background: rgba(74, 18, 26, 0.78);
+  border: 1px solid rgba(235, 221, 204, 0.45);
+  padding: 6px 16px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
 }
 
 .nombres-hero {
-  font-size: 3.8rem;
-  line-height: 0.92;
+  font-size: 4rem;
+  line-height: 0.9;
   font-weight: 700;
+  color: #ffffff;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.95),
+    0 6px 18px rgba(0, 0, 0, 0.9),
+    0 0 28px rgba(74, 18, 26, 0.85);
 }
 
-.ampersand {
-  font-size: 2.1rem;
-  font-family: 'Playfair Display', serif;
+.letra-y {
+  display: inline-block;
+  font-size: 2.5rem;
+  font-family: 'Dancing Script', cursive;
   color: var(--taupe);
+  margin: 2px 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
 }
 
 .fecha-hero {
   font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  letter-spacing: 2.5px;
-  margin-top: 8px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  margin-top: 10px;
+  color: var(--sand);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
 }
 
 .music-player {
@@ -454,9 +468,9 @@ body {
   left: 0;
   width: 100%;
   padding: 22px 18px 35px;
-  background: linear-gradient(180deg, rgba(20, 10, 12, 0.65) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(20, 10, 12, 0.72) 0%, transparent 100%);
   color: white;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.85);
   text-align: left;
 }
 
@@ -479,7 +493,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  background: rgba(74, 18, 26, 0.74);
+  background: rgba(74, 18, 26, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: var(--radius-medio);
   padding: 14px 10px;
@@ -521,11 +535,9 @@ body {
   line-height: 1;
 }
 
-/* 3. PADRES Y MONOGRAMA */
+/* 3. PADRES Y AVISO DESTACADO DE SOLO ADULTOS */
 .textura-fondo {
   background-color: var(--sand);
-  background-image: radial-gradient(rgba(74, 18, 26, 0.05) 1px, transparent 0);
-  background-size: 16px 16px;
 }
 
 .monograma {
@@ -542,15 +554,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 4px;
   white-space: nowrap;
   box-shadow: 0 4px 12px rgba(74, 18, 26, 0.08);
 }
 
 .monograma span {
-  font-size: 1.15rem;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.35rem;
   color: var(--secondary);
-  font-style: italic;
 }
 
 .bloque-padres {
@@ -571,19 +583,36 @@ body {
   box-shadow: 0 6px 16px rgba(74, 18, 26, 0.06);
   font-family: 'Montserrat', sans-serif;
   color: var(--text-dark);
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-size: 0.98rem;
+  font-weight: 600;
 }
 
-.aclaracion-adultos {
-  margin-top: 24px;
-  font-size: 0.78rem;
-  background: var(--primary);
+/* Nuevo bloque más grande y visible para "Solo adultos" */
+.aclaracion-adultos-destacada {
+  margin-top: 28px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: var(--cream);
-  padding: 14px 18px;
-  border-radius: var(--radius-medio);
-  line-height: 1.45;
-  box-shadow: 0 6px 16px rgba(74, 18, 26, 0.15);
+  padding: 18px 18px;
+  border-radius: 20px;
+  border: 1.5px solid var(--taupe);
+  box-shadow: 0 10px 24px rgba(74, 18, 26, 0.22);
+}
+
+.badge-adultos {
+  display: inline-block;
+  background: var(--sand);
+  color: var(--primary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.aclaracion-adultos-destacada p {
+  font-size: 0.88rem;
+  line-height: 1.55;
 }
 
 /* 4. CEREMONIA Y RECEPCIÓN */
@@ -638,14 +667,14 @@ body {
 }
 
 .lugar-titulo {
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.88rem;
+  font-weight: 700;
   letter-spacing: 1px;
   line-height: 1.4;
 }
 
 .lugar-direccion {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: var(--taupe);
   margin: 6px 0;
 }
@@ -670,10 +699,10 @@ body {
   background: white;
   color: var(--primary);
   border: none;
-  padding: 9px 28px;
+  padding: 9px 26px;
   border-radius: 999px;
   font-family: 'Dancing Script', cursive;
-  font-size: 1.4rem;
+  font-size: 1.38rem;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,0.12);
@@ -727,7 +756,7 @@ body {
   color: #555;
 }
 
-/* 6. MESA DE REGALOS (Con Logo y QR de Multicenter) */
+/* 6. MESA DE REGALOS */
 .seccion-regalos {
   padding: 10px 20px 35px;
 }
