@@ -2,10 +2,11 @@
 var URL_ASISTENCIA = "https://script.google.com/macros/s/AKfycbyP5rAqVFmlDjt10fGKylTDH4R90d2hg7TamJFYCB9_agbfGJL4oqJZJtkRx_7d76-v-Q/exec";
 var URL_FOTOS = "https://script.google.com/macros/s/AKfycbzqAmczsKY0dzkIlqpIy0Df8wZAZi4qfr8vG582E6I7-yVtsBjiF3CA96xCEPBkumfOSA/exec";
 
-// Fecha de la boda de Nayra & Armando: 26 de Diciembre de 2026, 18:00 hrs
-var FECHA_BODA = new Date("2026-12-26T18:00:00-04:00");
-var FECHA_HABILITACION_FOTOS = new Date("2026-12-26T18:00:00-04:00");
-var FECHA_LIMITE_RSVP = new Date("2026-12-20T23:59:59-04:00");
+// Fecha de la boda de Nayra y Armando: 26 de Diciembre de 2026, 15:30 hrs (Hora Ceremonia)
+var FECHA_BODA = new Date("2026-12-26T15:30:00-04:00");
+var FECHA_HABILITACION_FOTOS = new Date("2026-12-26T15:30:00-04:00");
+// Fecha límite actualizada al 04 de Diciembre
+var FECHA_LIMITE_RSVP = new Date("2026-12-04T23:59:59-04:00");
 
 var invitadoActual = null;
 var fotoSeleccionada = null;
@@ -27,7 +28,6 @@ function abrirInvitacion() {
   var envelopeCard = document.getElementById("envelope-card");
   var appContainer = document.getElementById("app-container");
 
-  // Reproducir música al pulsar Abrir invitación
   if (audio && !isPlaying) {
     audio.play().then(function () {
       if (playBtn) playBtn.innerText = "⏸";
@@ -35,15 +35,12 @@ function abrirInvitacion() {
     }).catch(function () {});
   }
 
-  // 1. Inicia la animación 3D de abrir la solapa superior del sobre
   if (envelopeCard) {
     envelopeCard.classList.add("open");
   }
 
-  // Preparar la invitación por detrás
   appContainer.classList.remove("oculto");
 
-  // 2. En cuanto la solapa se abre (550ms), desvanece el sobre hacia la invitación
   setTimeout(function () {
     envelopeScreen.style.opacity = "0";
     envelopeScreen.style.transform = "scale(1.04)";
@@ -181,7 +178,7 @@ function manejarFormularioRSVP() {
     e.preventDefault();
 
     if (new Date() > FECHA_LIMITE_RSVP) {
-      alert("La fecha límite para confirmar ha expirado.");
+      alert("La fecha límite para confirmar (04/12) ha expirado. Por favor contacta a los novios.");
       return;
     }
 
@@ -224,7 +221,11 @@ function manejarFormularioRSVP() {
   });
 }
 
-// --- 6. MODAL DE MAPA ---
+// --- 6. MODAL DE MAPA Y AVISO DE IGLESIA POR DEFINIR ---
+function avisarIglesiaPorDefinir() {
+  alert("📍 La iglesia y su ubicación exacta están por definir. Te confirmaremos muy pronto.");
+}
+
 function abrirMapa(url) {
   var modal = document.getElementById("modalMapa");
   document.getElementById("iframeMapaModal").src = url;
@@ -240,7 +241,7 @@ function cerrarMapa() {
 function verificarFechaFoto(evento) {
   if (new Date() < FECHA_HABILITACION_FOTOS) {
     evento.preventDefault();
-    alert("La subida de fotos se habilitará el día de la boda (26 de diciembre a las 18:00 hrs).");
+    alert("La subida de fotos se habilitará el día de la boda (26 de diciembre a las 15:30 hrs).");
   }
 }
 
@@ -263,7 +264,7 @@ function prepararInputsFoto() {
 function procesarFoto() {
   var msg = document.getElementById("mensajeFoto");
   if (new Date() < FECHA_HABILITACION_FOTOS) {
-    if (msg) msg.innerText = "Habilitado el 26 de diciembre a las 18:00 hrs.";
+    if (msg) msg.innerText = "Habilitado el 26 de diciembre a las 15:30 hrs.";
     return;
   }
   if (!fotoSeleccionada) {
