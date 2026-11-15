@@ -27,124 +27,199 @@ body {
 }
 
 /* =========================================================
-   1. SOBRE CON CONTRASTE DE PALETA Y SELLO DE CORAZÓN
+   1. PANTALLA DE INICIO: SOBRE DE PAPELERÍA FINA (Rediseñado)
    ========================================================= */
 .envelope-screen {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background-color: #26070B;
+  background: radial-gradient(circle at 50% 30%, var(--secondary) 0%, var(--primary) 70%, #2a080d 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  padding: 16px;
+  transition: opacity 0.65s ease, transform 0.65s ease;
 }
 
-.envelope-card {
+.envelope-stage {
+  width: 100%;
+  max-width: 410px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Encabezado superior fuera del sobre */
+.envelope-top-header {
+  text-align: center;
+  color: var(--sand);
+}
+
+.top-monogram {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--cream);
+  letter-spacing: 2px;
+}
+
+.top-monogram span {
+  font-family: 'Dancing Script', cursive;
+  color: var(--taupe);
+  font-size: 1.6rem;
+}
+
+.top-subtitle {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: var(--taupe);
+  margin-top: 4px;
+}
+
+/* Cuerpo del Sobre Físico */
+.envelope-box {
   position: relative;
   width: 100%;
-  max-width: 450px;
-  height: 100vh;
-  max-height: 900px;
-  background-color: var(--sand);
-  overflow: hidden;
-  box-shadow: 0 0 55px rgba(0, 0, 0, 0.9);
-  perspective: 1200px;
+  height: 460px;
+  border-radius: 18px;
+  box-shadow: 
+    0 22px 50px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(191, 165, 136, 0.35);
+  perspective: 1400px;
 }
 
-/* Interior claro del sobre que se ve al abrir la solapa */
-.envelope-inside {
+/* Fondo interior oscuro del sobre */
+.env-back {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 25%, var(--cream) 0%, var(--sand) 100%);
-  z-index: 0;
-}
-
-/* Solapas laterales en color Taupe/Arena Oscura para contrastar con el Vino y Borgoña */
-.flap-left {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, #9E8266 0%, var(--taupe) 100%);
-  clip-path: polygon(0 0, 52% 52%, 0 100%);
-  filter: drop-shadow(5px 0 12px rgba(0, 0, 0, 0.55));
+  background-color: #330a10;
+  border-radius: 18px;
   z-index: 1;
 }
 
-.flap-right {
+/* Tarjeta interior color crema/marfil que sube al abrir */
+.env-letter-card {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(-90deg, #9E8266 0%, var(--taupe) 100%);
-  clip-path: polygon(100% 0, 48% 52%, 100% 100%);
-  filter: drop-shadow(-5px 0 12px rgba(0, 0, 0, 0.55));
-  z-index: 1;
-}
-
-/* Bolsillo inferior en Borgoña Profundo */
-.flap-bottom {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, #320A0F 0%, var(--primary) 100%);
-  clip-path: polygon(0 100%, 50% 48%, 100% 100%);
-  filter: drop-shadow(0 -8px 16px rgba(0, 0, 0, 0.75));
+  top: 16px;
+  left: 5%;
+  width: 90%;
+  height: 75%;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   z-index: 2;
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s;
 }
 
-/* Solapa superior en Vino Profundo con borde limpio en SVG (sin rayas cruzadas) */
-.flap-top {
+.letter-inner-border {
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid var(--taupe);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 24px;
+  text-align: center;
+}
+
+.letter-small {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.letter-couple {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  color: var(--primary);
+  margin: 4px 0;
+}
+
+.letter-date {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: var(--text-dark);
+}
+
+/* Pliegues laterales en tono Borgoña armónico */
+.env-side-left {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #5c161e 0%, #441017 100%);
+  clip-path: polygon(0 0, 52% 52%, 0 100%);
+  border-radius: 18px 0 0 18px;
+  z-index: 3;
+}
+
+.env-side-right {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-90deg, #5c161e 0%, #441017 100%);
+  clip-path: polygon(100% 0, 48% 52%, 100% 100%);
+  border-radius: 0 18px 18px 0;
+  z-index: 3;
+}
+
+/* Bolsillo frontal inferior en Borgoña Profundo con filete dorado */
+.env-front-pocket {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #380c12 0%, var(--primary) 65%, #58151d 100%);
+  clip-path: polygon(0 100%, 0 38%, 50% 48%, 100% 38%, 100% 100%);
+  border-radius: 0 0 18px 18px;
+  box-shadow: inset 0 2px 0 rgba(191, 165, 136, 0.4);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 26px;
+}
+
+/* Solapa superior curva con rotación 3D suave */
+.env-top-flap {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 54%;
-  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.75));
-  z-index: 3;
+  z-index: 5;
   transform-origin: top center;
-  transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1), filter 0.85s ease;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.6));
+  transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.35s;
 }
 
-.flap-top-svg {
+.flap-svg {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-/* Estado cuando se abre el sobre */
-.envelope-card.open .flap-top {
-  transform: rotateX(180deg);
-  filter: drop-shadow(0 -5px 10px rgba(0, 0, 0, 0.25));
-}
-
-.envelope-card.open .wax-seal {
-  transform: translate(-50%, -50%) scale(0.6);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.envelope-card.open .envelope-info {
-  opacity: 0;
-  transform: translate(-50%, 15px);
-}
-
-/* Sello de Lacre con Corazón */
+/* Sello de Lacre Bronce/Dorado con Corazón grabado en el mismo tono */
 .wax-seal {
   position: absolute;
-  top: 52%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 128px;
-  height: 128px;
+  width: 104px;
+  height: 104px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #e5bc86, #9b6830 65%, #573612 100%);
+  background: radial-gradient(circle at 32% 30%, #e0b782, #a8763e 62%, #634019 100%);
   box-shadow: 
-    0 12px 28px rgba(0, 0, 0, 0.85),
-    inset 0 3px 6px rgba(255, 255, 255, 0.45),
-    inset 0 -5px 10px rgba(0, 0, 0, 0.65);
+    0 10px 22px rgba(0, 0, 0, 0.75),
+    inset 0 2px 5px rgba(255, 255, 255, 0.5),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.65);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 4;
+  z-index: 6;
   cursor: pointer;
-  transition: transform 0.45s ease, opacity 0.45s ease;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
 .wax-seal:hover {
@@ -152,38 +227,52 @@ body {
 }
 
 .wax-seal-inner {
-  width: 94px;
-  height: 94px;
+  width: 78px;
+  height: 78px;
   border-radius: 50%;
-  border: 2px solid rgba(82, 51, 16, 0.65);
-  background: radial-gradient(circle at 40% 40%, #c49256, #7a4d1b 85%);
-  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.65);
+  border: 1.5px solid rgba(90, 56, 18, 0.7);
+  background: radial-gradient(circle at 38% 38%, #c7965b, #825422 88%);
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .seal-heart {
-  width: 52px;
-  height: 52px;
-  color: var(--sand);
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.65));
+  width: 42px;
+  height: 42px;
+  fill: #dca96e;
+  stroke: #5e3911;
+  stroke-width: 2.2;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.55));
 }
 
+/* Animación al hacer clic en Abrir Invitación */
+.envelope-box.open .wax-seal {
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.envelope-box.open .env-top-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope-box.open .env-letter-card {
+  transform: translateY(-95px);
+}
+
+/* Textos del invitado y botón sobre el bolsillo inferior */
 .envelope-info {
-  position: absolute;
-  bottom: 7%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 84%;
+  width: 88%;
   text-align: center;
   color: var(--cream);
   z-index: 5;
-  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .res-label {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   letter-spacing: 2px;
   color: var(--taupe);
   margin-bottom: 4px;
@@ -192,16 +281,16 @@ body {
 
 .guest-name {
   font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--cream);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .guest-passes {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: var(--sand);
-  margin-bottom: 22px;
+  margin-bottom: 18px;
 }
 
 .envelope-buttons {
@@ -211,25 +300,27 @@ body {
 
 .btn-envelope {
   width: 100%;
-  max-width: 270px;
-  padding: 14px 24px;
+  max-width: 240px;
+  padding: 13px 24px;
   border-radius: 999px;
   border: 1.5px solid var(--taupe);
+  background: linear-gradient(135deg, var(--sand) 0%, var(--taupe) 100%);
+  color: var(--primary);
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.btn-envelope-primary {
-  background: linear-gradient(135deg, var(--taupe), var(--sand));
-  color: var(--primary);
-  font-weight: 700;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+.btn-envelope:active {
+  transform: scale(0.96);
 }
 
 /* =========================================================
-   2. CONTENEDOR PRINCIPAL Y FONDO DE AVIONCITOS / BRÚJULAS
+   2. CONTENEDOR PRINCIPAL Y FONDO CON AVIONES REALES Y BRÚJULAS
    ========================================================= */
 #app-container {
   max-width: 450px;
@@ -241,9 +332,9 @@ body {
   position: relative;
 }
 
-/* Patrón de fondo con avioncitos, rutas punteadas y brújulas (Rosa de los vientos) */
+/* Patrón de fondo con SILUETAS REALES DE AVIÓN (con alas y cola) y Rosas de los Vientos */
 .bg-viaje {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%237A1C24' stroke-opacity='0.08' stroke-width='1.2'%3E%3C!-- Brújula --%3E%3Ccircle cx='45' cy='45' r='22'/%3E%3Ccircle cx='45' cy='45' r='17' stroke-dasharray='2,2'/%3E%3Cpolygon points='45,18 49,41 72,45 49,49 45,72 41,49 18,45 41,41' fill='%237A1C24' fill-opacity='0.06'/%3E%3C!-- Ruta punteada --%3E%3Cpath d='M75,55 Q125,85 160,45' stroke-dasharray='4,4'/%3E%3C!-- Avioncito 1 --%3E%3Cpath d='M172,38 L155,41 L161,45 L152,53 L155,55 L165,48 L169,55 L172,38 Z' fill='%234A121A' fill-opacity='0.08'/%3E%3C!-- Avioncito 2 y ruta inferior --%3E%3Cpath d='M25,165 Q85,135 135,175' stroke-dasharray='4,4'/%3E%3Cpath d='M148,180 L132,171 L135,177 L124,181 L126,184 L137,181 L138,189 L148,180 Z' fill='%234A121A' fill-opacity='0.08'/%3E%3C!-- Brújula pequeña --%3E%3Ccircle cx='180' cy='145' r='14'/%3E%3Cpath d='M180,127 L183,142 L198,145 L183,148 L180,163 L177,148 L162,145 L177,142 Z' fill='%237A1C24' fill-opacity='0.05'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%237A1C24' stroke-opacity='0.09' stroke-width='1.2'%3E%3C!-- Brújula Principal --%3E%3Ccircle cx='48' cy='48' r='22'/%3E%3Ccircle cx='48' cy='48' r='17' stroke-dasharray='2,2'/%3E%3Cpolygon points='48,20 52,44 76,48 52,52 48,76 44,52 20,48 44,44' fill='%237A1C24' fill-opacity='0.07'/%3E%3C!-- Ruta de vuelo punteada 1 --%3E%3Cpath d='M80,55 Q130,80 175,48' stroke-dasharray='4,4'/%3E%3C!-- Silueta de Avión Comercial Real 1 --%3E%3Cg transform='translate(192, 38) rotate(-25) scale(1.15)' fill='%234A121A' fill-opacity='0.11' stroke='none'%3E%3Cpath d='M21,11 C22.5,11 23.5,11.5 23.5,12 C23.5,12.5 22.5,13 21,13 L14,13 L9,21 L7,21 L10,13 L4,13 L2,16 L0.5,16 L2,12 L0.5,8 L2,8 L4,11 L10,11 L7,3 L9,3 L14,11 Z'/%3E%3C/g%3E%3C!-- Ruta de vuelo punteada 2 --%3E%3Cpath d='M25,185 Q85,155 140,192' stroke-dasharray='4,4'/%3E%3C!-- Silueta de Avión Comercial Real 2 --%3E%3Cg transform='translate(152, 184) rotate(18) scale(1.1)' fill='%234A121A' fill-opacity='0.11' stroke='none'%3E%3Cpath d='M21,11 C22.5,11 23.5,11.5 23.5,12 C23.5,12.5 22.5,13 21,13 L14,13 L9,21 L7,21 L10,13 L4,13 L2,16 L0.5,16 L2,12 L0.5,8 L2,8 L4,11 L10,11 L7,3 L9,3 L14,11 Z'/%3E%3C/g%3E%3C!-- Brújula Secundaria --%3E%3Ccircle cx='215' cy='155' r='15'/%3E%3Cpolygon points='215,136 218,152 234,155 218,158 215,174 212,158 196,155 212,152' fill='%237A1C24' fill-opacity='0.06'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: repeat;
 }
 
@@ -263,7 +354,7 @@ body {
 .w-100 { width: 100%; }
 .pb-0 { padding-bottom: 0 !important; }
 
-/* 1. PORTADA HERO CON CONTRASTE FUERTE EN LAS LETRAS */
+/* 1. PORTADA HERO: "Bienvenidos a Bordo" SIN RECUADRO, solo letras nítidas */
 .hero-section {
   display: flex;
   flex-direction: column;
@@ -291,39 +382,40 @@ body {
   display: block;
 }
 
-/* Velo oscuro reforzado en la mitad inferior para que el texto blanco destaque sobre la camisa blanca */
 .hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(15, 6, 8, 0.15) 0%,
-    rgba(15, 6, 8, 0.1) 35%,
-    rgba(35, 8, 12, 0.72) 58%,
-    rgba(25, 5, 8, 0.92) 100%
+    rgba(15, 6, 8, 0.1) 0%,
+    rgba(15, 6, 8, 0.15) 36%,
+    rgba(28, 7, 10, 0.76) 58%,
+    rgba(18, 4, 6, 0.94) 100%
   );
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 20px 15px 30px;
+  padding: 20px 15px 32px;
   color: #ffffff;
   text-align: center;
 }
 
+/* Solo las letras, sin fondo ni borde, con sombra intensa para que resalte perfecto */
 .welcome-aboard {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2.8px;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: var(--sand);
-  background: rgba(74, 18, 26, 0.78);
-  border: 1px solid rgba(235, 221, 204, 0.45);
-  padding: 6px 16px;
-  border-radius: 999px;
-  backdrop-filter: blur(4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  background: none;
+  border: none;
+  padding: 0;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.95),
+    0 4px 12px rgba(0, 0, 0, 0.95),
+    0 0 18px rgba(0, 0, 0, 0.85);
 }
 
 .nombres-hero {
@@ -332,7 +424,7 @@ body {
   font-weight: 700;
   color: #ffffff;
   text-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.95),
+    0 2px 5px rgba(0, 0, 0, 0.95),
     0 6px 18px rgba(0, 0, 0, 0.9),
     0 0 28px rgba(74, 18, 26, 0.85);
 }
@@ -535,7 +627,7 @@ body {
   line-height: 1;
 }
 
-/* 3. PADRES Y AVISO DESTACADO DE SOLO ADULTOS */
+/* 3. PADRES Y AVISO SOLO ADULTOS */
 .textura-fondo {
   background-color: var(--sand);
 }
@@ -587,7 +679,6 @@ body {
   font-weight: 600;
 }
 
-/* Nuevo bloque más grande y visible para "Solo adultos" */
 .aclaracion-adultos-destacada {
   margin-top: 28px;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -615,21 +706,24 @@ body {
   line-height: 1.55;
 }
 
-/* 4. CEREMONIA Y RECEPCIÓN */
+/* 4. CEREMONIA Y RECEPCIÓN (Con espacio limpio entre tarjetas, botones y foto) */
 .eventos-section {
-  padding: 15px 18px 45px;
+  padding: 20px 20px 45px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px; /* Espacio real entre la tarjeta de Ceremonia, la foto y la tarjeta de Recepción */
 }
 
 .editorial-block {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .editorial-card {
-  width: 82%;
+  width: 92%;
   background-color: var(--primary);
   color: var(--cream);
-  padding: 34px 20px 36px;
+  padding: 32px 22px 34px;
   text-align: center;
   border: 1px solid var(--taupe);
   border-radius: var(--radius-suave);
@@ -638,25 +732,24 @@ body {
   z-index: 1;
 }
 
+/* Contenedor de la foto con su propio espacio sin pisar botones ni títulos */
 .bridge-photo-wrapper {
   display: flex;
-  justify-content: flex-start;
-  margin-top: -45px;
-  margin-bottom: -45px;
-  padding-left: 2%;
+  justify-content: center;
+  margin: 0;
   position: relative;
   z-index: 2;
-  pointer-events: none;
 }
 
 .editorial-photo {
-  width: 48%;
-  height: 225px;
+  width: 72%;
+  max-width: 260px;
+  height: 250px;
   object-fit: cover;
   object-position: center top;
-  border-radius: 22px;
+  border-radius: 24px;
   border: 4px solid var(--cream);
-  box-shadow: 0 12px 26px rgba(0,0,0,0.32);
+  box-shadow: 0 12px 26px rgba(74, 18, 26, 0.28);
 }
 
 .titulo-caja-cursiva {
@@ -690,7 +783,7 @@ body {
 .puntualidad {
   font-size: 0.75rem;
   font-style: italic;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   opacity: 0.95;
 }
 
@@ -699,7 +792,7 @@ body {
   background: white;
   color: var(--primary);
   border: none;
-  padding: 9px 26px;
+  padding: 10px 28px;
   border-radius: 999px;
   font-family: 'Dancing Script', cursive;
   font-size: 1.38rem;
