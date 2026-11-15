@@ -27,7 +27,7 @@ body {
 }
 
 /* =========================================================
-   1. PANTALLA DE INICIO: SOBRE DE PAPELERÍA FINA (Rediseñado)
+   1. PANTALLA DE INICIO: SOBRE DE PAPELERÍA FINA
    ========================================================= */
 .envelope-screen {
   position: fixed;
@@ -50,7 +50,6 @@ body {
   gap: 18px;
 }
 
-/* Encabezado superior fuera del sobre */
 .envelope-top-header {
   text-align: center;
   color: var(--sand);
@@ -76,7 +75,6 @@ body {
   margin-top: 4px;
 }
 
-/* Cuerpo del Sobre Físico */
 .envelope-box {
   position: relative;
   width: 100%;
@@ -88,7 +86,6 @@ body {
   perspective: 1400px;
 }
 
-/* Fondo interior oscuro del sobre */
 .env-back {
   position: absolute;
   inset: 0;
@@ -97,7 +94,6 @@ body {
   z-index: 1;
 }
 
-/* Tarjeta interior color crema/marfil que sube al abrir */
 .env-letter-card {
   position: absolute;
   top: 16px;
@@ -146,7 +142,6 @@ body {
   color: var(--text-dark);
 }
 
-/* Pliegues laterales en tono Borgoña armónico */
 .env-side-left {
   position: absolute;
   inset: 0;
@@ -165,7 +160,6 @@ body {
   z-index: 3;
 }
 
-/* Bolsillo frontal inferior en Borgoña Profundo con filete dorado */
 .env-front-pocket {
   position: absolute;
   inset: 0;
@@ -181,7 +175,6 @@ body {
   padding-bottom: 26px;
 }
 
-/* Solapa superior curva con rotación 3D suave */
 .env-top-flap {
   position: absolute;
   top: 0;
@@ -200,7 +193,6 @@ body {
   display: block;
 }
 
-/* Sello de Lacre Bronce/Dorado con Corazón grabado en el mismo tono */
 .wax-seal {
   position: absolute;
   top: 48%;
@@ -247,7 +239,6 @@ body {
   filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.55));
 }
 
-/* Animación al hacer clic en Abrir Invitación */
 .envelope-box.open .wax-seal {
   transform: translate(-50%, -50%) scale(0.5);
   opacity: 0;
@@ -263,7 +254,6 @@ body {
   transform: translateY(-95px);
 }
 
-/* Textos del invitado y botón sobre el bolsillo inferior */
 .envelope-info {
   width: 88%;
   text-align: center;
@@ -320,7 +310,7 @@ body {
 }
 
 /* =========================================================
-   2. CONTENEDOR PRINCIPAL Y FONDO CON AVIONES REALES Y BRÚJULAS
+   2. CONTENEDOR PRINCIPAL Y FONDO DE AVIONES Y BRÚJULAS
    ========================================================= */
 #app-container {
   max-width: 450px;
@@ -332,9 +322,8 @@ body {
   position: relative;
 }
 
-/* Patrón de fondo con SILUETAS REALES DE AVIÓN (con alas y cola) y Rosas de los Vientos */
 .bg-viaje {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%237A1C24' stroke-opacity='0.09' stroke-width='1.2'%3E%3C!-- Brújula Principal --%3E%3Ccircle cx='48' cy='48' r='22'/%3E%3Ccircle cx='48' cy='48' r='17' stroke-dasharray='2,2'/%3E%3Cpolygon points='48,20 52,44 76,48 52,52 48,76 44,52 20,48 44,44' fill='%237A1C24' fill-opacity='0.07'/%3E%3C!-- Ruta de vuelo punteada 1 --%3E%3Cpath d='M80,55 Q130,80 175,48' stroke-dasharray='4,4'/%3E%3C!-- Silueta de Avión Comercial Real 1 --%3E%3Cg transform='translate(192, 38) rotate(-25) scale(1.15)' fill='%234A121A' fill-opacity='0.11' stroke='none'%3E%3Cpath d='M21,11 C22.5,11 23.5,11.5 23.5,12 C23.5,12.5 22.5,13 21,13 L14,13 L9,21 L7,21 L10,13 L4,13 L2,16 L0.5,16 L2,12 L0.5,8 L2,8 L4,11 L10,11 L7,3 L9,3 L14,11 Z'/%3E%3C/g%3E%3C!-- Ruta de vuelo punteada 2 --%3E%3Cpath d='M25,185 Q85,155 140,192' stroke-dasharray='4,4'/%3E%3C!-- Silueta de Avión Comercial Real 2 --%3E%3Cg transform='translate(152, 184) rotate(18) scale(1.1)' fill='%234A121A' fill-opacity='0.11' stroke='none'%3E%3Cpath d='M21,11 C22.5,11 23.5,11.5 23.5,12 C23.5,12.5 22.5,13 21,13 L14,13 L9,21 L7,21 L10,13 L4,13 L2,16 L0.5,16 L2,12 L0.5,8 L2,8 L4,11 L10,11 L7,3 L9,3 L14,11 Z'/%3E%3C/g%3E%3C!-- Brújula Secundaria --%3E%3Ccircle cx='215' cy='155' r='15'/%3E%3Cpolygon points='215,136 218,152 234,155 218,158 215,174 212,158 196,155 212,152' fill='%237A1C24' fill-opacity='0.06'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%237A1C24' stroke-opacity='0.09' stroke-width='1.2'%3E%3Ccircle cx='48' cy='48' r='22'/%3E%3Ccircle cx='48' cy='48' r='17' stroke-dasharray='2,2'/%3E%3Cpolygon points='48,20 52,44 76,48 52,52 48,76 44,52 20,48 44,44' fill='%237A1C24' fill-opacity='0.07'/%3E%3Cpath d='M80,55 Q130,80 175,48' stroke-dasharray='4,4'/%3E%3Cg transform='translate(192, 38) rotate(-25) scale(1.15)' fill='%234A121A' fill-opacity='0.11' stroke='none'%3E%3Cpath d='M21,11 C22.5,11 23.5,11.5 23.5,12 C23.5,12.5 22.5,13 21,13 L14,13 L9,21 L7,21 L10,13 L4,13 L2,16 L0.5,16 L2,12 L0.5,8 L2,8 L4,11 L10,11 L7,3 L9,3 L14,11 Z'/%3E%3C/g%3E%3Cpath d='M25,185 Q85,155 140,192' stroke-dasharray='4,4'/%3E%3Cg transform='translate(152, 184) rotate(18) scale(1.1)' fill='%234A121A' fill-opacity='0.11' stroke='none'%3E%3Cpath d='M21,11 C22.5,11 23.5,11.5 23.5,12 C23.5,12.5 22.5,13 21,13 L14,13 L9,21 L7,21 L10,13 L4,13 L2,16 L0.5,16 L2,12 L0.5,8 L2,8 L4,11 L10,11 L7,3 L9,3 L14,11 Z'/%3E%3C/g%3E%3Ccircle cx='215' cy='155' r='15'/%3E%3Cpolygon points='215,136 218,152 234,155 218,158 215,174 212,158 196,155 212,152' fill='%237A1C24' fill-opacity='0.06'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: repeat;
 }
 
@@ -354,7 +343,7 @@ body {
 .w-100 { width: 100%; }
 .pb-0 { padding-bottom: 0 !important; }
 
-/* 1. PORTADA HERO: "Bienvenidos a Bordo" SIN RECUADRO, solo letras nítidas */
+/* 1. PORTADA HERO */
 .hero-section {
   display: flex;
   flex-direction: column;
@@ -387,39 +376,22 @@ body {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(15, 6, 8, 0.1) 0%,
-    rgba(15, 6, 8, 0.15) 36%,
-    rgba(28, 7, 10, 0.76) 58%,
+    rgba(15, 6, 8, 0.08) 0%,
+    rgba(15, 6, 8, 0.12) 42%,
+    rgba(28, 7, 10, 0.75) 64%,
     rgba(18, 4, 6, 0.94) 100%
   );
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 20px 15px 32px;
+  padding: 20px 15px 34px;
   color: #ffffff;
   text-align: center;
 }
 
-/* Solo las letras, sin fondo ni borde, con sombra intensa para que resalte perfecto */
-.welcome-aboard {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 2.8px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  color: var(--sand);
-  background: none;
-  border: none;
-  padding: 0;
-  text-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.95),
-    0 4px 12px rgba(0, 0, 0, 0.95),
-    0 0 18px rgba(0, 0, 0, 0.85);
-}
-
 .nombres-hero {
-  font-size: 4rem;
+  font-size: 4.1rem;
   line-height: 0.9;
   font-weight: 700;
   color: #ffffff;
@@ -706,12 +678,12 @@ body {
   line-height: 1.55;
 }
 
-/* 4. CEREMONIA Y RECEPCIÓN (Con espacio limpio entre tarjetas, botones y foto) */
+/* 4. CEREMONIA Y RECEPCIÓN */
 .eventos-section {
   padding: 20px 20px 45px;
   display: flex;
   flex-direction: column;
-  gap: 22px; /* Espacio real entre la tarjeta de Ceremonia, la foto y la tarjeta de Recepción */
+  gap: 22px;
 }
 
 .editorial-block {
@@ -732,7 +704,6 @@ body {
   z-index: 1;
 }
 
-/* Contenedor de la foto con su propio espacio sin pisar botones ni títulos */
 .bridge-photo-wrapper {
   display: flex;
   justify-content: center;
@@ -915,60 +886,101 @@ body {
   gap: 12px;
 }
 
-/* 7. RSVP */
+/* =========================================================
+   7. RSVP REDISEÑADO (Equilibrado en celular sin alargarse)
+   ========================================================= */
 .rsvp-wrapper {
   padding: 15px 18px 35px;
 }
 
 .rsvp-card-left {
   background-color: var(--primary);
-  padding: 32px 18px;
+  padding: 30px 20px;
   border: 1px solid var(--taupe);
   border-radius: var(--radius-suave);
   box-shadow: 0 12px 28px rgba(74, 18, 26, 0.22);
 }
 
-.rsvp-split {
-  display: grid;
-  grid-template-columns: 1.12fr 0.88fr;
-  gap: 14px;
-  align-items: center;
-  margin-top: 15px;
+/* Párrafo superior a todo el ancho de la tarjeta */
+.rsvp-intro-full {
+  color: var(--cream);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  text-align: center;
+  margin: 10px auto 20px;
+  max-width: 96%;
 }
 
-.rsvp-text-col {
+/* Vitrina central de 2 columnas con alturas idénticas */
+.rsvp-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: stretch;
+  margin-bottom: 18px;
+}
+
+/* Tarjeta interna izquierda para el número de pases y botón */
+.rsvp-action-box {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px dashed rgba(191, 165, 136, 0.55);
+  border-radius: 20px;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
 .lugares-label {
   font-size: 0.75rem;
+  line-height: 1.35;
   color: var(--sand);
-  margin: 12px 0 6px;
+  margin-bottom: 10px;
 }
 
 .caja-numero-pases {
   background: white;
   color: var(--primary);
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.7rem;
+  font-size: 1.85rem;
   font-weight: 700;
-  width: 90px;
-  height: 46px;
-  margin: 0 auto 12px;
+  width: 86px;
+  height: 50px;
+  margin: 0 auto 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 14px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-confirma-compact {
+  padding: 9px 14px;
+  font-size: 1.25rem;
+  white-space: nowrap;
 }
 
 .rsvp-img-col img {
   width: 100%;
-  height: 280px;
+  height: 225px;
   object-fit: cover;
   object-position: center center;
   border-radius: 20px;
   border: 3px solid var(--cream);
   box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  display: block;
+}
+
+/* Nota de fecha límite a todo el ancho abajo */
+.rsvp-footer-note {
+  color: var(--sand);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  text-align: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(191, 165, 136, 0.25);
 }
 
 .rsvp-form-desplegable {
