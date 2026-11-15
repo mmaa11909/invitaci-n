@@ -1,5 +1,5 @@
 // --- CONFIGURACIÓN ---
-var URL_ASISTENCIA = "https://script.google.com/macros/s/AKfycbyP5rAqVFmlDjt10fGKylTDH4R90d2hg7TamJFYCB9_agbfGJL4oqJZJtkRx_7d76-v-Q/exec";
+var URL_ASISTENCIA = "https://script.google.com/macros/s/AKfycbwbEX3kjAXlY0NRY-7DptreZ_fxVv05tj12UTTe6nzFgGbOkD750BXB43NgPR5GeHYa/exec";
 var URL_FOTOS = "https://script.google.com/macros/s/AKfycbzqAmczsKY0dzkIlqpIy0Df8wZAZi4qfr8vG582E6I7-yVtsBjiF3CA96xCEPBkumfOSA/exec";
 
 // Fecha de la boda de Nayra y Armando: 26 de Diciembre de 2026, 15:30 hrs (Hora Ceremonia)
