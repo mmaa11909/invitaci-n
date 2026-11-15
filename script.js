@@ -22,10 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
   manejarFormularioRSVP();
 });
 
-// --- 1. ANIMACIÓN DE ABRIR LA SOLAPA DEL SOBRE Y ENTRAR A LA INVITACIÓN ---
+// --- 1. ANIMACIÓN DE ABRIR EL SOBRE Y EMERGER LA TARJETA ---
 function abrirInvitacion() {
   var envelopeScreen = document.getElementById("envelope-screen");
-  var envelopeCard = document.getElementById("envelope-card");
+  var envelopeBox = document.getElementById("envelope-box");
   var appContainer = document.getElementById("app-container");
 
   if (audio && !isPlaying) {
@@ -35,12 +35,14 @@ function abrirInvitacion() {
     }).catch(function () {});
   }
 
-  if (envelopeCard) {
-    envelopeCard.classList.add("open");
+  // Abre la solapa y desliza hacia arriba la tarjeta interior
+  if (envelopeBox) {
+    envelopeBox.classList.add("open");
   }
 
   appContainer.classList.remove("oculto");
 
+  // Espera a que luzca la apertura de la solapa y la salida de la carta (850ms)
   setTimeout(function () {
     envelopeScreen.style.opacity = "0";
     envelopeScreen.style.transform = "scale(1.04)";
@@ -48,8 +50,8 @@ function abrirInvitacion() {
     setTimeout(function () {
       envelopeScreen.classList.add("oculto");
       prepararAnimaciones();
-    }, 550);
-  }, 550);
+    }, 600);
+  }, 850);
 }
 
 // --- 2. REPRODUCTOR DE MÚSICA ---
