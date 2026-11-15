@@ -16,23 +16,18 @@
     <source src="musica-boda.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- 1. PANTALLA DE INICIO: SOBRE DE PAPELERÍA FINA EN PALETA BORGOÑA, ARENA Y CREMA -->
+  <!-- 1. PANTALLA DE INICIO: SOBRE DE PAPELERÍA FINA -->
   <div id="envelope-screen" class="envelope-screen">
     <div id="envelope-stage" class="envelope-stage">
 
-      <!-- Encabezado superior sobre el fondo borgoña -->
       <div class="envelope-top-header">
         <p class="top-monogram">N <span>y</span> A</p>
         <p class="top-subtitle">NUESTRA BODA · 26.12.2026</p>
       </div>
 
-      <!-- Sobre físico centrado con tarjeta interior que sube al abrir -->
       <div id="envelope-box" class="envelope-box">
-        
-        <!-- Respaldo interior del sobre -->
         <div class="env-back"></div>
 
-        <!-- Tarjeta de invitación crema/marfil que desliza hacia arriba al abrir -->
         <div class="env-letter-card">
           <div class="letter-inner-border">
             <span class="letter-small">¡Nos Casamos!</span>
@@ -41,11 +36,9 @@
           </div>
         </div>
 
-        <!-- Pliegues laterales del sobre (Misma gama Borgoña con sombras suaves) -->
         <div class="env-side-left"></div>
         <div class="env-side-right"></div>
 
-        <!-- Bolsillo frontal inferior con los datos del invitado -->
         <div class="env-front-pocket">
           <div class="envelope-info">
             <p class="res-label">Invitación reservada</p>
@@ -58,7 +51,6 @@
           </div>
         </div>
 
-        <!-- Solapa superior curva elegante que se abre en 3D -->
         <div class="env-top-flap">
           <svg viewBox="0 0 400 230" preserveAspectRatio="none" class="flap-svg">
             <defs>
@@ -67,13 +59,11 @@
                 <stop offset="100%" stop-color="#4A121A"/>
               </linearGradient>
             </defs>
-            <!-- Solapa con punta redondeada suave y filete dorado -->
             <path d="M 0,0 L 400,0 L 222,208 Q 200,226 178,208 Z" fill="url(#flapGrad)" stroke="#BFA588" stroke-width="2.5"/>
             <path d="M 14,6 L 386,6 L 216,198 Q 200,212 184,198 Z" fill="none" stroke="rgba(235, 221, 204, 0.3)" stroke-width="1" stroke-dasharray="4,4"/>
           </svg>
         </div>
 
-        <!-- Sello de Lacre Dorado/Bronce con Corazón en Relieve -->
         <div class="wax-seal" onclick="abrirInvitacion()">
           <div class="wax-seal-inner">
             <svg viewBox="0 0 100 100" class="seal-heart">
@@ -89,12 +79,11 @@
   <!-- 2. CONTENEDOR PRINCIPAL DE LA INVITACIÓN -->
   <div id="app-container" class="oculto">
 
-    <!-- PORTADA HERO (Letras limpias sin recuadro) -->
+    <!-- PORTADA HERO (Sin "Bienvenidos a bordo", solo nombres y fecha) -->
     <header class="hero-section">
       <div class="hero-image-box">
         <img src="mirandosecromatico.jpeg" alt="Nayra y Armando" class="hero-bg">
         <div class="hero-overlay">
-          <p class="welcome-aboard">Bienvenidos a Bordo · Nos Casamos</p>
           <h1 class="nombres-hero">Nayra<br><span class="letra-y">y</span><br>Armando</h1>
           <p class="fecha-hero">26/12/2026</p>
         </div>
@@ -169,7 +158,6 @@
       <div class="bloque-padres">
         <h4 class="titulo-padres">PADRES DEL NOVIO</h4>
         <div class="caja-nombres">
-          <!-- EDITA AQUÍ EL NOMBRE DEL PAPÁ DEL NOVIO -->
           Alfredo y Carmen
         </div>
       </div>
@@ -187,10 +175,9 @@
       </div>
     </section>
 
-    <!-- SECCIÓN CEREMONIA Y RECEPCIÓN (Con espaciado limpio sin encimarse) -->
+    <!-- SECCIÓN CEREMONIA Y RECEPCIÓN -->
     <section class="eventos-section textura-fondo bg-viaje reveal">
       
-      <!-- Tarjeta Ceremonia -->
       <div class="editorial-block">
         <div class="editorial-card">
           <h2 class="titulo-caja-cursiva">Ceremonia</h2>
@@ -202,12 +189,10 @@
         </div>
       </div>
 
-      <!-- Foto intermedia con su propio espacio arriba y abajo -->
       <div class="bridge-photo-wrapper">
         <img src="Sentados_adelante.jpeg" alt="Nayra y Armando" class="editorial-photo">
       </div>
 
-      <!-- Tarjeta Recepción -->
       <div class="editorial-block">
         <div class="editorial-card">
           <h2 class="titulo-caja-cursiva">Recepción</h2>
@@ -265,31 +250,33 @@
       </div>
     </section>
 
-    <!-- RSVP -->
+    <!-- RSVP REDISEÑADO (Armónico en celular sin texto estirado) -->
     <section id="seccion-rsvp" class="rsvp-wrapper bg-viaje reveal">
       <div class="rsvp-card-left">
         <h2 class="titulo-caja-cursiva" style="text-align:center;">Confirmación de asistencia</h2>
         
-        <div class="rsvp-split">
-          <div class="rsvp-text-col">
-            <p class="texto-blanco text-xs">
-              Hemos elegido celebrar este día rodeados de las personas más especiales para nosotros. Agradecemos acompañarnos respetando el número de invitados indicado (evento solo para adultos).
-            </p>
-            
-            <p class="lugares-label">Lugares reservados para ti:</p>
-            <div class="caja-numero-pases" id="numeroPasesForm">2</div>
-            
-            <button type="button" class="btn-oscuro" id="btn-revelar-form" onclick="mostrarFormulario()">Confirma aquí</button>
+        <!-- Párrafo superior a todo lo ancho -->
+        <p class="rsvp-intro-full">
+          Hemos elegido celebrar este día rodeados de las personas más especiales para nosotros. Agradecemos acompañarnos respetando el número de invitados indicado <strong>(evento solo para adultos)</strong>.
+        </p>
 
-            <p class="texto-blanco text-xs mt-15">
-              Agradecemos confirmar su asistencia hasta el <strong>04/12</strong>. Su confirmación nos ayudará a preparar cada detalle de esta celebración. ♡
-            </p>
+        <!-- Vitrina simétrica: Tarjeta de pases a la izquierda y Foto a la derecha -->
+        <div class="rsvp-showcase">
+          <div class="rsvp-action-box">
+            <span class="lugares-label">Lugares reservados<br>para ti:</span>
+            <div class="caja-numero-pases" id="numeroPasesForm">2</div>
+            <button type="button" class="btn-oscuro btn-confirma-compact" id="btn-revelar-form" onclick="mostrarFormulario()">Confirma aquí</button>
           </div>
 
           <div class="rsvp-img-col">
             <img src="pasto.jpeg" alt="Nayra y Armando en el jardín">
           </div>
         </div>
+
+        <!-- Nota inferior a todo lo ancho -->
+        <p class="rsvp-footer-note">
+          Agradecemos confirmar su asistencia hasta el <strong>04/12</strong>. Su confirmación nos ayudará a preparar cada detalle de esta celebración. ♡
+        </p>
 
         <form id="formularioAsistencia" class="rsvp-form-desplegable oculto">
           <input type="text" id="nombreCompleto" placeholder="Nombre completo" required readonly class="input-form">
@@ -303,7 +290,7 @@
         </form>
 
         <div id="bloqueYaConfirmado" class="oculto mt-15">
-          <p id="textoYaConfirmado" class="texto-blanco text-sm font-bold"></p>
+          <p id="textoYaConfirmado" class="texto-blanco text-sm font-bold" style="text-align:center;"></p>
         </div>
       </div>
     </section>
