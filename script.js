@@ -3,7 +3,7 @@
 var URL_ASISTENCIA = "TU_NUEVO_LINK_DE_APPS_SCRIPT_AQUI"; 
 var URL_FOTOS = "https://script.google.com/macros/s/AKfycbzqAmczsKY0dzkIlqpIy0Df8wZAZi4qfr8vG582E6I7-yVtsBjiF3CA96xCEPBkumfOSA/exec";
 
-// Fechas clave
+// Fecha de la boda: 26 de Diciembre de 2026, 15:30 hrs
 var FECHA_BODA = new Date("2026-12-26T15:30:00-04:00");
 var FECHA_HABILITACION_FOTOS = new Date("2026-12-26T15:30:00-04:00");
 var FECHA_LIMITE_RSVP = new Date("2026-12-04T23:59:59-04:00");
@@ -28,7 +28,6 @@ function abrirInvitacion() {
   var envelopeBox = document.getElementById("envelope-box");
   var appContainer = document.getElementById("app-container");
 
-  // Iniciar música si no está sonando
   if (audio && !isPlaying) {
     audio.play().then(function () {
       if (playBtn) playBtn.innerText = "⏸";
@@ -36,14 +35,12 @@ function abrirInvitacion() {
     }).catch(function () {});
   }
 
-  // Activa la animación 3D de la solapa y la carta
   if (envelopeBox) {
     envelopeBox.classList.add("open");
   }
 
   appContainer.classList.remove("oculto");
 
-  // Transición suave hacia la invitación
   setTimeout(function () {
     envelopeScreen.style.opacity = "0";
     envelopeScreen.style.transform = "scale(1.04)";
@@ -99,20 +96,29 @@ function actualizarContador() {
   document.getElementById("segundos").innerText = String(segundos).padStart(2, "0");
 }
 
-// --- 5. LÓGICA DE INVITADOS (?pases=X o ?id=Y) ---
+// --- 5. LÓGICA DE INVITADOS (Con Códigos Secretos para evitar trampas) ---
 function validarInvitadoDesdeURL() {
   var parametros = new URLSearchParams(window.location.search);
   var id = parametros.get("id");
-  var pasesUrl = parametros.get("pases");
+  var codigoSecreto = parametros.get("c");
 
   var inputNombre = document.getElementById("nombreCompleto");
   var sobreNombre = document.getElementById("sobre-nombre");
   var sobrePases = document.getElementById("sobre-pases");
   var elNumPases = document.getElementById("numeroPasesForm");
 
-  // CASO 1: Enlace abierto general (?pases=3, ?pases=2, etc.)
-  if (pasesUrl) {
-    var cantidadPases = parseInt(pasesUrl) || 2;
+  // DICCIONARIO DE CÓDIGOS (Nadie puede adivinar qué poner para tener más pases)
+  var mapaPases = {
+    "xA9": 1, // 1 Pase
+    "yB8": 2, // 2 Pases
+    "zC7": 3, // 3 Pases
+    "wD6": 4, // 4 Pases
+    "vE5": 5  // 5 Pases
+  };
+
+  // CASO 1: Enlace con código oculto válido (?c=yB8)
+  if (codigoSecreto && mapaPases[codigoSecreto]) {
+    var cantidadPases = mapaPases[codigoSecreto];
     
     if (inputNombre) {
       inputNombre.removeAttribute("readonly");
@@ -127,7 +133,7 @@ function validarInvitadoDesdeURL() {
     return;
   }
 
-  // CASO 2: Enlace base sin nada (por defecto 2 pases)
+  // CASO 2: Enlace base sin nada o con código inventado (por defecto da 2 pases)
   if (!id) {
     if (inputNombre) {
       inputNombre.removeAttribute("readonly");
@@ -142,7 +148,7 @@ function validarInvitadoDesdeURL() {
     return;
   }
 
-  // CASO 3: Enlace con ID personalizado
+  // CASO 3: Enlace con ID personalizado desde el Excel (?id=...)
   fetch(URL_ASISTENCIA + "?id=" + encodeURIComponent(id))
     .then(function (res) { return res.json(); })
     .then(function (datos) {
