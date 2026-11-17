@@ -1,6 +1,6 @@
 // --- 1. CONFIGURACIÓN DE RUTAS Y FECHAS ---
 // REEMPLAZA ESTE LINK CON TU NUEVA URL DE APPS SCRIPT TERMINADA EN /exec
-var URL_ASISTENCIA = "TU_NUEVO_LINK_DE_APPS_SCRIPT_AQUI"; 
+var URL_ASISTENCIA = "https://script.google.com/macros/s/AKfycbwbEX3kjAXlY0NRY-7DptreZ_fxVv05tj12UTTe6nzFgGbOkD750BXB43NgPR5GeHYa/exec"; 
 var URL_FOTOS = "https://script.google.com/macros/s/AKfycbzqAmczsKY0dzkIlqpIy0Df8wZAZi4qfr8vG582E6I7-yVtsBjiF3CA96xCEPBkumfOSA/exec";
 
 // Fecha de la boda: 26 de Diciembre de 2026, 15:30 hrs
