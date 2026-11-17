@@ -1,11 +1,11 @@
-// --- CONFIGURACIÓN ---
-var URL_ASISTENCIA = "https://script.google.com/macros/s/AKfycbwbEX3kjAXlY0NRY-7DptreZ_fxVv05tj12UTTe6nzFgGbOkD750BXB43NgPR5GeHYa/exec";
+// --- 1. CONFIGURACIÓN DE RUTAS Y FECHAS ---
+// REEMPLAZA ESTE LINK CON TU NUEVA URL DE APPS SCRIPT TERMINADA EN /exec
+var URL_ASISTENCIA = "TU_NUEVO_LINK_DE_APPS_SCRIPT_AQUI"; 
 var URL_FOTOS = "https://script.google.com/macros/s/AKfycbzqAmczsKY0dzkIlqpIy0Df8wZAZi4qfr8vG582E6I7-yVtsBjiF3CA96xCEPBkumfOSA/exec";
 
-// Fecha de la boda de Nayra y Armando: 26 de Diciembre de 2026, 15:30 hrs (Hora Ceremonia)
+// Fechas clave
 var FECHA_BODA = new Date("2026-12-26T15:30:00-04:00");
 var FECHA_HABILITACION_FOTOS = new Date("2026-12-26T15:30:00-04:00");
-// Fecha límite actualizada al 04 de Diciembre
 var FECHA_LIMITE_RSVP = new Date("2026-12-04T23:59:59-04:00");
 
 var invitadoActual = null;
@@ -22,12 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
   manejarFormularioRSVP();
 });
 
-// --- 1. ANIMACIÓN DE ABRIR EL SOBRE Y EMERGER LA TARJETA ---
+// --- 2. ANIMACIÓN DE ABRIR EL SOBRE ---
 function abrirInvitacion() {
   var envelopeScreen = document.getElementById("envelope-screen");
   var envelopeBox = document.getElementById("envelope-box");
   var appContainer = document.getElementById("app-container");
 
+  // Iniciar música si no está sonando
   if (audio && !isPlaying) {
     audio.play().then(function () {
       if (playBtn) playBtn.innerText = "⏸";
@@ -35,14 +36,14 @@ function abrirInvitacion() {
     }).catch(function () {});
   }
 
-  // Abre la solapa y desliza hacia arriba la tarjeta interior
+  // Activa la animación 3D de la solapa y la carta
   if (envelopeBox) {
     envelopeBox.classList.add("open");
   }
 
   appContainer.classList.remove("oculto");
 
-  // Espera a que luzca la apertura de la solapa y la salida de la carta (850ms)
+  // Transición suave hacia la invitación
   setTimeout(function () {
     envelopeScreen.style.opacity = "0";
     envelopeScreen.style.transform = "scale(1.04)";
@@ -54,7 +55,7 @@ function abrirInvitacion() {
   }, 850);
 }
 
-// --- 2. REPRODUCTOR DE MÚSICA ---
+// --- 3. REPRODUCTOR DE MÚSICA ---
 function controlarMusica() {
   if (!audio) return;
   if (isPlaying) {
@@ -69,7 +70,7 @@ function controlarMusica() {
   }
 }
 
-// --- 3. CONTADOR ---
+// --- 4. CONTADOR REGRESIVO ---
 function iniciarContador() {
   actualizarContador();
   setInterval(actualizarContador, 1000);
@@ -98,21 +99,50 @@ function actualizarContador() {
   document.getElementById("segundos").innerText = String(segundos).padStart(2, "0");
 }
 
-// --- 4. VALIDAR INVITADO DESDE URL (?id=...) ---
+// --- 5. LÓGICA DE INVITADOS (?pases=X o ?id=Y) ---
 function validarInvitadoDesdeURL() {
   var parametros = new URLSearchParams(window.location.search);
   var id = parametros.get("id");
+  var pasesUrl = parametros.get("pases");
 
   var inputNombre = document.getElementById("nombreCompleto");
   var sobreNombre = document.getElementById("sobre-nombre");
   var sobrePases = document.getElementById("sobre-pases");
+  var elNumPases = document.getElementById("numeroPasesForm");
 
+  // CASO 1: Enlace abierto general (?pases=3, ?pases=2, etc.)
+  if (pasesUrl) {
+    var cantidadPases = parseInt(pasesUrl) || 2;
+    
+    if (inputNombre) {
+      inputNombre.removeAttribute("readonly");
+      inputNombre.value = "";
+    }
+    if (sobreNombre) sobreNombre.innerText = "Invitación Especial";
+    if (sobrePases) sobrePases.innerText = cantidadPases === 1 ? "1 Adulto" : cantidadPases + " Adultos";
+    if (elNumPases) elNumPases.innerText = cantidadPases;
+
+    invitadoActual = { id: "LIBRE", pasesPermitidos: cantidadPases };
+    llenarSelectPases(cantidadPases);
+    return;
+  }
+
+  // CASO 2: Enlace base sin nada (por defecto 2 pases)
   if (!id) {
-    if (inputNombre) inputNombre.removeAttribute("readonly");
+    if (inputNombre) {
+      inputNombre.removeAttribute("readonly");
+      inputNombre.value = "";
+    }
+    if (sobreNombre) sobreNombre.innerText = "Invitación Especial";
+    if (sobrePases) sobrePases.innerText = "2 Adultos";
+    if (elNumPases) elNumPases.innerText = "2";
+
+    invitadoActual = { id: "LIBRE", pasesPermitidos: 2 };
     llenarSelectPases(2);
     return;
   }
 
+  // CASO 3: Enlace con ID personalizado
   fetch(URL_ASISTENCIA + "?id=" + encodeURIComponent(id))
     .then(function (res) { return res.json(); })
     .then(function (datos) {
@@ -123,8 +153,7 @@ function validarInvitadoDesdeURL() {
         if (sobrePases) {
           sobrePases.innerText = datos.pasesPermitidos === 1 ? "1 Adulto" : datos.pasesPermitidos + " Adultos";
         }
-
-        document.getElementById("numeroPasesForm").innerText = datos.pasesPermitidos;
+        if (elNumPases) elNumPases.innerText = datos.pasesPermitidos;
         if (inputNombre) inputNombre.value = datos.nombre;
 
         if (datos.confirmado) {
@@ -171,7 +200,7 @@ function bloquearYaConfirmado(pasesConfirmados) {
   }
 }
 
-// --- 5. ENVIAR RSVP ---
+// --- 6. ENVIAR CONFIRMACIÓN (RSVP) ---
 function manejarFormularioRSVP() {
   var form = document.getElementById("formularioAsistencia");
   if (!form) return;
@@ -200,8 +229,9 @@ function manejarFormularioRSVP() {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify({
-        id: invitadoActual ? invitadoActual.id : "MANUAL",
+        id: invitadoActual ? invitadoActual.id : "LIBRE",
         nombre: nombre,
+        pasesPermitidos: invitadoActual ? invitadoActual.pasesPermitidos : parseInt(pases),
         pasesConfirmados: pases
       })
     })
@@ -223,7 +253,7 @@ function manejarFormularioRSVP() {
   });
 }
 
-// --- 6. MODAL DE MAPA Y AVISO DE IGLESIA POR DEFINIR ---
+// --- 7. MODALES Y MAPAS ---
 function avisarIglesiaPorDefinir() {
   alert("📍 La iglesia y su ubicación exacta están por definir. Te confirmaremos muy pronto.");
 }
@@ -239,7 +269,7 @@ function cerrarMapa() {
   document.getElementById("iframeMapaModal").src = "";
 }
 
-// --- 7. SUBIDA DE FOTOS ---
+// --- 8. SUBIDA DE FOTOS ---
 function verificarFechaFoto(evento) {
   if (new Date() < FECHA_HABILITACION_FOTOS) {
     evento.preventDefault();
@@ -292,7 +322,7 @@ function procesarFoto() {
   lector.readAsDataURL(fotoSeleccionada);
 }
 
-// --- 8. EFECTO REVEAL AL HACER SCROLL ---
+// --- 9. EFECTO REVEAL AL HACER SCROLL ---
 function prepararAnimaciones() {
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
