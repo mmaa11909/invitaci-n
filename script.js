@@ -96,7 +96,7 @@ function actualizarContador() {
   document.getElementById("segundos").innerText = String(segundos).padStart(2, "0");
 }
 
-// --- 5. LÓGICA DE INVITADOS (Con Códigos Secretos para evitar trampas) ---
+// --- 5. LÓGICA DE INVITADOS (ESTRICTA) ---
 function validarInvitadoDesdeURL() {
   var parametros = new URLSearchParams(window.location.search);
   var id = parametros.get("id");
@@ -107,7 +107,7 @@ function validarInvitadoDesdeURL() {
   var sobrePases = document.getElementById("sobre-pases");
   var elNumPases = document.getElementById("numeroPasesForm");
 
-  // DICCIONARIO DE CÓDIGOS (Nadie puede adivinar qué poner para tener más pases)
+  // DICCIONARIO DE CÓDIGOS SECRETOS
   var mapaPases = {
     "xA9": 1, // 1 Pase
     "yB8": 2, // 2 Pases
@@ -116,35 +116,47 @@ function validarInvitadoDesdeURL() {
     "vE5": 5  // 5 Pases
   };
 
-  // CASO 1: Enlace con código oculto válido (?c=yB8)
-  if (codigoSecreto && mapaPases[codigoSecreto]) {
-    var cantidadPases = mapaPases[codigoSecreto];
-    
-    if (inputNombre) {
-      inputNombre.removeAttribute("readonly");
-      inputNombre.value = "";
-    }
-    if (sobreNombre) sobreNombre.innerText = "Invitación Especial";
-    if (sobrePases) sobrePases.innerText = cantidadPases === 1 ? "1 Adulto" : cantidadPases + " Adultos";
-    if (elNumPases) elNumPases.innerText = cantidadPases;
+  // CASO 1: Ingresó mediante link de código secreto (?c=...)
+  if (codigoSecreto !== null) {
+    if (mapaPases[codigoSecreto]) {
+      // Código válido y correcto
+      var cantidadPases = mapaPases[codigoSecreto];
+      
+      if (inputNombre) {
+        inputNombre.removeAttribute("readonly");
+        inputNombre.value = "";
+      }
+      if (sobreNombre) sobreNombre.innerText = "Invitación Especial";
+      if (sobrePases) sobrePases.innerText = cantidadPases === 1 ? "1 Adulto" : cantidadPases + " Adultos";
+      if (elNumPases) elNumPases.innerText = cantidadPases;
 
-    invitadoActual = { id: "LIBRE", pasesPermitidos: cantidadPases };
-    llenarSelectPases(cantidadPases);
+      invitadoActual = { id: "LIBRE", pasesPermitidos: cantidadPases };
+      llenarSelectPases(cantidadPases);
+    } else {
+      // CÓDIGO INVÁLIDO (Intentaron hacer trampa)
+      if (sobreNombre) sobreNombre.innerText = "Enlace Inválido";
+      if (sobrePases) sobrePases.innerText = "0 Adultos";
+      if (elNumPases) elNumPases.innerText = "0";
+      
+      // Bloqueamos el formulario con un mensaje de advertencia
+      bloquearYaConfirmado(0, "⚠️ El enlace de invitación ha sido modificado o es inválido.");
+    }
     return;
   }
 
-  // CASO 2: Enlace base sin nada o con código inventado (por defecto da 2 pases)
+  // CASO 2: Ingresó con el link base sin parámetros (https://invitacionboda2026.site/)
   if (!id) {
+    // Por seguridad, el enlace público general dará estrictamente 1 solo pase
     if (inputNombre) {
       inputNombre.removeAttribute("readonly");
       inputNombre.value = "";
     }
     if (sobreNombre) sobreNombre.innerText = "Invitación Especial";
-    if (sobrePases) sobrePases.innerText = "2 Adultos";
-    if (elNumPases) elNumPases.innerText = "2";
+    if (sobrePases) sobrePases.innerText = "1 Adulto";
+    if (elNumPases) elNumPases.innerText = "1";
 
-    invitadoActual = { id: "LIBRE", pasesPermitidos: 2 };
-    llenarSelectPases(2);
+    invitadoActual = { id: "LIBRE", pasesPermitidos: 1 };
+    llenarSelectPases(1);
     return;
   }
 
@@ -191,18 +203,25 @@ function mostrarFormulario() {
   document.getElementById("formularioAsistencia").classList.remove("oculto");
 }
 
-function bloquearYaConfirmado(pasesConfirmados) {
-  document.getElementById("btn-revelar-form").classList.add("oculto");
-  document.getElementById("formularioAsistencia").classList.add("oculto");
-
+function bloquearYaConfirmado(pasesConfirmados, mensajeOpcional) {
+  var btnConfirma = document.getElementById("btn-revelar-form");
+  var formAsistencia = document.getElementById("formularioAsistencia");
   var bloque = document.getElementById("bloqueYaConfirmado");
   var texto = document.getElementById("textoYaConfirmado");
-  bloque.classList.remove("oculto");
 
-  if (parseInt(pasesConfirmados) === 0) {
-    texto.innerText = "Respuesta registrada: No podrán asistir. Los extrañaremos.";
-  } else {
-    texto.innerText = "¡Gracias! Asistencia confirmada para " + pasesConfirmados + " persona(s).";
+  if (btnConfirma) btnConfirma.classList.add("oculto");
+  if (formAsistencia) formAsistencia.classList.add("oculto");
+  if (bloque) bloque.classList.remove("oculto");
+
+  if (texto) {
+    if (mensajeOpcional) {
+      // Mensaje de trampa o error personalizado
+      texto.innerText = mensajeOpcional;
+    } else if (parseInt(pasesConfirmados) === 0) {
+      texto.innerText = "Respuesta registrada: No podrán asistir. Los extrañaremos.";
+    } else {
+      texto.innerText = "¡Gracias! Asistencia confirmada para " + pasesConfirmados + " persona(s).";
+    }
   }
 }
 
