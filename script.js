@@ -4,9 +4,9 @@ var URL_ASISTENCIA = "https://script.google.com/macros/s/AKfycbwbEX3kjAXlY0NRY-7
 var URL_FOTOS = "https://script.google.com/macros/s/AKfycbzqAmczsKY0dzkIlqpIy0Df8wZAZi4qfr8vG582E6I7-yVtsBjiF3CA96xCEPBkumfOSA/exec";
 
 // Fecha de la boda: 26 de Diciembre de 2026, 15:30 hrs
-var FECHA_BODA = new Date("2026-12-26T15:30:00-04:00");
-var FECHA_HABILITACION_FOTOS = new Date("2026-12-26T15:30:00-04:00");
-var FECHA_LIMITE_RSVP = new Date("2026-12-04T23:59:59-04:00");
+var FECHA_BODA = new Date("2026-11-17T15:30:00-03:00");
+var FECHA_HABILITACION_FOTOS = new Date("2026-11-17T15:30:00-03:00");
+var FECHA_LIMITE_RSVP = new Date("2026-11-17T15:30:00-03:00");
 
 var invitadoActual = null;
 var fotoSeleccionada = null;
